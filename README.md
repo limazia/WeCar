@@ -10,7 +10,7 @@ O aplicativo WeCar será desenvolvido em:
 
 - Node.js (Express, Knex.js)
 - MySQL
-- ReactJS (Bootstrap 4, Styled Components e Font Awesome 5)
+- React (Bootstrap 4, Styled Components e Font Awesome 5)
 
 ## Autores
 
