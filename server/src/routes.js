@@ -5,8 +5,9 @@ const routes = express.Router();
 
 routes.get("/", function (request, response) {
   response.json({
-    name: "WeCar",
-    environment: "development",
+    name: process.env.APP_NAME,
+    environment: process.env.APP_ENV,
+    technologies: ["Node.js", "MySQL", "React"],
   });
 });
 

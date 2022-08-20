@@ -1,5 +1,5 @@
 const AppConfig = require("./app");
-const DBConfig = require("./auth");
+const DBConfig = require("./database");
 const AuthConfig = require("./auth");
 
 module.exports = {
