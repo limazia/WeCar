@@ -9,8 +9,8 @@
       <title>Dashboard</title>
    </head>
    <body>
-      <nav class="navbar navbar-expand-md navbar-light bg-light box-shadow text-dark fixed-top">
-         <a href="" class="navbar-brand"><img src="assets/images/logo.png" alt=""></a>
+      <nav class="navbar navbar-expand-md navbar-light bg-dark box-shadow text-white fixed-top">
+         <a href="" class="navbar-brand"><img style="width:50px" src="assets/images/logo.svg" alt=""></a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                <li class="nav-item ml-4"><a class="nav-link" href=""></a>Ofertas</li>
                <li class="nav-item ml-4"><a class="nav-link" href=""></a>Sobre</li>
                <li class="nav-item mx-4"><a class="nav-link" href=""></a>Contato</li>
-               <button type="button" class="btn btn-secondary mt-2">Login</button>
+               <button type="button" class="btn btn-danger mt-2">Login</button>
             </ul>
          </div>
       </nav>
@@ -59,110 +59,53 @@
                      </div>
                   </div>
                </div>
-               <button class="carousel-control-prev" type="button" data-target="#carousel-cars" data-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="sr-only">Previous</span>
-               </button>
-               <button class="carousel-control-next" type="button" data-target="#carousel-cars" data-slide="next">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="sr-only">Next</span>
-               </button>
+               <button class="carousel-control-prev bg-danger" type="button" data-target="#carousel-cars" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                  </button>
             </div>
          </div>
-         <div class="col-md-5 p-5 ">
-         <div class="p-5">
-            <h1 class="display-2 text-center">WeCar</h1>
-            <h2 class="display-4 text-center">Revendedora Autorizada em todo Brasil</h2>
-            <p class="text-center h4">Quer receber todos todas promoções diretamente no seu e-mail? Então
-               registre-se agora em nosso site, e fique por dentro de todas promoções
-            </p>
-         </div>
-         <form class="md-4">
-            <div class="form-group row">
-               <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-               <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3">
-               </div>
-            </div>
-            <div class="form-group row">
-               <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
-               <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3">
-               </div>
-            </div>
-            <fieldset class="form-group row">
-               <legend class="col-form-label col-sm-2 float-sm-left pt-0"></legend>
-               <div class="col-sm-10 h5">
-                  <div class="form-check">
-                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1"
-                        value="option1" checked>
-                     <label class="form-check-label" for="gridRadios1">
-                     Receber somente promoções
-                     </label>
-                  </div>
-                  <div class="form-check">
-                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                        value="option2">
-                     <label class="form-check-label" for="gridRadios2">
-                     Receber somente novos carros á venda
-                     </label>
-                  </div>
-                  <div class="form-check">
-                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2"
-                        value="option2">
-                     <label class="form-check-label" for="gridRadios2">
-                     Receber ambos
-                     </label>
-                  </div>
-               </div>
-            </fieldset>
-            <div class="form-group row">
-               <div class="col-sm-10 offset-sm-2">
-                  <div class="form-check">
-                  </div>
-               </div>
-            </div>
-            <div class="form-group row">
-               <div class="col-sm-10 text-center">
-                  <button type="submit" class="btn btn-lg btn-primary">Registrar-se</button>
-               </div>
-            </div>
+         <div class="col-md-5  p-5  bg-danger">
+            <img style="width:350px" class="text-center m-5 p-5" src="assets/images/logo.svg" alt="">
+          </div>
+        </div>
+
          </form>
       </section>
-      <section class="container-fluid py-5 bg-light text-center">
+      <section class="container-fluid py-5 bg-dark text-center text-white">
          <div id="carousel-car-sale" class="carousel slide" data-ride="carousel">
          <!--Carrosel com os cards dentro-->
          <div class="container-fluid">
-            <span class="h6 d-block">A melhor escolha ao seu alcance!</span>
-            <h2 class="display-4 text-primary"> Aproveite nossas ofertas</h2>
+            <span class="h6 d-block text-danger">A melhor escolha ao seu alcance!</span>
+            <h2 class="display-4 text-light"> Aproveite nossas ofertas</h2>
             <div class="row">
                <div class="card-deck">
                   <!--Cards-->
-                  <div class="card col-xl-4 col-md-6">
+                  <div class="card col-xl-4 col-md-6 bg-danger text-dark">
                      <img src="assets/images/venda1.jpg" class="card-img-top" alt="card1">
                      <div class="card-body">
                         <h5 class="card-title">Jeep 4x4 2021</h5>
                         <p class="card-text">Apenas 45.000Km</p>
                         <p class="h4">R$ 95.000</p>
-                        <button type="button" class="btn btn-primary btn btn-sm">Visualizar</button>
+                        <button type="button" class="btn btn-dark btn btn-sm">Visualizar</button>
                      </div>
                   </div>
-                  <div class="card col-xl-4 col-md-6">
+                  <div class="card col-xl-4 col-md-6 bg-danger text-dark">
                      <img src="assets/images/venda2.jpg" class="card-img-top" alt="card2">
                      <div class="card-body">
                         <h5 class="card-title">Fusca 1969</h5>
                         <p class="card-text">Apenas 57.000Km</p>
                         <p class="h4">R$ 35.000</p>
-                        <button type="button" class="btn btn-primary btn-sm">Visualizar</button>
+                        <button type="button" class="btn btn-dark btn-sm">Visualizar</button>
                      </div>
                   </div>
-                  <div class="card col-xl-4 col-md-6">
+                  <div class="card col-xl-4 col-md-6 bg-danger text-dark">
                      <img src="assets/images/venda3.jpg" class="card-img-top" alt="card3">
                      <div class="card-body">
                         <h5 class="card-title">BMW 320i 2017</h5>
                         <p class="card-text">Apenas 72.000Km</p>
                         <p class="h4">R$ 180.000</p>
-                        <button type="button" class="btn btn-primary btn-sm">Visualizar</button>
+                        <button type="button" class="btn btn-dark btn-sm">Visualizar</button>
                      </div>
                   </div>
                </div>
@@ -232,7 +175,7 @@
                <div>
                </div>
             </div>
-            <a href="" class="btn btn-primary btn-lg">Veículos</a>
+            <a href="" class="btn btn-danger btn-lg">Veículos</a>
          </div>
       </section>
       <section id="home-quote">
@@ -246,7 +189,7 @@
       <footer class="bg-dark text-white">
          <div class="container py-4">
             <div class="row">
-               <div class="col-md-3 col-6">
+               <div class="col-md-3 col-6 text-danger">
                   <h4 class="h5">Páginas</h4>
                   <ul class="list-unstyled">
                      <li><a href="">Planos</a></li>
@@ -254,7 +197,7 @@
                      <li><a href="">Inscreva-se</a></li>
                   </ul>
                </div>
-               <div class="col-md-3 col-6">
+               <div class="col-md-3 col-6 text-danger">
                   <h4 class="h5">Locais</h4>
                   <ul class="list-unstyled">
                      <li><a href="">São Paulo</a></li>
@@ -262,15 +205,15 @@
                      <li><a href="">Goiânia</a></li>
                   </ul>
                </div>
-               <div class="col-md-3 col-6">
-                  <h4 class="h5 text-secundary">Dados de contato</h4>
+               <div class="col-md-3 col-6 text-danger">
+                  <h4 class="h5">Dados de contato</h4>
                   <ul class="list-unstyled">
                      <li><a href="">Planos</a></li>
                      <li><a href="">Contatos</a></li>
                      <li><a href="">Inscreva-se</a></li>
                   </ul>
                </div>
-               <div class="col-md-3 col-6">
+               <div class="col-md-3 col-6 text-danger">
                   <h4 class="h5">Redes Sociais</h4>
                   <ul class="list-unstyled">
                      <li class="pb-2 btn-sm" style="max-width: 140px;"><a type="button"
@@ -283,8 +226,8 @@
                </div>
             </div>
          </div>
-         <div class="bg-primary text-center py-3">
-            <p class="mb-0">&copy; WeCar - 2022</p>
+         <div class="bg-danger text-center text-dark py-3">
+            <p class="mb-0 h6">&copy; WeCar - 2022</p>
          </div>
       </footer>
    </body>
