@@ -1,0 +1,56 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.login {
+    max-width: 2000px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.login-div {
+    background-color: #f1f1f1;
+    height: 80vh;
+    text-align: center;
+}
+
+.login .login-ul {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+input[type=text] {
+    margin-top: 200px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    /*border: 1px solid #555;*/
+    outline: none;
+}
+
+input[type=password] {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    /*border: 1px solid #555;*/
+    outline: none;
+}
+
+.carousel {
+    height: 80vh;
+}
+
+.carousel .carousel-item {
+    height: 80vh;
+}
+
+.login .login-div .btn {
+    margin-bottom: 50px;
+}
