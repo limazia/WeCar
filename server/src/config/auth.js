@@ -1,5 +1,5 @@
 module.exports = {
-  secret: process.env.APP_SECRET_KEY || "QmxhQkNoYXQ==",
+  secret: process.env.APP_KEY || "QmxhQkNoYXQ==",
   expiresIn: "7d",
   refreshExpiresIn: "7d",
 };
