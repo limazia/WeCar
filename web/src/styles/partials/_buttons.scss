@@ -1,0 +1,117 @@
+.btn-login,
+.btn-login:focus,
+.btn-login:active,
+.btn-login:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 60px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #3935b5;
+    border-color: #3935b5;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-back {
+  z-index: 1;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  padding: 8px 50px;
+  border-radius: 30px;
+  font-size: 1em;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin: 5px 0px;
+  border: 2px solid #007bff;
+  color: #007bff;
+  transition: 0.7s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background: #0062cc;
+  }
+}
+
+.btn-search,
+.btn-search:focus,
+.btn-search:active,
+.btn-search:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  height: 60px;
+  border-radius: 6px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #3935b5;
+    border-color: #3935b5;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-more-details,
+.btn-more-details:focus,
+.btn-more-details:active,
+.btn-more-details:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #ff5857;
+  border-color: #ff5857;
+  height: 40px;
+  width: 50%;
+  border-radius: 6px;
+  transition: 0.5s ease;
+
+  &:hover {
+    color: #fff;
+    background: #ff7170;
+    border-color: #ff7170;
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-whatsapp {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  background-color: rgb(77, 194, 71);
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 35px;
+
+  &:hover {
+    color: #fff;
+  }
+}

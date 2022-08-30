@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+}
+
+body {
+  background-color: #fff;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 0;
+  scrollbar-width: 6px;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4d4d57;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+img,
+svg {
+  display: block;
+  width: 100%;
+}
+
+button:hover,
+button:focus,
+button:active,
+button:active:focus:not(:disabled):not(.disabled) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn:active:focus:not(:disabled):not(.disabled) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+@import "partials/menu";
+@import "partials/layout";
+@import "partials/cards";
+@import "partials/buttons";
+@import "partials/forms";

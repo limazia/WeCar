@@ -1,0 +1,91 @@
+@mixin nav {
+  .navbar-nav {
+    .nav-link {
+      color: #000;
+      transition: ease 0.5s;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:active:focus:not(:disabled):not(.disabled) {
+        color: #8c8c8c;
+      }
+    }
+
+    .active > .nav-link,
+    .show > .nav-link {
+      color: #d6d6d6;
+    }
+  }
+}
+
+.navbar {
+  padding: 0px;
+}
+
+.navbar-main,
+.navbar-utility {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-main {
+  padding: 1.5rem 2rem;
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 23px;
+    font-weight: 700;
+    color: #000;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:focus:not(:disabled):not(.disabled) {
+      color: #000;
+    }
+
+    img,
+    svg {
+      display: inline;
+      max-width: 100%;
+      width: 230px;
+      object-fit: cover;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  @include nav;
+}
+
+.navbar-utility {
+  padding: 0.6rem 2rem;
+  border-bottom: 2px solid rgba(238, 238, 238, 0.8);
+
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        margin-left: 30px;
+
+        i {
+          margin-right: 5px;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @include nav;
+}

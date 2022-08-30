@@ -1,0 +1,10 @@
+.loadingContainer {
+  cursor: default;
+}
+
+.lineOne {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 100%;
+  height: 7.875rem;
+}
