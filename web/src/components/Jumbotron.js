@@ -1,11 +1,11 @@
-export function Jumbotron() {
-  const image = "https://wallpaperaccess.com/full/7430329.jpg";
+import SearchBackground from "~/assets/bg-search.jpeg";
 
+export function Jumbotron() {
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="jumbotron-main">
-          <img src={image} alt="" />
+          <img src={SearchBackground} loading="lazy" alt="" />
         </div>
       </div>
     </div>

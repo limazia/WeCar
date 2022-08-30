@@ -46,7 +46,7 @@ export function Footer() {
             </p>
             <p className="mb-0">
               Criado com <i className="fas fa-heart text-danger"></i> por{" "}
-              <b>{"{team}"}</b>
+              <b>Grupo 01</b>
             </p>
           </div>
         </div>
