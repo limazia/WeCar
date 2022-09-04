@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { Logo } from "./Images/Logos";
+
+import { ReactComponent as Logo } from "~/assets/logo.svg";
 
 export function Header() {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-utility navbar-light bg-light d-none d-lg-flex">
+      <nav className="navbar navbar-expand-lg navbar-utility navbar-light bg-white d-none d-lg-flex">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <a className="nav-link" href="#">
@@ -24,18 +25,18 @@ export function Header() {
         </ul>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a href="https://www.facebook.com/" target="_blank">
-              <i className="fab fa-facebook-f mr-3"></i>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+              <i className="fab fa-facebook-f mr-4"></i>
             </a>
           </li>
           <li className="nav-item">
-            <a href="https://www.instagram.com/" target="_blank">
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
               <i className="fab fa-instagram"></i>
             </a>
           </li>
         </ul>
       </nav>
-      <nav className="navbar navbar-expand-lg navbar-main navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-main navbar-light bg-white">
         <Link className="navbar-brand logo m-0 p-0" to="/">
           <Logo />
         </Link>
@@ -54,28 +55,23 @@ export function Header() {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/">
-                Inicio
+                Comprar
               </Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/company">
-                Empresa
-            </Link>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Estoque
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/sell">
                 Venda seu carro
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/company">
+                Empresa
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
                 Contato
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

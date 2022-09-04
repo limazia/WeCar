@@ -33,6 +33,6 @@ app.listen(AppConfig.port, () => {
   } catch (ex) {
     console.log("error" + ex);
   } finally {
-    console.log(`Listening on port ${AppConfig.port}`);
+    console.log(`Listening on port ${AppConfig.server}`);
   }
 });

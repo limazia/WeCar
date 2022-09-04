@@ -1,43 +1,43 @@
 import api from "./api";
 
 export default {
-  getStrategies: async (type) => {
+  getBrands: async () => {
     try {
-      const { data } = await api.get(`/api/strategies/${type}`);
+      const { data } = await api.get("/api/brand");
 
       return data;
     } catch (ex) {
-      console.error("[GET /strategies] > it was not possible to collect data from the api");
+      console.error("[GET /brand] > it was not possible to collect data from the api");
     }
   },
 
-  getStatus: async () => {
+  getBrandById: async (brand) => {
     try {
-      const { data } = await api.get("/api/bot/status");
+      const { data } = await api.get(`/api/brand/${brand}`);
 
       return data;
     } catch (ex) {
-      console.error("[GET /status] > it was not possible to collect data from the api");
+      console.error("[GET /brand] > it was not possible to collect data from the api");
     }
   },
 
-  getStats: async () => {
+  GetModels: async () => {
     try {
-      const { data } = await api.get("/api/bot/stats");
+      const { data } = await api.get("/api/model");
 
       return data;
     } catch (ex) {
-      console.error("[GET /stats] > it was not possible to collect data from the api");
+      console.error("[GET /model] > it was not possible to collect data from the api");
     }
   },
 
-  getConfig: async () => {
+  getCar: async (brand, model) => {
     try {
-      const data = await api.get("/api/config/me");
+      const { data } = await api.get(`/api/car/${brand}/${model}`);
 
       return data;
     } catch (ex) {
-      console.error("[GET /config/me] > it was not possible to collect data from the api");
+      console.error("[GET /car] > it was not possible to collect data from the api");
     }
   },
 };

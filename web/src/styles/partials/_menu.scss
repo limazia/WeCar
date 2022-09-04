@@ -1,6 +1,6 @@
 @mixin nav {
   .navbar-nav {
-    .nav-link {
+    .nav-link, i {
       color: #000;
       transition: ease 0.5s;
 
@@ -64,12 +64,20 @@
     align-items: center;
   }
 
+  .navbar-nav {
+    .nav-item {
+      .nav-link {
+        margin-left: 10px;
+      }
+    }
+  }
+
   @include nav;
 }
 
 .navbar-utility {
   padding: 0.6rem 2rem;
-  border-bottom: 2px solid rgba(238, 238, 238, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 
   .navbar-nav {
     .nav-item {

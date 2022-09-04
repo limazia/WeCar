@@ -1,0 +1,44 @@
+.footer-main {
+  background-color: #fff;
+  padding: 0 2rem;
+
+  ul {
+    li {
+      a {
+        font-weight: bold;
+        color: rgba(20, 26, 29, 0.6);
+        transition: ease 0.5s;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:active:focus:not(:disabled):not(.disabled) {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .footer-utility {
+    img,
+    svg {
+      display: inline;
+      max-width: 100%;
+      width: 230px;
+      object-fit: cover;
+    }
+  }
+
+  .footer-divider {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .copyright {
+    font-weight: bold;
+    color: rgba(20, 26, 29, 0.6);
+  }
+}

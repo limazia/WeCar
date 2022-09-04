@@ -1,0 +1,52 @@
+.carContainer {
+  cursor: default;
+}
+
+.carDay {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 20%;
+  height: 13px;
+}
+
+.carTilte {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 40%;
+  height: 17px;
+}
+
+.carImage {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 100%;
+  height: 250px;
+}
+
+.carSpecTitle {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 30%;
+  height: 17px;
+}
+
+.carSpecDescription {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 60%;
+  height: 17px;
+}
+
+.carPrice {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 124px;
+  height: 28px;
+}
+
+.carButton {
+  box-shadow: none;
+  border-radius: 6px;
+  width: 151px;
+  height: 40px;
+}

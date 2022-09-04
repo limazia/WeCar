@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import { Spinner } from "~/components/Spinner";
 import { Head } from "~/components/Head";
@@ -22,7 +23,9 @@ export function Login() {
                 <div className="row">
                   <div className="col-lg-10 col-xl-7 mx-auto">
                     <div className="display-4 box-logo">
-                      <Logo className="img-fluid mr-2" />
+                      <Link to="/">
+                        <Logo className="img-fluid mr-2" />
+                      </Link>
                     </div>
                     <p className="text-muted mt-3 mb-4 text-center">
                       Inicie uma sessão para continuar
@@ -46,7 +49,7 @@ export function Login() {
                           placeholder="Senha"
                         />
                       </div>
-                      <button type="submit" className="btn btn-login btn-block">
+                      <button type="submit" disabled={true} className="btn btn-login btn-block">
                         <Spinner type="grow" />
                       </button>
                     </form>

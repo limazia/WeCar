@@ -1,46 +1,94 @@
-export function CardCar() {
+import CarDefault from "~/assets/car-default.jpg";
+
+export function CardCar({ data, brand, model }) {
+  const {
+    model_name,
+    car_km,
+    car_price,
+    car_image,
+    car_fuel,
+    car_exchange,
+    car_year,
+    createdAt,
+  } = data;
+  const price = car_price.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const getExchange = (exchange) => {
+    switch (exchange) {
+      case "automatic":
+        return "Automatica";
+      case "manual":
+        return "Manual";
+      default:
+        throw new Error("exchange warning");
+    }
+  };
+
+  const getFuel = (fuel) => {
+    switch (fuel) {
+      case "gasoline":
+        return "Gasolina";
+      case "flex":
+        return "Flex";
+      case "diesel":
+        return "Diesel";
+      case "hybrid":
+        return "Híbrido";
+      case "electric":
+        return "Elétrico";
+      default:
+        throw new Error("fuel warning");
+    }
+  };
+
   return (
     <div className="card card-car p-1">
       <div className="card-header d-flex justify-content-between align-items-center">
         <div className="car-info">
           <small className="d-block text-muted">
-            <span className="font-weight-bold">Sabado</span>, 14:50
+            <span className="font-weight-bold">
+              {createdAt.split(",", 4)[0]},
+            </span>
+            {createdAt.split(",", 4)[1]}
           </small>
-          <span className="font-weight-bold">Audi TT (2014)</span>
-        </div>
-        <div className="car-favorite">
-          <i className="fas fa-stars"></i>
+          <span className="font-weight-bold text-uppercase">
+            {model_name}
+          </span>
         </div>
       </div>
       <div className="car-image">
         <img
           className="card-img-top"
-          src="https://motorshow.com.br/wp-content/uploads/sites/2/2018/05/9_ms416_audi-tt-rs1.jpg"
+          src={car_image ? car_image : CarDefault}
           alt=""
         />
       </div>
       <div className="card-body">
         <div className="row">
           <div className="col-md-6">
-            <span className="text-muted d-block">KM</span> <b>42.800</b>
+            <span className="text-muted d-block">KM</span>
+            <b>{car_km.toFixed(2)}</b>
           </div>
           <div className="col-md-6">
-            <span className="text-muted d-block">Ano</span> <b>2015/2016</b>
+            <span className="text-muted d-block">Ano</span> <b>{car_year}</b>
           </div>
         </div>
         <div className="row mt-2">
           <div className="col-md-6">
             <span className="text-muted d-block">Combustível</span>
-            <b>Gasolina</b>
+            <b>{getFuel(car_fuel)}</b>
           </div>
           <div className="col-md-6">
             <span className="text-muted d-block">Câmbio</span>
-            <b>Automática</b>
+            <b>{getExchange(car_exchange)}</b>
           </div>
         </div>
       </div>
       <div className="card-footer d-flex justify-content-between align-items-center">
-        <h4 className="font-weight-bold mb-0 pb-0">R$ 179.890</h4>
+        <h4 className="font-weight-bold mb-0 pb-0">{price}</h4>
         <a href="#" className="btn btn-more-details">
           Mais detalhes
         </a>

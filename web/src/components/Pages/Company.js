@@ -2,18 +2,21 @@ import { Fragment } from "react";
 
 import { Head } from "~/components/Head";
 
+import CompanyBackground from "~/assets/bg-company.jpg";
+
 export function Company() {
   return (
     <Fragment>
       <Head title="Empresa" />
-      <div className="container mt-5 pb-5">
-        <div className="row d-flex justify-content-center">
-          <div className="col-md-7">
+      <div className="container-fluid car">
+        <div className="row justify-content-center">
+          <div className="col-md-7 mt-5 pb-5">
             <h1>Conheça nossa história</h1>
-            <div className="company-image">
+            <div className="company-image mt-3">
               <img
-                src="https://cdn.sitewebmotors.com.br/uploads/userGallery/5eb576ae0bc95.png"
+                src={CompanyBackground}
                 className="img-thumbnail mt-2"
+                loading="lazy"
                 alt=""
               />
             </div>
