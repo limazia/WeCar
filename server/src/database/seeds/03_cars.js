@@ -1,5 +1,5 @@
 exports.seed = function (knex) {
-  return knex("professionals").insert([
+  return knex("cars").insert([
     {
       car_id: "40e94f14",
       car_km: "84000",

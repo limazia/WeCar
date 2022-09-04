@@ -38,8 +38,8 @@ class BrandController {
         "models.model_name as model_name",
         "models.model_slug as model_slug",
       ])
-      .leftJoin("models", "brands.brand_id", "=", "models.id_brand")
-      .leftJoin("cars", "models.model_id", "=", "cars.id_model")
+      .innerJoin("models", "brands.brand_id", "=", "models.id_brand")
+      .innerJoin("cars", "models.model_id", "=", "cars.id_model")
       .where("brands.brand_slug", brand)
       .orderBy("cars.createdAt", "desc");
 
