@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import retry from "retry";
@@ -16,9 +16,9 @@ function AuthProvider({ children }) {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-
+ 
   useEffect(() => {
-    const { "collect.token": token } = parseCookies();
+    const { "wecar.token": token } = parseCookies();
 
     if (token) {
       userProfile();
@@ -46,20 +46,20 @@ function AuthProvider({ children }) {
           setPassword("");
           setLoading(false);
 
-          setCookie(undefined, "collect.token", token, {
+          setCookie(undefined, "wecar.token", token, {
             maxAge: 60 * 60 * 24 * 7, // 7 days
             path: "/",
           });
 
-          setCookie(undefined, "collect.refreshToken", refreshToken, {
+          setCookie(undefined, "wecar.refreshToken", refreshToken, {
             maxAge: 60 * 60 * 24 * 14, // 14 days
             path: "/",
           });
- 
+
           api.defaults.headers["Authorization"] = `Bearer ${token}`;
-          
-          //navigate("/");
-          window.location.replace("/");
+
+          navigate("/admin/");
+          //window.location.replace("/admin/");
         } else {
           if (message) {
             toast.success(message);
@@ -79,6 +79,10 @@ function AuthProvider({ children }) {
   }
 
   const userProfile = async () => {
+    if (window.location.pathname == "/admin/login") {
+      return navigate("/admin");
+    }
+
     operation.attempt(async (currentAttempt) => {
       console.log(`sending request: ${currentAttempt} attempt`);
       try {
@@ -95,10 +99,11 @@ function AuthProvider({ children }) {
   };
 
   function logout() {
-    destroyCookie(undefined, "collect.token");
+    destroyCookie(undefined, "wecar.token");
+    destroyCookie(undefined, "wecar.refreshToken");
     setUser(null);
 
-    navigate("/login");
+    navigate("/admin/login");
     //window.location.replace("/login");
   }
 

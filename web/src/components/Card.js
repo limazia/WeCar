@@ -1,4 +1,4 @@
-import CarDefault from "~/assets/car-default.jpg";
+import { CarDefault } from "~/components/Images";
 
 export function CardCar({ data, brand, model }) {
   const {

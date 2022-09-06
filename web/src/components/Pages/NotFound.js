@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { Head } from "~/components/Head";
+import { Head } from "~/components/Partials/Head";
 
 import { ReactComponent as Logo } from "~/assets/logo.svg";
 import { ReactComponent as ImageError404 } from "~/assets/404.svg";
@@ -9,7 +9,7 @@ export function NotFound() {
   return (
     <>
       <Head title="Página não encontrada" />
-      <header className="header">
+      <header>
         <nav className="navbar navbar-expand-lg navbar-light py-3">
           <div className="container">
             <Link to="/" className="navbar-brand">

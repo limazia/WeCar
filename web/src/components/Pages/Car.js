@@ -1,11 +1,11 @@
 import { Fragment, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import classNames from "classnames";
 
 import WebRepository from "~/services/WebRepository";
 
-import { Head } from "../Head";
-import { SelectWrapper } from "../Select";
+import { Head } from "../Partials/Head";
+import { SelectWrapper } from "../Forms/Select";
 import { CardCar } from "../Card";
 import { CarShimmer } from "../Shimmer/CardCar";
 
@@ -82,7 +82,19 @@ export function Car() {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
-                    <SelectWrapper forcePosition="bottom" />
+                    <div className="row d-flex align-items-center">
+                      <div className="col-md-10">
+                        <div className="form-group mb-0 wicon">
+                          <i className="fas fa-search left"></i>
+                          <SelectWrapper forcePosition="bottom" />
+                        </div>
+                      </div>
+                      <div className="col-md-2">
+                        <Link className="btn btn-primary btn-block" to="/buy/car">
+                          Ver todos
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -95,25 +107,151 @@ export function Car() {
                       <span>Filtrar</span>
                       <button className="btn btn-link p-0">Limpar</button>
                     </div>
-                    <div className="d-block">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>Características</span>
-                        <i className="far fa-angle-down"></i>
-                      </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>Combustível</span>
-                        <i className="far fa-angle-down"></i>
-                      </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <span>Outros</span>
-                        <i className="far fa-angle-down"></i>
-                      </div>
+                    <div className="d-block card-filter">
+                      <article className="filter-group">
+                        <header className="card-header px-0">
+                          <a
+                            href="#"
+                            data-toggle="collapse"
+                            data-target="#collapse_aside2"
+                            className="collapsed"
+                          >
+                            <i className="icon-control fa fa-chevron-down"></i>
+                            <h6 className="title">Características</h6>
+                          </a>
+                        </header>
+                        <div
+                          className="filter-content collapse"
+                          id="collapse_aside2"
+                        >
+                          <div className="card-body"></div>
+                        </div>
+                      </article>
+                      <article className="filter-group">
+                        <header className="card-header px-0">
+                          <a
+                            href="#"
+                            data-toggle="collapse"
+                            data-target="#collapse_aside1"
+                            className="collapsed"
+                          >
+                            <i className="icon-control fa fa-chevron-down"></i>
+                            <h6 className="title">Combustível</h6>
+                          </a>
+                        </header>
+                        <div
+                          className="filter-content collapse"
+                          id="collapse_aside1"
+                        >
+                          <div className="card-body p-0">
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">
+                                Gasolina
+                              </div>
+                            </label>
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">Flex</div>
+                            </label>
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">Diesel</div>
+                            </label>
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">
+                                Híbrido
+                              </div>
+                            </label>
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">
+                                Elétrico
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                      </article>
+
+                      <article className="filter-group">
+                        <header className="card-header px-0">
+                          <a
+                            href="#"
+                            data-toggle="collapse"
+                            data-target="#collapse_aside4"
+                            data-abc="true"
+                            className="collapsed"
+                            aria-expanded="false"
+                          >
+                            <i className="icon-control fa fa-chevron-down"></i>
+                            <h6 className="title">Outros</h6>
+                          </a>
+                        </header>
+                        <div
+                          className="filter-content collapse"
+                          id="collapse_aside4"
+                        >
+                          <div className="card-body p-0">
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">
+                                Blindagem
+                              </div>
+                            </label>
+
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">
+                                Aplicativos móveis
+                              </div>
+                            </label>
+
+                            <label className="custom-control">
+                              <input
+                                type="checkbox"
+                                checked=""
+                                className="custom-control-input"
+                              />
+                              <div className="custom-control-label">4X4</div>
+                            </label>
+                          </div>
+                        </div>
+                      </article>
                     </div>
                   </div>
                 </div>
               </div>
               {cars?.length > 0 ? (
-                <div className="col-md-7">
+                <div className="col-md-8">
                   <div className="row">
                     <div className="col-md-12 d-flex justify-content-between align-items-center">
                       <div className="dropdown">

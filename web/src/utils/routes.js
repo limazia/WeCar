@@ -42,7 +42,7 @@ export const Private = ({ children }) => {
   const { "wecar.token": token } = parseCookies();
 
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/admin/login" />;
   }
 
   return children;

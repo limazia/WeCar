@@ -1,50 +1,50 @@
-.carContainer {
+.car--container {
   cursor: default;
 }
 
-.carDay {
+.car--day {
   box-shadow: none;
   border-radius: 6px;
   width: 20%;
   height: 13px;
 }
 
-.carTilte {
+.car--tilte {
   box-shadow: none;
   border-radius: 6px;
   width: 40%;
   height: 17px;
 }
 
-.carImage {
+.car--image {
   box-shadow: none;
   border-radius: 6px;
   width: 100%;
   height: 250px;
 }
 
-.carSpecTitle {
+.car--spec--title {
   box-shadow: none;
   border-radius: 6px;
   width: 30%;
   height: 17px;
 }
 
-.carSpecDescription {
+.car--spec--description {
   box-shadow: none;
   border-radius: 6px;
   width: 60%;
   height: 17px;
 }
 
-.carPrice {
+.car--price {
   box-shadow: none;
   border-radius: 6px;
   width: 124px;
   height: 28px;
 }
 
-.carButton {
+.car--button {
   box-shadow: none;
   border-radius: 6px;
   width: 151px;

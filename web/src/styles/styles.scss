@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +10,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 html,
@@ -18,7 +21,7 @@ body,
 
 body {
   background-color: #fff;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -64,6 +67,7 @@ button:active:focus:not(:disabled):not(.disabled) {
 }
 
 @import "partials/menu";
+@import "partials/sidebar";
 @import "partials/layout";
 @import "partials/cards";
 @import "partials/buttons";

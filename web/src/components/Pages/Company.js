@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import { Head } from "~/components/Head";
+import { Head } from "~/components/Partials/Head";
 
 import CompanyBackground from "~/assets/bg-company.jpg";
 
@@ -8,7 +8,7 @@ export function Company() {
   return (
     <Fragment>
       <Head title="Empresa" />
-      <div className="container-fluid car">
+      <div className="container-fluid bg-light">
         <div className="row justify-content-center">
           <div className="col-md-7 mt-5 pb-5">
             <h1>Conheça nossa história</h1>

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -8,6 +9,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 
 html,
@@ -18,7 +20,7 @@ body,
 
 body {
   background-color: #fff;
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -149,7 +151,7 @@ button:active:focus:not(:disabled):not(.disabled) {
   background-size: cover;
   background-position: center center;
 }
-.login-form hr.style-two {
+.login-form hr {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
@@ -177,13 +179,56 @@ button:active:focus:not(:disabled):not(.disabled) {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.login-form .logo-setup {
-  display: inline;
+
+.error-400,
+.error-401,
+.error-403,
+.error-404,
+.error-500 {
+  margin-bottom: 120px;
+}
+.error-400 svg,
+.error-401 svg,
+.error-403 svg,
+.error-404 svg,
+.error-500 svg {
+  width: 100%;
+}
+.error-400 h1,
+.error-401 h1,
+.error-403 h1,
+.error-404 h1,
+.error-500 h1 {
+  font-size: 7.5em;
+  margin: 15px 0px;
+  font-weight: bold;
+}
+.error-400 h2,
+.error-401 h2,
+.error-403 h2,
+.error-404 h2,
+.error-500 h2 {
+  font-weight: bold;
+}
+
+.marquee {
+  margin-top: 13px;
+}
+.marquee img,
+.marquee svg {
   max-width: 100%;
-  width: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  margin-bottom: 20px;
+  width: 80px;
+  margin-right: 40px;
+  -webkit-user-drag: none;
+  /*
+  filter: grayscale(100%);
+  transition: 0.5s ease;
+
+  &:hover {
+    filter: none;
+    opacity: 1;
+  }
+  */
 }
 
 .jumbotron-main {
@@ -202,23 +247,20 @@ button:active:focus:not(:disabled):not(.disabled) {
 .services {
   text-align: center;
 }
-.services .main-title .title {
+.services .title {
   font-weight: bold;
 }
-.services .service .service-title {
+.services .services .service-title {
   color: #000;
   text-decoration: none;
 }
-.services .service .service-description {
+.services .services .service-description {
   font-size: 14px;
 }
-.services .service .service-icon i {
+.services .services .service-icon i {
+  margin-bottom: 10px;
   font-size: 64px;
   color: #f48a00;
-}
-
-.car {
-  background-color: #f8f9fa;
 }
 
 .empty-car span,
@@ -246,8 +288,7 @@ button:active:focus:not(:disabled):not(.disabled) {
 }
 
 .box-search {
-  background-color: #f8f9fa;
-  height: 550px;
+  height: 600px;
   width: 100%;
 }
 .box-search .row {
@@ -271,35 +312,14 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: rgba(20, 26, 29, 0.6);
 }
 
-.service .error-400,
-.error-401,
-.error-403,
-.error-404,
-.error-500 {
-  margin-bottom: 120px;
+.contact {
+  margin: 4.8rem 0;
 }
-.service .error-400 svg,
-.error-401 svg,
-.error-403 svg,
-.error-404 svg,
-.error-500 svg {
-  width: 100%;
+.contact .contact-info {
+  margin-bottom: 20px;
 }
-.service .error-400 h1,
-.error-401 h1,
-.error-403 h1,
-.error-404 h1,
-.error-500 h1 {
-  font-size: 7.5em;
-  margin: 15px 0px;
-  font-weight: bold;
-}
-.service .error-400 h2,
-.error-401 h2,
-.error-403 h2,
-.error-404 h2,
-.error-500 h2 {
-  font-weight: bold;
+.contact .contact-info i {
+  margin-right: 10px;
 }
 
 .card {
@@ -343,6 +363,54 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-radius: 8px;
   -webkit-user-drag: none;
 }
+
+.card-filter .card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.card-filter .filter-group .card-header {
+  border-bottom: 0;
+}
+.card-filter .icon-control {
+  margin-top: 6px;
+  float: right;
+  font-size: 80%;
+}
+.card-filter .list-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.card-filter .list-menu a {
+  color: #343a40;
+}
+.card-filter .checkbox-btn {
+  position: relative;
+}
+.card-filter .checkbox-btn input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.card-filter .checkbox-btn input:checked ~ .btn {
+  border-color: #3167eb;
+  background-color: #3167eb;
+  color: #fff;
+}
+.card-filter .highlight-button:hover {
+  background-color: #157af6;
+  border: 2px solid #157af6;
+  color: #fff;
+}
+.card-filter .custom-control {
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+}
+
 .btn-login,
 .btn-login:focus,
 .btn-login:active,

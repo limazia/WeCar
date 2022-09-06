@@ -44,7 +44,62 @@
       -webkit-user-drag: none;
     }
   }
+}
 
-  .card-body {
+.card-filter {
+  .card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-group .card-header {
+    border-bottom: 0;
+  }
+  
+  .icon-control {
+    margin-top: 6px;
+    float: right;
+    font-size: 80%;
+  }
+  
+  .list-menu {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+  
+  .list-menu a {
+    color: #343a40;
+  }
+  
+  .checkbox-btn {
+    position: relative;
+  }
+  
+  .checkbox-btn input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  
+  .checkbox-btn input:checked ~ .btn {
+    border-color: #3167eb;
+    background-color: #3167eb;
+    color: #fff;
+  }
+   
+  .highlight-button:hover {
+    background-color: #157af6;
+    border: 2px solid #157af6;
+    color: #fff;
+  }
+  
+  .custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
   }
 }

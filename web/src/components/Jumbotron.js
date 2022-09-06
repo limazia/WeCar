@@ -1,4 +1,4 @@
-import SearchBackground from "~/assets/bg-search.jpg";
+import { BackgroundSearch } from "~/components/Images";
 
 export function Jumbotron() {
   return (

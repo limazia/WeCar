@@ -1,13 +1,18 @@
 import { Fragment } from "react";
+import { Form } from "@rocketseat/unform";
 import { Link } from "react-router-dom";
 
-import { Spinner } from "~/components/Spinner";
-import { Head } from "~/components/Head";
+import useAuth from "~/hooks/useAuth";
 
-import { ReactComponent as Logo } from "~/assets/logo.svg";
+import { Spinner } from "~/components/Forms/Spinner";
+import { Head } from "~/components/Partials/Head";
+
+import { Logo } from "~/components/Images";
 import LoginBackground from "~/assets/bg-login.jpg";
 
 export function Login() {
+  const { handleSubmit, email, password, setEmail, setPassword, loading } = useAuth();
+
   return (
     <Fragment>
       <Head title="Iniciar sessão" />
@@ -30,7 +35,7 @@ export function Login() {
                     <p className="text-muted mt-3 mb-4 text-center">
                       Inicie uma sessão para continuar
                     </p>
-                    <form>
+                    <Form onSubmit={handleSubmit}>
                       <div className="form-group mb-3 wicon">
                         <i className="fas fa-envelope left"></i>
                         <input
@@ -38,6 +43,8 @@ export function Login() {
                           name="email"
                           className="form-control"
                           placeholder="Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
                       <div className="form-group mb-3 wicon">
@@ -47,12 +54,22 @@ export function Login() {
                           name="password"
                           className="form-control"
                           placeholder="Senha"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
-                      <button type="submit" disabled={true} className="btn btn-login btn-block">
-                        <Spinner type="grow" />
+                      <button
+                        type="submit"
+                        disabled={
+                          !email || !password || password.length <= 3
+                            ? true
+                            : false
+                        }
+                        className="btn btn-login btn-block"
+                      >
+                        {loading ? <Spinner type="grow" /> : "Entrar"}
                       </button>
-                    </form>
+                    </Form>
                   </div>
                 </div>
               </div>
