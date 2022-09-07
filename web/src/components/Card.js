@@ -1,4 +1,4 @@
-import { CarDefault } from "~/components/Images";
+import CarDefault from "~/assets/car-default.jpg";
 
 export function CardCar({ data, brand, model }) {
   const {
@@ -54,9 +54,7 @@ export function CardCar({ data, brand, model }) {
             </span>
             {createdAt.split(",", 4)[1]}
           </small>
-          <span className="font-weight-bold text-uppercase">
-            {model_name}
-          </span>
+          <span className="font-weight-bold text-uppercase">{model_name}</span>
         </div>
       </div>
       <div className="car-image">

@@ -63,7 +63,8 @@ routes.group("/api/model", (router) => {
 
 //Rotas de Carros
 routes.group("/api/car", (router) => {
-  router.get("/:brand/:model", CarController.listAllCars);
+  router.get("/", CarController.listAllCars);
+  router.get("/:brand/:model", CarController.listAllCarsByBrand);
   router.post("/", CarController.createCar);
   router.get("/:id", CarController.findCarById);
   router.put("/:id", CarController.updateCar);

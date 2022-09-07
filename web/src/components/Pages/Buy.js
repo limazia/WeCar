@@ -27,7 +27,7 @@ export function Buy() {
       <Head />
       <div className="container-fluid box-search bg-light">
         <div className="row justify-content-center">
-          <div className="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7 search">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 search">
             <div className="text-center">
               <h1 className="title">
                 Seu site de venda de carros
@@ -59,7 +59,7 @@ export function Buy() {
                       Marcas de carros <b>disponíveis</b> no WeCar:
                     </span>
                   </div>
-                  <Marquee className="marquee">
+                  <Marquee className="marquee" gradientWidth={80}>
                     {brands.map((row) => {
                       const { brand_id, brand_slug } = row;
                       const car = cars.find((car) => car.slug === brand_slug);

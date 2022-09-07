@@ -27,7 +27,7 @@ export default {
 
       return data;
     } catch (ex) {
-      console.error("[GET /brand] > it was not possible to wecar from the api");
+      console.error("[GET /brand/:brand] > it was not possible to wecar from the api");
     }
   },
 
@@ -41,9 +41,19 @@ export default {
     }
   },
 
-  getCar: async (brand, model) => {
+  getCarByBrand: async (brand, model) => {
     try {
       const { data } = await api.get(`/api/car/${brand}/${model}`);
+
+      return data;
+    } catch (ex) {
+      console.error("[GET /car/:brand/:model] > it was not possible to wecar from the api");
+    }
+  },
+
+  getCars: async () => {
+    try {
+      const { data } = await api.get("/api/car");
 
       return data;
     } catch (ex) {

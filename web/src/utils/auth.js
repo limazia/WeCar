@@ -2,8 +2,8 @@ import Cookies from "universal-cookie";
 
 export const cookies = new Cookies();
 
-export const TOKEN_KEY = "wecar.token";
-export const REFRESH_KEY = "wecar.refresh";
+export const TOKEN_KEY = "token";
+export const REFRESH_KEY = "refresh";
 
 export const createToken = (token, refreshToken) => {
   cookies.set(TOKEN_KEY, token);

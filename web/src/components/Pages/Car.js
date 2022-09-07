@@ -19,8 +19,10 @@ export function Car() {
   useEffect(() => {
     if (model) {
       loadCar(brand, model);
-    } else {
+    } else if(brand) {
       loadCarByBrand(brand);
+    } else {
+      loadCars();
     }
 
     setTimeout(() => {
@@ -29,13 +31,19 @@ export function Car() {
   }, [loading]);
 
   const loadCar = async (brand, model) => {
-    const { results } = await WebRepository.getCar(brand, model);
+    const { results } = await WebRepository.getCarByBrand(brand, model);
 
     setCars(results);
   };
 
   const loadCarByBrand = async (brand) => {
     const { results } = await WebRepository.getBrandById(brand);
+
+    setCars(results);
+  };
+
+  const loadCars = async (brand) => {
+    const { results } = await WebRepository.getCars();
 
     setCars(results);
   };
@@ -75,7 +83,7 @@ export function Car() {
   return (
     <Fragment>
       <Head title={`Comprar ${brand} ${model ? model : ""}`} />
-      <div className="container-fluid car">
+      <div className="container-fluid bg-light">
         <div className="row justify-content-center">
           <div className="col-md-9 mt-5 pb-5">
             <div className="row">

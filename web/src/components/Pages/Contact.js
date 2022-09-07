@@ -65,9 +65,9 @@ export function Contact() {
                           className="form-check-input"
                           type="checkbox"
                           value=""
-                          id="defaultCheck1"
+                          id="newsletter"
                         />
-                        <label className="form-check-label" for="defaultCheck1">
+                        <label className="form-check-label" htmlFor="newsletter">
                           Receber ofertas e promoções por e-mail, Whatsapp e
                           telefone
                         </label>
@@ -84,7 +84,7 @@ export function Contact() {
               <div className="col-md-4 mt-5 pb-5">
                 <div className="contact">
                   <div className="contact-info">
-                    <i className="fa fa-map-marker"></i>
+                    <i className="fas fa-map-marker-alt"></i>
                     <span>Rua dos Pinheiros, 248 - São Paulo, SP</span>
                   </div>
                   <div className="contact-info">

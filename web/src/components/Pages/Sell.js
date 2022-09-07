@@ -127,7 +127,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio1"
+                                htmlFor="inlineRadio1"
                               >
                                 Sim
                               </label>
@@ -142,7 +142,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio2"
+                                htmlFor="inlineRadio2"
                               >
                                 Não
                               </label>
@@ -166,7 +166,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio1"
+                                htmlFor="inlineRadio1"
                               >
                                 Sim
                               </label>
@@ -181,7 +181,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio2"
+                                htmlFor="inlineRadio2"
                               >
                                 Não
                               </label>
@@ -203,7 +203,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio1"
+                                htmlFor="inlineRadio1"
                               >
                                 Sim
                               </label>
@@ -218,7 +218,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio2"
+                                htmlFor="inlineRadio2"
                               >
                                 Não
                               </label>
@@ -242,7 +242,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio1"
+                                htmlFor="inlineRadio1"
                               >
                                 Sim
                               </label>
@@ -257,7 +257,7 @@ export function Sell() {
                               />
                               <label
                                 className="form-check-label text-white"
-                                for="inlineRadio2"
+                                htmlFor="inlineRadio2"
                               >
                                 Não
                               </label>

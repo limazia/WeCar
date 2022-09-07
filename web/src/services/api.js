@@ -1,12 +1,12 @@
 import axios from "axios";
-import { parseCookies } from "nookies";
+import { getToken } from "~/utils/auth";
 
-const cookies = parseCookies();
+const token = getToken();
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    Authorization: `Bearer ${cookies["wecar.token"]}`,
+    Authorization: `Bearer ${token}`,
   },
 });
 

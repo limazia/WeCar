@@ -1,14 +1,13 @@
 import { Fragment } from "react";
 
-import { ReactComponent as LogoImage } from "~/assets/images/logo.svg";
-import { ReactComponent as IconImage } from "~/assets/images/logo-icon.svg";
+import { Logo as LogoImage, LogoIcon } from "../Images";
 
 function Logo() {
   return <LogoImage className="logo img-fluid" />;
 }
 
 function Icon() {
-  return <IconImage className="img-fluid" />;
+  return <LogoIcon className="icon img-fluid" />;
 }
 
 function Text() {

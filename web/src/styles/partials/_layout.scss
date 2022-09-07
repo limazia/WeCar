@@ -74,9 +74,8 @@
   svg {
     max-width: 100%;
     width: 80px;
-    margin-right: 40px;
+    margin-right: 60px;
     -webkit-user-drag: none;
-    /*
     filter: grayscale(100%);
     transition: 0.5s ease;
 
@@ -84,7 +83,6 @@
       filter: none;
       opacity: 1;
     }
-    */
   }
 }
 
@@ -170,8 +168,8 @@
       margin-top: 60px;
 
       .title {
-        font-weight: 600;
-        font-size: 34px;
+        font-weight: 700;
+        font-size: 40px;
         line-height: 123.5%;
         letter-spacing: -1.5px;
       }

@@ -22,7 +22,7 @@ export function SelectWrapper({ forcePosition }) {
     setBrands(
       results.map((brand) => ({
         value: brand.brand_slug,
-        label: brand.brand_name,
+        label: brand.brand_name.toUpperCase(),
       }))
     );
   };
@@ -33,7 +33,7 @@ export function SelectWrapper({ forcePosition }) {
     setModels(
       results.map((model) => ({
         value: `${model.brand_slug}/${model.model_slug}`,
-        label: model.model_name,
+        label: model.model_name.toUpperCase(),
       }))
     );
   };
@@ -111,6 +111,12 @@ export function SelectWrapper({ forcePosition }) {
     );
   };
 
+  const handleChange = (selectedOption) => {
+    if (selectedOption) {
+      setResult(selectedOption);
+    }
+  };
+
   const customStyles = {
     menu: (provided, state) => ({
       ...provided,
@@ -133,18 +139,24 @@ export function SelectWrapper({ forcePosition }) {
 
     menuPortal: (base) => ({ ...base, zIndex: 9999 }),
 
+    groupHeading: (base) => ({
+      ...base,
+      position: "sticky",
+      top: "0",
+    }),
+
+    Group: (base) => ({
+      ...base,
+      position: "sticky",
+      top: "0",
+    }),
+
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
       const transition = "opacity 300ms";
 
       return { ...provided, opacity, transition };
     },
-  };
-
-  const handleChange = (selectedOption) => {
-    if (selectedOption) {
-      setResult(selectedOption);
-    }
   };
 
   const NoOptionsMessage = (props) => {
@@ -163,7 +175,7 @@ export function SelectWrapper({ forcePosition }) {
       menuPortalTarget={document.body}
       menuPlacement={forcePosition ? forcePosition : position ? "top" : "auto"}
       placeholder="Digite a marca ou modelo do carro e selecione"
-      onChange={(value) => handleChange(value)}
+      onChange={(v) => handleChange(v)}
       options={groupedOptions}
       components={{
         GroupHeading: CustomGroupHeading,

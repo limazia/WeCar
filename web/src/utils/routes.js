@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Navigate, useLocation } from "react-router-dom";
-import { parseCookies } from "nookies";
 import TopBarProgress from "react-topbar-progress-indicator";
+import { getToken } from "./auth";
 
 export const CustomRoutes = ({ children }) => {
   const [progress, setProgress] = useState(false);
@@ -39,7 +39,7 @@ export const CustomRoutes = ({ children }) => {
 };
 
 export const Private = ({ children }) => {
-  const { "wecar.token": token } = parseCookies();
+  const token = getToken();
 
   if (!token) {
     return <Navigate to="/admin/login" />;

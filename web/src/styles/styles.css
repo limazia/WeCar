@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -218,17 +219,15 @@ button:active:focus:not(:disabled):not(.disabled) {
 .marquee svg {
   max-width: 100%;
   width: 80px;
-  margin-right: 40px;
+  margin-right: 60px;
   -webkit-user-drag: none;
-  /*
   filter: grayscale(100%);
   transition: 0.5s ease;
-
-  &:hover {
-    filter: none;
-    opacity: 1;
-  }
-  */
+}
+.marquee img:hover,
+.marquee svg:hover {
+  filter: none;
+  opacity: 1;
 }
 
 .jumbotron-main {
@@ -298,8 +297,8 @@ button:active:focus:not(:disabled):not(.disabled) {
   margin-top: 60px;
 }
 .box-search .row .search .title {
-  font-weight: 600;
-  font-size: 34px;
+  font-weight: 700;
+  font-size: 40px;
   line-height: 123.5%;
   letter-spacing: -1.5px;
 }
@@ -547,12 +546,6 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #fff;
 }
 
-.form-group label,
-.form-check label {
-  font-weight: 600;
-  color: rgba(142, 141, 141, 0.8);
-}
-
 .form-control {
   height: 60px;
   text-indent: 10px;
@@ -632,36 +625,17 @@ button:active:focus:not(:disabled):not(.disabled) {
   font-size: 0.9rem;
 }
 
-/*
-.select-wrapper {
-  position: relative;
-
-  &:after {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f107";
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: #cbd0da;
-    top: 50%;
-    right: 20px;
-    position: absolute;
-  }
+select.form-control {
+  height: 60px;
+  padding-left: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+select:not(select) {
+  border-radius: 0.25rem;
+  padding: 1.5rem 0.5rem;
 }
 
-select {
-  &.form-control {
-    height: 60px;
-    padding-left: 0.5rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-
-  &:not(select) {
-    border-radius: 0.25rem;
-    padding: 1.5rem 0.5rem;
-  }
-}
-*/
 .wicon {
   position: relative;
 }
@@ -725,6 +699,95 @@ select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container-loading {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  background: #fff;
+}
+.container-loading .loading img,
+.container-loading .loading svg {
+  -webkit-animation: logo ease-in-out 3s infinite;
+          animation: logo ease-in-out 3s infinite;
+  max-width: 100%;
+  width: 100px;
+  height: 100px;
+}
+.container-loading .loading img.logo,
+.container-loading .loading svg.logo {
+  width: 300px;
+  height: 300px;
+}
+.container-loading .loading img.icon,
+.container-loading .loading svg.icon {
+  width: 300px;
+  height: 300px;
+}
+.container-loading .loading h1,
+.container-loading .loading h2,
+.container-loading .loading h3,
+.container-loading .loading h4,
+.container-loading .loading h5,
+.container-loading .loading h6,
+.container-loading .loading span,
+.container-loading .loading p {
+  -webkit-animation: logo-text 2s ease infinite;
+          animation: logo-text 2s ease infinite;
+  font-size: 70px;
+  text-transform: uppercase;
+  -webkit-touch-callout: none; /* iPhone OS, Safari */
+  -webkit-user-select: none; /* Chrome, Safari 3 */ /* Safari 2 */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  user-select: none; /* Possível implementação no futuro */
+}
+@-webkit-keyframes logo {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes logo {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@-webkit-keyframes logo-text {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+@keyframes logo-text {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
 .footer-main {

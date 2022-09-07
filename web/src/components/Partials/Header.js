@@ -1,5 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { destroyCookie } from "nookies";
+import { Link } from "react-router-dom";
 
 import useAuth from "~/hooks/useAuth";
 
@@ -88,17 +87,12 @@ export function Utility() {
 }
 
 export function HeaderAdmin() {
-  const navigate = useNavigate();
-  const { user, setUser } = useAuth();
+  const { user, logout } = useAuth();
 
   const href = "#";
 
   const handleLogout = () => {
-    destroyCookie(undefined, "wecar.token");
-    destroyCookie(undefined, "wecar.refreshToken");
-
-
-    navigate("/admin/login");
+    logout();
   };
 
   return (

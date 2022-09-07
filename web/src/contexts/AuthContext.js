@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
+import { getToken, createToken, removeToken } from "~/utils/auth";
 import retry from "retry";
 
 import api from "~/services/api";
@@ -16,9 +16,9 @@ function AuthProvider({ children }) {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
- 
+
   useEffect(() => {
-    const { "wecar.token": token } = parseCookies();
+    const token = getToken();
 
     if (token) {
       userProfile();
@@ -46,15 +46,7 @@ function AuthProvider({ children }) {
           setPassword("");
           setLoading(false);
 
-          setCookie(undefined, "wecar.token", token, {
-            maxAge: 60 * 60 * 24 * 7, // 7 days
-            path: "/",
-          });
-
-          setCookie(undefined, "wecar.refreshToken", refreshToken, {
-            maxAge: 60 * 60 * 24 * 14, // 14 days
-            path: "/",
-          });
+          createToken(token, refreshToken);
 
           api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
@@ -99,12 +91,10 @@ function AuthProvider({ children }) {
   };
 
   function logout() {
-    destroyCookie(undefined, "wecar.token");
-    destroyCookie(undefined, "wecar.refreshToken");
+    removeToken();
     setUser(null);
 
-    navigate("/admin/login");
-    //window.location.replace("/login");
+    window.location.replace("/admin/login");
   }
 
   const value = {
