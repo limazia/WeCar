@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import useAuth from "~/hooks/useAuth";
 
-import { Spinner } from "~/components/Forms/Spinner";
 import { Head } from "~/components/Partials/Head";
+import { Spinner } from "~/components/Forms/Spinner";
 
 import { Logo } from "~/components/Images";
 import LoginBackground from "~/assets/bg-login.jpg";

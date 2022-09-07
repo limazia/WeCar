@@ -9,14 +9,17 @@ class UserController {
     });
 
     if (results.length >= 1) {
-      const { id, name, email, updateAt, createdAt } = results[0];
+      const { id, name, email, permissions, updateAt, createdAt } = results[0];
 
       return response.json({
         id,
         name,
         email,
-        updateAt,
-        createdAt,
+        permissions: permissions
+          .split(",")
+          .map((permission) => permission.trim()),
+        updateAt: moment(updateAt).format("LL"),
+        createdAt: moment(createdAt).format("LL"),
       });
     } else {
       response.json({ error: constant.error.NO_USER_FOUND_WITH_THIS_ID });

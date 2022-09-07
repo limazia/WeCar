@@ -10,12 +10,11 @@ import { Buy } from "./components/Pages/Buy";
 import { Company } from "./components/Pages/Company";
 import { Sell } from "./components/Pages/Sell";
 import { Contact } from "./components/Pages/Contact";
-
 import { Car } from "./components/Pages/Car";
-//import { Brand } from "./components/Pages/Brand";
 
 import { Login } from "./components/Pages/Admin/Login";
 import { Dashboard } from "./components/Pages/Admin/Dashboard";
+import { Settings } from "./components/Pages/Admin/Settings";
 
 import { NotFound } from "./components/Pages/NotFound";
 
@@ -35,7 +34,7 @@ function Router() {
         <Route exact path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<Private><Admin /></Private>}>
           <Route exact path="" element={<Dashboard />} />
-          <Route path="cars" element={<Dashboard />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </CustomRoutes>
@@ -44,5 +43,3 @@ function Router() {
 }
 
 export default Router;
-
-//<Route path="*" element={<Navigate to="/" replace />} />

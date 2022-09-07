@@ -22,9 +22,9 @@ export const CustomRoutes = ({ children }) => {
 
   TopBarProgress.config({
     barColors: {
-      0: "#0000ff",
-      0.5: "#0000ff",
-      "1.0": "#0000ff",
+      0: "#2d2d77",
+      0.5: "#27277d",
+      "1.0": "#212183",
     },
   });
 

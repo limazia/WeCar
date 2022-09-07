@@ -5,7 +5,7 @@ exports.seed = function (knex) {
       name: "Acacio de Lima",
       email: "limadeacacio@gmail.com",
       password: "$2b$10$/HR6ESB8JitGblj4N5AgqeY6jxqifHfxYn//IUxYVLhgEeNCYugsm", // 1234
-      permissions: "all",
+      permissions: "admin",
     },
   ]);
 };

@@ -144,6 +144,77 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #d6d6d6;
 }
 
+.navbar-admin {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.navbar-admin .navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 700;
+  color: #000;
+}
+.navbar-admin .navbar-brand:hover, .navbar-admin .navbar-brand:focus, .navbar-admin .navbar-brand:active, .navbar-admin .navbar-brand:active:focus:not(:disabled):not(.disabled) {
+  color: #000;
+}
+.navbar-admin .navbar-brand img,
+.navbar-admin .navbar-brand svg {
+  display: inline;
+  max-width: 100%;
+  width: 230px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.navbar-admin .navbar-toggler {
+  border: none;
+}
+.navbar-admin .navbar-nav .nav-link {
+  color: #000;
+  transition: ease 0.5s;
+}
+.navbar-admin .navbar-nav .nav-link:hover, .navbar-admin .navbar-nav .nav-link:focus, .navbar-admin .navbar-nav .nav-link:active, .navbar-admin .navbar-nav .nav-link:active:focus:not(:disabled):not(.disabled) {
+  color: #d6d6d6;
+}
+.navbar-admin .navbar-nav .active > .nav-link,
+.navbar-admin .navbar-nav .show > .nav-link {
+  color: #d6d6d6;
+}
+.navbar-admin .navbar-nav .dropdown .avatar {
+  display: inline;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+}
+.navbar-admin .navbar-nav .dropdown .username {
+  margin: 0 0.6em;
+}
+.navbar-admin .navbar-nav .dropdown-menu .dropdown-item {
+  text-decoration: none;
+  transition: ease 0.5s;
+}
+.navbar-admin .navbar-nav .dropdown-menu .dropdown-item i {
+  text-align: center;
+  margin-right: 6px;
+}
+.navbar-admin .navbar-nav .dropdown-menu .dropdown-item:hover {
+  text-decoration: none;
+  background: #fcfcfc;
+}
+.navbar-admin .navbar-nav .dropdown-menu .dropdown-item:focus, .navbar-admin .navbar-nav .dropdown-menu .dropdown-item:active, .navbar-admin .navbar-nav .dropdown-menu .dropdown-item:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  text-decoration: none;
+  background: transparent;
+}
+.navbar-admin .navbar-nav .logout {
+  color: #f46a6a !important;
+}
+.navbar-admin .dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
 .login-form .login,
 .login-form .image {
   min-height: 100vh;
@@ -345,8 +416,8 @@ button:active:focus:not(:disabled):not(.disabled) {
   width: 40px;
   height: 40px;
   border-radius: 7px;
-  background-color: #FDEAEA;
-  color: #FE9897;
+  background-color: #fdeaea;
+  color: #fe9897;
   font-size: 17px;
 }
 .card-car .car-image {
@@ -408,6 +479,58 @@ button:active:focus:not(:disabled):not(.disabled) {
   display: block;
   min-height: 1.5rem;
   padding-left: 1.5rem;
+}
+
+.card-settings .card-body .card-title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: -0.56px;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.card-settings .card-body .input-editable span {
+  font-weight: bold;
+  color: #939ba2;
+}
+.card-settings .card-body .input-editable p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-options {
+  border: none;
+}
+.card-options .card-header {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: none;
+}
+.card-options .card-header i {
+  font-size: 1.25rem;
+  margin-right: 20px;
+}
+.card-options .card-header h1,
+.card-options .card-header h2,
+.card-options .card-header h3,
+.card-options .card-header h4,
+.card-options .card-header h5,
+.card-options .card-header h6,
+.card-options .card-header span,
+.card-options .card-header p {
+  font-weight: bold;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.card-options .card-footer {
+  background: #fff;
+  border-top: none;
 }
 
 .btn-login,
@@ -544,6 +667,63 @@ button:active:focus:not(:disabled):not(.disabled) {
 }
 .btn-whatsapp:hover {
   color: #fff;
+}
+
+.btn-option,
+.btn-option:focus,
+.btn-option:active,
+.btn-option:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  background: #fff;
+  border-color: #fff;
+  height: 80px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+.btn-option .icon-box,
+.btn-option:focus .icon-box,
+.btn-option:active .icon-box,
+.btn-option:active:focus:not(:disabled):not(.disabled) .icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #d6e9f6;
+  color: #4287fe;
+  font-size: 23px;
+  margin-right: 20px;
+}
+.btn-option .fas:not(.icon-box),
+.btn-option:focus .fas:not(.icon-box),
+.btn-option:active .fas:not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fas:not(.icon-box) {
+  font-size: 1.25rem;
+  margin-right: 20px;
+}
+.btn-option:hover,
+.btn-option:focus:hover,
+.btn-option:active:hover,
+.btn-option:active:focus:not(:disabled):not(.disabled):hover {
+  color: #000;
+  background: #f7f7f7;
+  border-color: #f7f7f7;
+}
+.btn-option:disabled,
+.btn-option button[disabled],
+.btn-option:focus:disabled,
+.btn-option:focus button[disabled],
+.btn-option:active:disabled,
+.btn-option:active button[disabled],
+.btn-option:active:focus:not(:disabled):not(.disabled):disabled,
+.btn-option:active:focus:not(:disabled):not(.disabled) button[disabled] {
+  cursor: not-allowed;
 }
 
 .form-control {

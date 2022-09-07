@@ -98,6 +98,9 @@ export function HeaderAdmin() {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-admin navbar-light">
+        <Link className="navbar-brand" to="/admin">
+          <Logo className="img-fluid ml-3" />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -121,7 +124,7 @@ export function HeaderAdmin() {
                 <span className="username">{user?.name}</span>
               </Link>
               <div className="dropdown-menu">
-                <Link className="dropdown-item" to={"/settings"}>
+                <Link className="dropdown-item" to="/admin/settings">
                   <i className="far fa-user"></i> Conta
                 </Link>
                 <hr className="dropdown-divider" />

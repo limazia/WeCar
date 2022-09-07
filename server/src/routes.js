@@ -9,6 +9,7 @@ const UserController = require("./app/controllers/UserController");
 const BrandController = require("./app/controllers/BrandController");
 const ModelController = require("./app/controllers/ModelController");
 const CarController = require("./app/controllers/CarController");
+const EmailController = require("./app/controllers/EmailController");
 
 //Middlewares
 const Authentication = require("./app/middlewares/Authentication")
@@ -70,5 +71,9 @@ routes.group("/api/car", (router) => {
   router.put("/:id", CarController.updateCar);
   router.delete("/:id", CarController.deleteCar);
 });
+
+// Rotas com Email
+routes.post("/api/contact", EmailController.sendContactEmail);
+routes.post("/api/sellcar", EmailController.sendSellEmail);
 
 module.exports = routes;

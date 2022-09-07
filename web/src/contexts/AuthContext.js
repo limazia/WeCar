@@ -1,15 +1,17 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getToken, createToken, removeToken } from "~/utils/auth";
 import retry from "retry";
+import Cookies from "universal-cookie";
 
 import api from "~/services/api";
 import WebRepository from "~/services/WebRepository";
+import { getToken, createToken } from "~/utils/auth";
 
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -91,7 +93,8 @@ function AuthProvider({ children }) {
   };
 
   function logout() {
-    removeToken();
+    cookies.remove("token", { path: '/' });
+    cookies.remove("refresh", { path: '/' });
     setUser(null);
 
     window.location.replace("/admin/login");
