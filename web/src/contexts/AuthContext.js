@@ -21,6 +21,11 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = getToken();
+    /*
+    if (window.location.pathname == "/admin/login") {
+      return navigate("/admin");
+    }
+    */
 
     if (token) {
       userProfile();
@@ -73,10 +78,6 @@ function AuthProvider({ children }) {
   }
 
   const userProfile = async () => {
-    if (window.location.pathname == "/admin/login") {
-      return navigate("/admin");
-    }
-
     operation.attempt(async (currentAttempt) => {
       console.log(`sending request: ${currentAttempt} attempt`);
       try {
@@ -93,8 +94,8 @@ function AuthProvider({ children }) {
   };
 
   function logout() {
-    cookies.remove("token", { path: '/' });
-    cookies.remove("refresh", { path: '/' });
+    cookies.remove("token", { path: "/" });
+    cookies.remove("refresh", { path: "/" });
     setUser(null);
 
     window.location.replace("/admin/login");
@@ -108,6 +109,7 @@ function AuthProvider({ children }) {
     authenticated: !!user,
     setEmail,
     setPassword,
+    setUser,
     logout,
     loading,
   };

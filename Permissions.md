@@ -5,6 +5,9 @@
 ```
 admin: Tem todas as permissões do sistema
 
+dashboard: Permite que o usuário acesse a página do painel
+settings: Permite que o usuário acesse a página de configurações da conta
+
 brands: Permite ver as marcas
 view_brand: Permite visualizar uma página de marca
 create_brand: Permite criar uma marca

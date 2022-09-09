@@ -80,7 +80,7 @@ export function Contact() {
                         type="email"
                         name="email"
                         className="form-control"
-                        placeholder="E-mail"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />

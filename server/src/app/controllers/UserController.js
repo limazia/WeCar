@@ -16,8 +16,8 @@ class UserController {
         name,
         email,
         permissions: permissions
-          .split(",")
-          .map((permission) => permission.trim()),
+          ? permissions.split(",").map((permission) => permission.trim())
+          : null,
         updateAt: moment(updateAt).format("LL"),
         createdAt: moment(createdAt).format("LL"),
       });

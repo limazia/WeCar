@@ -15,6 +15,11 @@ import { Car } from "./components/Pages/Car";
 import { Login } from "./components/Pages/Admin/Login";
 import { Dashboard } from "./components/Pages/Admin/Dashboard";
 import { Settings } from "./components/Pages/Admin/Settings";
+import {
+  Brands,
+  BrandCreate,
+  BrandView,
+} from "./components/Pages/Admin/Brands";
 
 import { NotFound } from "./components/Pages/NotFound";
 
@@ -31,10 +36,42 @@ function Router() {
           <Route exact path="buy/car/:brand" element={<Car />} />
           <Route exact path="buy/car/:brand/:model" element={<Car />} />
         </Route>
-        <Route exact path="/admin/login" element={<Login />} />
-        <Route path="/admin" element={<Private><Admin /></Private>}>
-          <Route exact path="" element={<Dashboard />} />
-          <Route path="settings" element={<Settings />} />
+        <Route path="/admin" element={<Admin />}>
+          <Route exact path="login" element={<Login />} />
+          <Route exact path="" element={<Private unique><Dashboard /></Private>}
+          />
+          <Route
+            path="settings"
+            element={
+              <Private unique>
+                <Settings />
+              </Private>
+            }
+          />
+          <Route
+            path="brands"
+            element={
+              <Private roles={["admin", "brands"]}>
+                <Brands />
+              </Private>
+            }
+          />
+          <Route
+            path="brand/:id"
+            element={
+              <Private roles={["admin", "view_brand"]}>
+                <BrandView />
+              </Private>
+            }
+          />
+          <Route
+            path="brand/create"
+            element={
+              <Private roles={["admin", "create_brand"]}>
+                <BrandCreate />
+              </Private>
+            }
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </CustomRoutes>

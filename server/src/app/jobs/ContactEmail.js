@@ -16,7 +16,7 @@ class ContactEmail {
 
     try {
       Mail.sendMail(mailOptions, (error, info) => {
-        console.log(`[Contact] > E-mail enviado para ${info.response}.`);
+        console.log(`[Contact] > Email enviado para ${info.response}.`);
 
         if (error) {
           console.log(error);

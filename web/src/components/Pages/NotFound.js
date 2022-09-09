@@ -27,12 +27,7 @@ export function NotFound() {
             <div className="ml-5 col-lg-5 col-md-6 align-self-center mb-md-0 mb-4">
               <h1>404</h1>
               <h2>UH OH! Você está perdido.</h2>
-              <p>
-                A página que você está procurando não existe.
-                <div className="clearfix" />
-                Como você chegou aqui é um mistério. Mas você pode clicar no
-                botão abaixo para voltar à página inicial.
-              </p>
+              <p>A página que você está procurando não existe.</p>
               <Link to="/" className="btn btn-back">
                 Inicio
               </Link>

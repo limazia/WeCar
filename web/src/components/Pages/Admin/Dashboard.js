@@ -27,9 +27,10 @@ export function Dashboard() {
     return <Loading />;
   }
 
-  const goSchedule = () => navigate("/schedule");
-  const goCustomers = () => navigate("/customers");
-  const goProfessionals = () => navigate("/professionals");
+  const goBrands = () => navigate("./brands");
+  const goModels = () => navigate("./models");
+  const goCars = () => navigate("./cars");
+  const goUsers = () => navigate("./users");
 
   return (
     <Fragment>
@@ -38,67 +39,71 @@ export function Dashboard() {
         <div className="row">
           <div className="col-md-8">
             <div className="card card-options">
-              <div className="card-header">
+              <div className="card-header px-0">
                 <h5>Opções do sistema</h5>
               </div>
-              <div className="card-body">
-                <Permission required={["admin", "brands"]}>
-                  <button
-                    className="btn btn-option btn-block mt-3"
-                    onClick={goSchedule}
-                  >
-                    <div className="d-flex align-items-center">
-                      <div className="icon-box">
-                        <i className="far fa-mask"></i>
+              {user.permissions ? (
+                <div className="card-body px-0">
+                  <Permission required={["admin", "brands"]}>
+                    <button
+                      className="btn btn-option btn-block mt-3"
+                      onClick={goBrands}
+                    >
+                      <div className="d-flex align-items-center">
+                        <div className="icon-box">
+                          <i className="far fa-mask"></i>
+                        </div>
+                        Marcas
                       </div>
-                      Marcas
-                    </div>
-                    <i className="fas fa-angle-right"></i>
-                  </button>
-                </Permission>
-                <Permission required={["admin", "models"]}>
-                  <button
-                    className="btn btn-option btn-block mt-4"
-                    onClick={goProfessionals}
-                  >
-                    <div className="d-flex align-items-center">
-                      <div className="icon-box">
-                        <i className="far fa-tire"></i>
+                      <i className="fas fa-angle-right"></i>
+                    </button>
+                  </Permission>
+                  <Permission required={["admin", "models"]}>
+                    <button
+                      className="btn btn-option btn-block mt-4"
+                      onClick={goModels}
+                    >
+                      <div className="d-flex align-items-center">
+                        <div className="icon-box">
+                          <i className="far fa-tire"></i>
+                        </div>
+                        Modelos
                       </div>
-                      Modelos
-                    </div>
-                    <i className="fas fa-angle-right"></i>
-                  </button>
-                </Permission>
-                <Permission required={["admin", "cars"]}>
-                  <button
-                    className="btn btn-option btn-block mt-4"
-                    onClick={goProfessionals}
-                  >
-                    <div className="d-flex align-items-center">
-                      <div className="icon-box">
-                        <i className="far fa-cars"></i>
+                      <i className="fas fa-angle-right"></i>
+                    </button>
+                  </Permission>
+                  <Permission required={["admin", "cars"]}>
+                    <button
+                      className="btn btn-option btn-block mt-4"
+                      onClick={goCars}
+                    >
+                      <div className="d-flex align-items-center">
+                        <div className="icon-box">
+                          <i className="far fa-cars"></i>
+                        </div>
+                        Carros
                       </div>
-                      Carros
-                    </div>
-                    <i className="fas fa-angle-right"></i>
-                  </button>
-                </Permission>
-                <Permission required={["admin", "users"]}>
-                  <button
-                    className="btn btn-option btn-block mt-4"
-                    onClick={goCustomers}
-                  >
-                    <div className="d-flex align-items-center">
-                      <div className="icon-box">
-                        <i className="far fa-users"></i>
+                      <i className="fas fa-angle-right"></i>
+                    </button>
+                  </Permission>
+                  <Permission required={["admin", "users"]}>
+                    <button
+                      className="btn btn-option btn-block mt-4"
+                      onClick={goUsers}
+                    >
+                      <div className="d-flex align-items-center">
+                        <div className="icon-box">
+                          <i className="far fa-users"></i>
+                        </div>
+                        Usuarios
                       </div>
-                      Usuarios
-                    </div>
-                    <i className="fas fa-angle-right"></i>
-                  </button>
-                </Permission>
-              </div>
+                      <i className="fas fa-angle-right"></i>
+                    </button>
+                  </Permission>
+                </div>
+              ) : (
+                <div className="alert alert-danger">KKKKKKKKKKKKKKKKK</div>
+              )}
             </div>
           </div>
         </div>

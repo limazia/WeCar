@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Navigate, useLocation } from "react-router-dom";
 import TopBarProgress from "react-topbar-progress-indicator";
+
+import useAuth from "~/hooks/useAuth";
 import { getToken } from "./auth";
 
 export const CustomRoutes = ({ children }) => {
@@ -38,12 +40,38 @@ export const CustomRoutes = ({ children }) => {
   );
 };
 
-export const Private = ({ children }) => {
+export const Private = ({ children, unique, roles }) => {
+  const { user } = useAuth();
   const token = getToken();
+  const location = useLocation();
+  /*
+  const userHasRequiredRole =
+    user && permissions.some((permission) => roles.indexOf(permission) >= 0)
+      ? true
+      : false;
 
   if (!token) {
-    return <Navigate to="/admin/login" />;
+    return <Navigate to="/admin/login" state={{ from: location }} />;
   }
 
-  return children;
+  if (token && !userHasRequiredRole) {
+    return <Navigate to="/admin" state={{ from: location }} />;
+  }
+
+  if (!token) {
+    return <Navigate to="/admin/login" state={{ from: location }} />;
+  } 
+  */
+
+  return unique ? (
+    children
+  ) : user?.permissions.some(
+      (permission) => roles?.indexOf(permission) >= 0
+    ) ? (
+    children
+  ) : token ? (
+    <Navigate to="/admin/" state={{ from: location }} replace />
+  ) : (
+    <Navigate to="/admin/login" state={{ from: location }} replace />
+  );
 };
