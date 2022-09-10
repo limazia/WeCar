@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 import useAuth from "~/hooks/useAuth";
 
-import { Permission } from "~/components/Core/Permission";
-
 import { ReactComponent as Logo } from "~/assets/logo.svg";
 import { ReactComponent as MenuHamburguer } from "~/assets/menu.svg";
 

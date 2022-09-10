@@ -9,7 +9,16 @@ const { handleError } = require("./helpers/handler");
 
 const app = express();
 
-app.use(cors());
+if (process.env.APP_ENV === "development") {
+  app.use(cors());
+} else if (process.env.APP_ENV === "production") {
+  app.use(cors({
+    origin: "www.wecar.com.br"
+  }));
+} else {
+  throw new Error("{env} invalid");
+}
+
 app.use(express.json());
 app.use(routes);
 app.use((err, req, res, next) => {
@@ -24,6 +33,6 @@ app.listen(AppConfig.port, () => {
   } catch (ex) {
     console.log("error" + ex);
   } finally {
-    console.log(`Listening on port ${AppConfig.port}`);
+    console.log(`Listening on port ${AppConfig.server}`);
   }
 });

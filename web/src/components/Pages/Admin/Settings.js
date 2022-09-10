@@ -18,7 +18,7 @@ export function Settings() {
     } else {
       setLoading(true);
     }
-  }, [loading]);
+  }, [user, loading]);
 
   if (loading) {
     return <Loading />;
@@ -38,7 +38,7 @@ export function Settings() {
                     <div className="input-editable">
                       <span>Nome</span>
                       <p>
-                        {user.name} 
+                        {user.name}
                         <button
                           className="btn btn-link"
                           data-toggle="modal"

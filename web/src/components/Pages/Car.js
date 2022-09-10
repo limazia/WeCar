@@ -6,7 +6,9 @@ import WebRepository from "~/services/WebRepository";
 
 import { Head } from "../Partials/Head";
 import { SelectWrapper } from "../Forms/Select";
+
 import { CardCar } from "../Cards/Car";
+
 import { CarShimmer } from "../Shimmer/CardCar";
 
 import { ReactComponent as CarEmpty } from "~/assets/car-empty.svg";

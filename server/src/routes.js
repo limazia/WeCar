@@ -3,6 +3,17 @@ const express = require("express");
 
 const routes = express.Router();
 
+//Controllers
+const AuthController = require("./app/controllers/AuthController");
+const UserController = require("./app/controllers/UserController");
+const BrandController = require("./app/controllers/BrandController");
+const ModelController = require("./app/controllers/ModelController");
+const CarController = require("./app/controllers/CarController");
+const EmailController = require("./app/controllers/EmailController");
+
+//Middlewares
+const Authentication = require("./app/middlewares/Authentication")
+
 routes.get("/", function (request, response) {
   response.json({
     name: process.env.APP_NAME,
@@ -11,9 +22,6 @@ routes.get("/", function (request, response) {
   });
 });
 
-<<<<<<< Updated upstream
-module.exports = routes;
-=======
 //Rotas de Autenticação
 routes.group("/api/auth", (router) => {
   router.post("/login", Authentication.token,AuthController.login);
@@ -22,7 +30,7 @@ routes.group("/api/auth", (router) => {
 
 //Rota do Usuário Logado
 routes.group("/api/me", (router) => {
-  router.get("/account", Authentication.token,Authentication.token, UserController.account);
+  router.get("/account", Authentication.token, UserController.account);
   //router.put("/update/:scope/:id", Authentication.token, UserController.updateByScope);
 });
 
@@ -69,4 +77,3 @@ routes.post("/api/contact", EmailController.sendContactEmail);
 routes.post("/api/sellcar", EmailController.sendSellEmail);
 
 module.exports = routes;
->>>>>>> Stashed changes
