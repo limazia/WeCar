@@ -4,7 +4,7 @@ import { Head } from "~/components/Partials/Head";
 
 export function Sell() {
   return (
-    <Fragment>
+    <>
       <Head title="Venda seu carro" />
       <div className="container-fluid bg-light">
         <div className="row d-flex justify-content-center">
@@ -278,6 +278,6 @@ export function Sell() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

@@ -5,7 +5,12 @@ export function WhatsApp() {
   const endpoint = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
 
   return (
-    <a href={endpoint} target="_blank" rel="noreferrer" className="btn btn-whatsapp">
+    <a
+      href={endpoint}
+      target="_blank"
+      rel="noreferrer"
+      className="btn btn-whatsapp d-none d-md-block"
+    >
       <i className="fab fa-whatsapp"></i>
     </a>
   );

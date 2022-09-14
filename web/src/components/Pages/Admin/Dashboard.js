@@ -33,7 +33,7 @@ export function Dashboard() {
   const goUsers = () => navigate("./users");
 
   return (
-    <Fragment>
+    <>
       <Head title="Painel Administrativo" />
       <div className="container">
         <div className="row">
@@ -106,6 +106,6 @@ export function Dashboard() {
           )}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

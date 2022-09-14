@@ -25,7 +25,7 @@ export function Settings() {
   }
 
   return (
-    <Fragment>
+    <>
       <Head title="Configuração de conta" />
       <div className="container">
         <div className="row d-flex justify-content-center align-items-center mt-5">
@@ -96,6 +96,6 @@ export function Settings() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

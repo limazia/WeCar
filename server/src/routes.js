@@ -24,23 +24,26 @@ routes.get("/", function (request, response) {
 
 //Rotas de Autenticação
 routes.group("/api/auth", (router) => {
-  router.post("/login", Authentication.token,AuthController.login);
-  router.post("/logout", Authentication.token,Authentication.token, AuthController.logout);
+  router.post("/login", AuthController.login);
 });
 
 //Rota do Usuário Logado
 routes.group("/api/me", (router) => {
-  router.get("/account", Authentication.token, UserController.account);
-  //router.put("/update/:scope/:id", Authentication.token, UserController.updateByScope);
+  router.use(Authentication.token);
+  
+  router.get("/account", UserController.account);
+  //router.put("/update/:scope/:id", UserController.updateByScope);
 });
 
 //Rota do Usuário
 routes.group("/api/user", (router) => {
-  router.get("/", Authentication.token, UserController.listAllUsers);
-  router.post("/", Authentication.token, UserController.createUser);
-  router.get("/:id", Authentication.token, UserController.findUserById);
-  router.put("/:id", Authentication.token, UserController.updateUserById);
-  router.delete("/:id", Authentication.token, UserController.deleteUser);
+  router.use(Authentication.token);
+
+  router.get("/", UserController.listAllUsers);
+  router.post("/", UserController.createUser);
+  router.get("/:id", UserController.findUserById);
+  router.put("/:id", UserController.updateUserById);
+  router.delete("/:id", UserController.deleteUser);
 });
 
 //Rotas de Marcas

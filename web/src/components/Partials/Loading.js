@@ -21,11 +21,11 @@ export function Loading({ type = "icon" }) {
     <div className="container-fluid container-loading">
       <div className="row h-100 justify-content-center align-items-center loading">
         {allowedScopes.includes(type) ? (
-          <Fragment>
+          <>
             {type === "icon" && <Icon />}
             {type === "logo" && <Logo />}
             {type === "text" && <Text />}
-          </Fragment>
+          </>
         ) : (
           <Icon />
         )}

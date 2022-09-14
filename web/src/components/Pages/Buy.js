@@ -23,7 +23,7 @@ export function Buy() {
   };
 
   return (
-    <Fragment>
+    <>
       <Head />
       <div className="container-fluid box-search bg-light">
         <div className="row justify-content-center">
@@ -82,6 +82,6 @@ export function Buy() {
         </div>
       </div>
       <Services />
-    </Fragment>
+    </>
   );
 }

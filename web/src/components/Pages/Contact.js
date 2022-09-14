@@ -53,7 +53,7 @@ export function Contact() {
   }
 
   return (
-    <Fragment>
+    <>
       <Head title="Contato" />
       <div className="container-fluid bg-light">
         <div className="row justify-content-center">
@@ -162,6 +162,6 @@ export function Contact() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

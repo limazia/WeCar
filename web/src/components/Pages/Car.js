@@ -83,7 +83,7 @@ export function Car() {
   };
 
   return (
-    <Fragment>
+    <>
       <Head title={`Comprar ${brand} ${model ? model : ""}`} />
       <div className="container-fluid bg-light">
         <div className="row justify-content-center">
@@ -324,6 +324,6 @@ export function Car() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

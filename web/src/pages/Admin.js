@@ -7,7 +7,7 @@ import { HeaderAdmin } from "~/components/Partials/Header";
 
 export function Admin() {
   return (
-    <Fragment>
+    <>
       {getToken() && (
         <header>
           <HeaderAdmin />
@@ -16,6 +16,6 @@ export function Admin() {
       <main>
         <Outlet />
       </main>
-    </Fragment>
+    </>
   );
 }

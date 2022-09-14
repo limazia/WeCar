@@ -6,7 +6,7 @@ import CompanyBackground from "~/assets/bg-company.jpg";
 
 export function Company() {
   return (
-    <Fragment>
+    <>
       <Head title="Empresa" />
       <div className="container-fluid bg-light">
         <div className="row justify-content-center">
@@ -40,6 +40,6 @@ export function Company() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

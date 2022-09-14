@@ -7,10 +7,10 @@ import "./styles/styles.css";
 
 function App() {
   return (
-    <Fragment>
+    <>
       <Router />
       <Toastify autoClose={5000} />
-    </Fragment>
+    </>
   );
 }
 

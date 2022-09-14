@@ -3,6 +3,7 @@ import { Routes, Navigate, useLocation } from "react-router-dom";
 import TopBarProgress from "react-topbar-progress-indicator";
 
 import useAuth from "~/hooks/useAuth";
+import { getToken } from "./auth";
 
 export const CustomRoutes = ({ children }) => {
   const [progress, setProgress] = useState(false);
@@ -39,17 +40,15 @@ export const CustomRoutes = ({ children }) => {
   );
 };
 
-export const Private = ({ children, unique, roles }) => {
+export const Private = ({ children, roles }) => {
   const { user } = useAuth();
   const location = useLocation();
-  
-  return unique ? (
+
+  return user?.permissions.some(
+    (permission) => roles?.indexOf(permission) >= 0
+  ) ? (
     children
-  ) : user?.permissions.some(
-      (permission) => roles?.indexOf(permission) >= 0
-    ) ? (
-    children
-  ) : user?.authenticated ? (
+  ) : getToken() ? (
     <Navigate to="/admin/" state={{ from: location }} replace />
   ) : (
     <Navigate to="/admin/login" state={{ from: location }} replace />

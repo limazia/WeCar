@@ -83,6 +83,14 @@ function AuthProvider({ children }) {
       console.log(`sending request: ${currentAttempt} attempt`);
       try {
         const data = await WebRepository.getProfile();
+        const { permissions } = data;
+
+        if (!permissions.some(
+          (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
+        )) {
+          alert("sem o osadisa")
+        }
+
 
         setUser(data);
       } catch (ex) {
