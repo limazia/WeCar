@@ -11,8 +11,9 @@ import {
   usePagination,
 } from "react-table";
 
-import api from "~/services/api";
-import useAuth from "~/hooks/useAuth";
+import api from "~/utils/services/api";
+import useAuth from "~/utils/hooks/useAuth";
+import { Permission } from "../Core/Permission";
 
 import { SortIcon, SortUpIcon, SortDownIcon } from "./_Shared/Icons";
 
@@ -58,9 +59,11 @@ function GlobalFilter({
         <button className="btn btn-refresh mr-3" onClick={refreshBrands}>
           <i className="far fa-sync"></i>
         </button>
-        <button className="btn btn-create add-customer" onClick={goCreate}>
-          <i className="far fa-plus mr-1"></i> Nova marca
-        </button>
+        <Permission required={["admin", "create_brand"]}>
+          <button className="btn btn-create add-customer" onClick={goCreate}>
+            <i className="far fa-plus mr-1"></i> Nova marca
+          </button>
+        </Permission>
       </div>
     </div>
   );
@@ -212,7 +215,9 @@ export function TableBrands({ columns, data }) {
                   </div>
                 </th>
               ))}
-              <th></th>
+              <Permission required={["admin", "edit_brand", "delete_brand"]}>
+                <th></th>
+              </Permission>
             </tr>
           ))}
         </thead>
@@ -228,37 +233,50 @@ export function TableBrands({ columns, data }) {
                 <td>{row.original.brand_name}</td>
                 <td>{row.original.brand_slug}</td>
                 <td>{row.original.createdAt}</td>
-                <td>
-                  <div className="dropdown">
-                    <i
-                      className="far fa-ellipsis-v mr-3"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    ></i>
-                    <div
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <Link
-                        className="dropdown-item"
-                        to={`/brand/edit/${row.original.brand_id}`}
+                <Permission required={["admin", "edit_brand", "delete_brand"]}>
+                  <td>
+                    <div className="dropdown">
+                      <i
+                        className="far fa-ellipsis-v mr-3"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      ></i>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
                       >
-                        <i className="fas fa-pencil-alt mr-2"></i>
-                        Editar
-                      </Link>
-                      <button className="dropdown-item" onClick={() => {
-                        if (window.confirm(`Deseja excluir "${row.original.brand_name}"?`)) {
-                          handleDelete(row.original.brand_id);
-                        }
-                      }}>
-                        <i className="fas fa-trash-alt mr-2"></i>
-                        Remover
-                      </button>
+                        <Permission required={["admin", "edit_brand"]}>
+                          <Link
+                            className="dropdown-item"
+                            to={`/brand/edit/${row.original.brand_id}`}
+                          >
+                            <i className="fas fa-pencil-alt mr-2"></i>
+                            Editar
+                          </Link>
+                        </Permission>
+                        <Permission required={["admin", "delete_brand"]}>
+                          <button
+                            className="dropdown-item"
+                            onClick={() => {
+                              if (
+                                window.confirm(
+                                  `Deseja excluir "${row.original.brand_name}"?`
+                                )
+                              ) {
+                                handleDelete(row.original.brand_id);
+                              }
+                            }}
+                          >
+                            <i className="fas fa-trash-alt mr-2"></i>
+                            Remover
+                          </button>
+                        </Permission>
+                      </div>
                     </div>
-                  </div>
-                </td>
+                  </td>
+                </Permission>
               </tr>
             );
           })}

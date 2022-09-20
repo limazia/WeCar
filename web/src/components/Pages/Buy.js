@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 
-import WebRepository from "~/services/WebRepository";
-import { cars } from "~/utils/cars";
+import { getBrands } from "~/utils/services/api";
+import { cars } from "~/utils/database/cars";
 
 import { Head } from "../Partials/Head";
 import { Services } from "../Services";
@@ -17,7 +17,7 @@ export function Buy() {
   }, []);
 
   const loadBrands = async () => {
-    const { results } = await WebRepository.getBrands();
+    const { results } = await getBrands();
 
     setBrands(results);
   };

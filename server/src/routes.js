@@ -28,11 +28,11 @@ routes.group("/api/auth", (router) => {
 });
 
 //Rota do Usuário Logado
-routes.group("/api/me", (router) => {
+routes.group("/api/me/", (router) => {
   router.use(Authentication.token);
   
   router.get("/account", UserController.account);
-  //router.put("/update/:scope/:id", UserController.updateByScope);
+  router.put("/:scope/:id", UserController.updateByScope);
 });
 
 //Rota do Usuário

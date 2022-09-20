@@ -11,9 +11,14 @@ export function CardCar({ data, brand, model }) {
     car_year,
     createdAt,
   } = data;
+
   const price = car_price.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
+  });
+
+  const km = car_km.toLocaleString("pt-BR", {
+    maximumFractionDigits: 2,
   });
 
   const getExchange = (exchange) => {
@@ -68,7 +73,7 @@ export function CardCar({ data, brand, model }) {
         <div className="row">
           <div className="col-md-6">
             <span className="text-muted d-block">KM</span>
-            <b>{car_km.toFixed(2)}</b>
+            <b>{km}</b>
           </div>
           <div className="col-md-6">
             <span className="text-muted d-block">Ano</span> <b>{car_year}</b>

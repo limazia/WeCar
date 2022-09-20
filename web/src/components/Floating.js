@@ -9,7 +9,7 @@ export function WhatsApp() {
       href={endpoint}
       target="_blank"
       rel="noreferrer"
-      className="btn btn-whatsapp d-none d-md-block"
+      className="btn btn-whatsapp d-none d-md-flex"
     >
       <i className="fab fa-whatsapp"></i>
     </a>

@@ -933,53 +933,29 @@ button:active:focus:not(:disabled):not(.disabled) {
 .form-control {
   height: 60px;
   text-indent: 10px;
-  background: #e9ebef;
+  background-color: #fff;
   color: #637089;
-  border: none;
+  border: 2px solid #e9ebef;
   max-width: 100%;
   border-radius: 10px;
+  transition: 0.5s ease;
 }
 .form-control:focus {
-  background: #e9ebef;
+  background-color: #fff;
   color: #637089;
+  border: 2px solid #bec1c6;
   box-shadow: none;
 }
 .form-control::-moz-placeholder {
-  color: #637089;
+  color: #bcc0c5;
   font-size: 0.9rem;
 }
 .form-control:-ms-input-placeholder {
-  color: #637089;
+  color: #bcc0c5;
   font-size: 0.9rem;
 }
 .form-control::placeholder {
-  color: #637089;
-  font-size: 0.9rem;
-}
-.form-control.step {
-  height: 60px;
-  text-indent: 10px;
-  background: transparent;
-  color: #8c97ac;
-  border: 2px solid #e9ebef;
-  max-width: 100%;
-  border-radius: 10px;
-}
-.form-control.step:focus {
-  background: transparent;
-  color: #8c97ac;
-  border: 2px solid #e9ebef;
-}
-.form-control.step::-moz-placeholder {
-  color: #cbd0da;
-  font-size: 0.9rem;
-}
-.form-control.step:-ms-input-placeholder {
-  color: #cbd0da;
-  font-size: 0.9rem;
-}
-.form-control.step::placeholder {
-  color: #cbd0da;
+  color: #bcc0c5;
   font-size: 0.9rem;
 }
 .form-control.search {
@@ -1083,6 +1059,46 @@ select:not(select) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-settings .modal-header,
+.modal-settings .modal-body,
+.modal-settings .modal-footer {
+  border: none;
+}
+.modal-settings .modal-header h1,
+.modal-settings .modal-header h2,
+.modal-settings .modal-header h3,
+.modal-settings .modal-header h4,
+.modal-settings .modal-header h5,
+.modal-settings .modal-header h6 {
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: -0.56px;
+  text-align: center;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+}
+.modal-settings .modal-body {
+  padding-top: 0;
+}
+.modal-settings .modal-body .edit-option {
+  font-size: 20px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: -0.56px;
+  text-align: center;
+  margin-bottom: 14px;
+  text-transform: capitalize;
+}
+.modal-settings .modal-footer .delete {
+  padding: 1rem 1rem;
+  margin: -1rem -1rem -1rem auto;
 }
 
 .table-customers,

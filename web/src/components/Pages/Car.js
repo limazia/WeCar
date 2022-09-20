@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import classNames from "classnames";
 
-import WebRepository from "~/services/WebRepository";
+import { getCarByBrand, getBrandById, getCars } from "~/utils/services/api";
 
 import { Head } from "../Partials/Head";
 import { SelectWrapper } from "../Forms/Select";
@@ -33,19 +33,19 @@ export function Car() {
   }, [loading]);
 
   const loadCar = async (brand, model) => {
-    const { results } = await WebRepository.getCarByBrand(brand, model);
+    const { results } = await getCarByBrand(brand, model);
 
     setCars(results);
   };
 
   const loadCarByBrand = async (brand) => {
-    const { results } = await WebRepository.getBrandById(brand);
+    const { results } = await getBrandById(brand);
 
     setCars(results);
   };
 
   const loadCars = async (brand) => {
-    const { results } = await WebRepository.getCars();
+    const { results } = await getCars();
 
     setCars(results);
   };
@@ -94,8 +94,7 @@ export function Car() {
                   <div className="card-body">
                     <div className="row d-flex align-items-center">
                       <div className="col-md-10">
-                        <div className="form-group mb-0 wicon">
-                          <i className="fas fa-search left"></i>
+                        <div className="form-group mb-0">
                           <SelectWrapper forcePosition="bottom" />
                         </div>
                       </div>

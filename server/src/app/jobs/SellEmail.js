@@ -23,7 +23,7 @@ class SellEmail {
         }
       });
     } catch (e) {
-      console.log(`[Sell] > ${constant.error.email.ERROR_SENDING_EMAIL}`);
+      console.log(`[Sell] > ${constant.error.form.ERROR_SENDING_EMAIL}`);
     }
   }
 }

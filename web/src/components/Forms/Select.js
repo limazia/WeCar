@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Select, { components } from "react-select";
 
-import WebRepository from "~/services/WebRepository";
+import { getBrands, getModels } from "~/utils/services/api";
 
 export function SelectWrapper({ forcePosition }) {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export function SelectWrapper({ forcePosition }) {
   }, []);
 
   const loadBrands = async () => {
-    const { results } = await WebRepository.getBrands();
+    const { results } = await getBrands();
 
     setBrands(
       results.map((brand) => ({
@@ -28,7 +28,7 @@ export function SelectWrapper({ forcePosition }) {
   };
 
   const loadModels = async () => {
-    const { results } = await WebRepository.getModels();
+    const { results } = await getModels();
 
     setModels(
       results.map((model) => ({
@@ -65,19 +65,7 @@ export function SelectWrapper({ forcePosition }) {
       window.removeEventListener("scroll", controlDirection);
     };
   }, []);
-
-  const brandOptions = [
-    { value: "chevrolet", label: "Chevrolet" },
-    { value: "volkswagen", label: "Volkswagen" },
-    { value: "mercedes", label: "Mercedes Benz" },
-  ];
-
-  const modelOptions = [
-    { value: "onix", brand: "chevrolet", label: "Onix" },
-    { value: "jetta", brand: "volkswagen", label: "Jetta" },
-    { value: "c180", brand: "mercedes", label: "Mercedes-benz C 180" },
-  ];
-
+ 
   const groupedOptions = [
     {
       label: "Marca",
@@ -130,11 +118,12 @@ export function SelectWrapper({ forcePosition }) {
       alignItems: "center",
       height: "60px",
       textIndent: "10px",
-      background: "#e9ebef",
+      backgroundColor: "#fff",
       color: "#637089",
-      border: "none",
-      maxMidth: "100%",
+      border: "2px solid #e9ebef",
+      maxWidth: "100%",
       borderRadius: "10px",
+      caretColor: "transparent"
     }),
 
     menuPortal: (base) => ({ ...base, zIndex: 9999 }),

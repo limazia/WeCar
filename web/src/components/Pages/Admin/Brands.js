@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import WebRepository from "~/services/WebRepository";
+import { getBrands } from "~/utils/services/api";
 
 import { TableBrands } from "~/components/Tables/Brands";
 import { Loading } from "~/components/Partials/Loading";
+import { Head } from "~/components/Partials/Head";
 
 import { Empty } from "~/components/Images";
 
@@ -14,10 +15,10 @@ export function Brands() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getBrands();
+    loadBrands();
 
     window.addEventListener("refresh-brands", () => {
-      getBrands();
+      loadBrands();
     });
 
     setTimeout(() => {
@@ -29,8 +30,8 @@ export function Brands() {
     return <Loading />;
   }
 
-  async function getBrands() {
-    const { results } = await WebRepository.getBrands();
+  async function loadBrands() {
+    const { results } = await getBrands();
 
     if (results) {
       setBrands(results);
@@ -42,51 +43,67 @@ export function Brands() {
   const columns = [
     {
       Header: "Marca",
+      accessor: "brand_name",
     },
     {
       Header: "Slug",
+      accessor: "brand_slug",
     },
     {
       Header: "Data de cadastro",
+      accessor: "createdAt",
     },
   ];
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card card-customers">
-            <div className="card-body">
-              {brands.length > 0 ? (
-                <TableBrands columns={columns} data={brands} />
-              ) : (
-                <div className="col-sm-12 empty-car text-center">
-                  <div className="empty-image pb-3">
-                    <Empty className="img-fluid" />
+    <>
+      <Head title="Marcas" />
+      <div className="container mt-3 pb-5">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="card card-customers">
+              <div className="card-body">
+                {brands.length > 0 ? (
+                  <TableBrands columns={columns} data={brands} />
+                ) : (
+                  <div className="col-sm-12 empty-car text-center">
+                    <div className="empty-image pb-3">
+                      <Empty className="img-fluid" />
+                    </div>
+                    <span className="empty-title">
+                      Nenhuma marca foi encontrada
+                    </span>
+                    <small className="empty-description mt-3 pb-4">
+                      Começe cadastrando agora mesmo
+                    </small>
+                    <button className="btn btn-create" onClick={goCreate}>
+                      <i className="far fa-plus mr-1"></i> Cadastrar marca
+                    </button>
                   </div>
-                  <span className="empty-title">
-                    Nenhum cliente foi encontrado
-                  </span>
-                  <small className="empty-description mt-3 pb-4">
-                    Começe cadastrando agora mesmo
-                  </small>
-                  <button className="btn btn-create" onClick={goCreate}>
-                    <i className="far fa-plus mr-1"></i> Cadastrar marca
-                  </button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
 export function BrandCreate() {
-  return <h1>BrandCreate</h1>;
+  return (
+    <>
+      <Head title="BrandCreate" />
+      <h1>BrandCreate</h1>
+    </>
+  );
 }
 
 export function BrandView() {
-  return <h1>BrandView</h1>;
+  return (
+    <>
+      <Head title="BrandView" />
+      <h1>BrandView</h1>
+    </>
+  );
 }

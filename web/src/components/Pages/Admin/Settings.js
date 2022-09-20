@@ -1,9 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import useAuth from "~/hooks/useAuth";
+import useAuth from "~/utils/hooks/useAuth";
 
 import { Head } from "~/components/Partials/Head";
 import { Loading } from "~/components/Partials/Loading";
+import { NameModal } from "~/components/Modals/Settings/Name";
+import { EmailModal } from "~/components/Modals/Settings/Email";
+import { PasswordModal } from "~/components/Modals/Settings/Password";
+import { Permission } from "~/components/Core/Permission";
 
 export function Settings() {
   const { user } = useAuth();
@@ -27,6 +31,9 @@ export function Settings() {
   return (
     <>
       <Head title="Configuração de conta" />
+      <NameModal />
+      <EmailModal />
+      <PasswordModal />
       <div className="container">
         <div className="row d-flex justify-content-center align-items-center mt-5">
           <div className="col-xs-12 col-md-6">
@@ -39,13 +46,15 @@ export function Settings() {
                       <span>Nome</span>
                       <p>
                         {user.name}
-                        <button
-                          className="btn btn-link"
-                          data-toggle="modal"
-                          data-target="#nameModal"
-                        >
-                          Editar
-                        </button>
+                        <Permission required={["admin"]}>
+                          <button
+                            className="btn btn-link"
+                            data-toggle="modal"
+                            data-target="#nameModal"
+                          >
+                            Editar
+                          </button>
+                        </Permission>
                       </p>
                     </div>
                   </div>

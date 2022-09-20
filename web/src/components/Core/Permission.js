@@ -1,4 +1,4 @@
-import useAuth from "~/hooks/useAuth";
+import useAuth from "~/utils/hooks/useAuth";
 
 export function Permission({ children, required }) {
   const { user } = useAuth();

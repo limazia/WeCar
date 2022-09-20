@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useAuth from "~/hooks/useAuth";
+import useAuth from "~/utils/hooks/useAuth";
 
 import { Head } from "~/components/Partials/Head";
 import { Loading } from "~/components/Partials/Loading";
@@ -11,19 +11,17 @@ export function Dashboard() {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const [loading, setLoading] = useState(true);
+  const [splash, setSplash] = useState(true);
 
   useEffect(() => {
     if (user !== null) {
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+      setTimeout(() => setSplash(false), 2000);
     } else {
-      setLoading(true);
+      setSplash(true);
     }
-  }, [user, loading]);
+  }, [user, splash]);
 
-  if (loading) {
+  if (splash) {
     return <Loading />;
   }
 

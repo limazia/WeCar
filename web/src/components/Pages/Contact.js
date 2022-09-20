@@ -1,9 +1,9 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { Form } from "@rocketseat/unform";
 import { toast } from "react-toastify";
 
-import api from "~/services/api";
-import { maskPhone } from "~/utils/mask";
+import api from "~/utils/services/api";
+import { maskPhone } from "~/utils/services/mask";
 
 import { Head } from "~/components/Partials/Head";
 import { Spinner } from "~/components/Forms/Spinner";

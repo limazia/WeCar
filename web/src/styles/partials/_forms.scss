@@ -1,43 +1,24 @@
 .form-control {
   height: 60px;
   text-indent: 10px;
-  background: #e9ebef;
+  background-color: #fff;
   color: #637089;
-  border: none;
+  border: 2px solid #e9ebef;
   max-width: 100%;
   border-radius: 10px;
+  transition: 0.5s ease;
 
   &:focus {
-    background: #e9ebef;
+    background-color: #fff;
     color: #637089;
+    border: 2px solid #bec1c6;
     -webkit-box-shadow: none;
     box-shadow: none;
   }
 
   &::placeholder {
-    color: #637089;
+    color: #bcc0c5;
     font-size: 0.9rem;
-  }
-
-  &.step {
-    height: 60px;
-    text-indent: 10px;
-    background: transparent;
-    color: #8c97ac;
-    border: 2px solid #e9ebef;
-    max-width: 100%;
-    border-radius: 10px;
-
-    &:focus {
-      background: transparent;
-      color: #8c97ac;
-      border: 2px solid #e9ebef;
-    }
-
-    &::placeholder {
-      color: #cbd0da;
-      font-size: 0.9rem;
-    }
   }
 
   &.search {
@@ -61,7 +42,7 @@
     }
   }
 }
- 
+
 select {
   &.form-control {
     height: 60px;

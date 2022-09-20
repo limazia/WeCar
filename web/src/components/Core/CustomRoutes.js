@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import { Routes, Navigate, useLocation } from "react-router-dom";
+import { Routes, useLocation } from "react-router-dom";
 import TopBarProgress from "react-topbar-progress-indicator";
-
-import useAuth from "~/hooks/useAuth";
-import { getToken } from "./auth";
 
 export const CustomRoutes = ({ children }) => {
   const [progress, setProgress] = useState(false);
@@ -16,6 +13,8 @@ export const CustomRoutes = ({ children }) => {
     if (location.pathname === prevLoc) {
       setPrevLoc("");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export const CustomRoutes = ({ children }) => {
     barColors: {
       0: "#2d2d77",
       0.5: "#27277d",
-      "1.0": "#212183",
+      1.0: "#212183",
     },
   });
 
@@ -37,20 +36,5 @@ export const CustomRoutes = ({ children }) => {
         {children}
       </Routes>
     </>
-  );
-};
-
-export const Private = ({ children, roles }) => {
-  const { user } = useAuth();
-  const location = useLocation();
-
-  return user?.permissions.some(
-    (permission) => roles?.indexOf(permission) >= 0
-  ) ? (
-    children
-  ) : getToken() ? (
-    <Navigate to="/admin/" state={{ from: location }} replace />
-  ) : (
-    <Navigate to="/admin/login" state={{ from: location }} replace />
   );
 };

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Form } from "@rocketseat/unform";
 import { Link } from "react-router-dom";
 
-import useAuth from "~/hooks/useAuth";
+import useAuth from "~/utils/hooks/useAuth";
 
 import { Head } from "~/components/Partials/Head";
 import { Spinner } from "~/components/Forms/Spinner";

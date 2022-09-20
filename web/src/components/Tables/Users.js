@@ -31,10 +31,10 @@ function GlobalFilter({
 
   const navigate = useNavigate();
 
-  const goCreate = () => navigate("/model/create");
+  const goCreate = () => navigate("/user/create");
 
-  const refreshModels = debounce((e) => {
-    const event = new CustomEvent("refresh-models");
+  const refreshUsers = debounce((e) => {
+    const event = new CustomEvent("refresh-users");
     window.dispatchEvent(event);
   }, 1000);
 
@@ -51,17 +51,17 @@ function GlobalFilter({
               setValue(e.target.value);
               onChange(e.target.value);
             }}
-            placeholder={`Pesquisar ${count} modelo`}
+            placeholder={`Pesquisar ${count} usuário`}
           />
         </div>
       </div>
       <div className="col-md-6 d-flex align-items-center justify-content-end">
-        <button className="btn btn-refresh mr-3" onClick={refreshModels}>
+        <button className="btn btn-refresh mr-3" onClick={refreshUsers}>
           <i className="far fa-sync"></i>
         </button>
-        <Permission required={["admin", "create_model"]}>
+        <Permission required={["admin", "create_user"]}>
           <button className="btn btn-create add-customer" onClick={goCreate}>
-            <i className="far fa-plus mr-1"></i> Novo modelo
+            <i className="far fa-plus mr-1"></i> Novo usuário
           </button>
         </Permission>
       </div>
@@ -108,19 +108,19 @@ export function SelectColumnFilter({
   );
 }
 
-export function TableModels({ columns, data }) {
+export function TableUsers({ columns, data }) {
   const { user } = useAuth();
 
   async function handleDelete(id) {
     if (id) {
       try {
-        const { data } = await api.delete(`api/models/${id}`);
+        const { data } = await api.delete(`api/users/${id}`);
         const { error, message } = data;
 
         if (message) {
           toast.success(message);
 
-          const event = new CustomEvent("refresh-models");
+          const event = new CustomEvent("refresh-users");
           window.dispatchEvent(event);
         } else {
           toast.error(error);
@@ -215,7 +215,7 @@ export function TableModels({ columns, data }) {
                   </div>
                 </th>
               ))}
-              <Permission required={["admin", "edit_model", "delete_model"]}>
+              <Permission required={["admin", "edit_user", "delete_user"]}>
                 <th></th>
               </Permission>
             </tr>
@@ -230,10 +230,11 @@ export function TableModels({ columns, data }) {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                <td>{row.original.model_name}</td>
-                <td>{row.original.model_slug}</td>
+                <td>{row.original.name}</td>
+                <td>{row.original.email}</td>
+                <td>{row.original.permissions}</td>
                 <td>{row.original.createdAt}</td>
-                <Permission required={["admin", "edit_model", "delete_model"]}>
+                <Permission required={["admin", "edit_user", "delete_user"]}>
                   <td>
                     <div className="dropdown">
                       <i
@@ -247,31 +248,34 @@ export function TableModels({ columns, data }) {
                         className="dropdown-menu"
                         aria-labelledby="dropdownMenuButton"
                       >
-                        <Permission required={["admin", "edit_model"]}>
+                        <Permission required={["admin", "edit_user"]}>
                           <Link
                             className="dropdown-item"
-                            to={`/model/edit/${row.original.model_id}`}
+                            to={`/user/edit/${row.original.user_id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar
                           </Link>
                         </Permission>
-                        <Permission required={["admin", "delete_model"]}>
-                          <button
-                            className="dropdown-item"
-                            onClick={() => {
-                              if (
-                                window.confirm(
-                                  `Deseja excluir "${row.original.model_name}"?`
-                                )
-                              ) {
-                                handleDelete(row.original.model_id);
-                              }
-                            }}
-                          >
-                            <i className="fas fa-trash-alt mr-2"></i>
-                            Remover
-                          </button>
+                        <Permission required={["admin", "delete_user"]}>
+                          {user.id !== row.original.id &&
+                            row.original.primary_user && (
+                              <button
+                                className="dropdown-item"
+                                onClick={() => {
+                                  if (
+                                    window.confirm(
+                                      `Deseja excluir "${row.original.user_name}"?`
+                                    )
+                                  ) {
+                                    handleDelete(row.original.user_id);
+                                  }
+                                }}
+                              >
+                                <i className="fas fa-trash-alt mr-2"></i>
+                                Remover
+                              </button>
+                            )}
                         </Permission>
                       </div>
                     </div>

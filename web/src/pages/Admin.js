@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 
-import { getToken } from "~/utils/auth";
+import { getToken } from "~/utils/services/auth";
 
 import { HeaderAdmin } from "~/components/Partials/Header";
 
 export function Admin() {
   return (
-    <>
+    <Fragment>
       {getToken() && (
         <header>
           <HeaderAdmin />
@@ -16,6 +16,6 @@ export function Admin() {
       <main>
         <Outlet />
       </main>
-    </>
+    </Fragment>
   );
 }

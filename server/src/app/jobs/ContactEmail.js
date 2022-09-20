@@ -23,7 +23,7 @@ class ContactEmail {
         }
       });
     } catch (e) {
-      console.log(`[Contact] > ${constant.error.email.ERROR_SENDING_EMAIL}`);
+      console.log(`[Contact] > ${constant.error.form.ERROR_SENDING_EMAIL}`);
     }
   }
 }

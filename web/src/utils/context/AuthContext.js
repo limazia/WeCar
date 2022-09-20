@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import retry from "retry";
 import Cookies from "universal-cookie";
 
-import api from "~/services/api";
-import WebRepository from "~/services/WebRepository";
-import { getToken, createToken } from "~/utils/auth";
+import api from "~/utils/services/api";
+import { getProfile } from "~/utils/services/api";
+import { getToken, createToken } from "~/utils/services/auth";
+
+const controller = new AbortController();
 
 export const AuthContext = createContext({});
 
@@ -21,26 +23,34 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = getToken();
-    const {
-      location: { pathname },
-    } = window;
-
-    if (pathname == "/admin/login") {
-      return navigate("/admin");
-    }
+    const { pathname } = window.location;
 
     if (token) {
-      userProfile();
-    }
-  }, []);
+      getProfile()
+        .then((data) => {
+          console.log(data);
+          setUser(data);
+          const { permissions } = data;
 
-  const operation = retry.operation({
-    retries: 5,
-    factor: 3,
-    minTimeout: 1 * 1000,
-    maxTimeout: 60 * 1000,
-    randomize: true,
-  });
+          if (!permissions.some(
+            (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
+          )) {
+            alert("sem o osadisa")
+          }
+
+          if (pathname == "/admin/login") {
+            navigate("/admin");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   async function handleSubmit() {
     if (email && password) {
@@ -77,30 +87,6 @@ function AuthProvider({ children }) {
       toast.error("Preencha email e senha para continuar!");
     }
   }
-
-  const userProfile = async () => {
-    operation.attempt(async (currentAttempt) => {
-      console.log(`sending request: ${currentAttempt} attempt`);
-      try {
-        const data = await WebRepository.getProfile();
-        const { permissions } = data;
-
-        if (!permissions.some(
-          (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
-        )) {
-          alert("sem o osadisa")
-        }
-
-
-        setUser(data);
-      } catch (ex) {
-        console.error("Não foi possivel encontrar o perfil!");
-        if (operation.retry(ex)) {
-          return;
-        }
-      }
-    });
-  };
 
   function logout() {
     cookies.remove("token", { path: "/" });

@@ -8,7 +8,7 @@ import { WhatsApp } from "~/components/Floating";
 
 export function Home() {
   return (
-    <>
+    <Fragment>
       <header>
         <Utility />
         <Header />
@@ -20,6 +20,6 @@ export function Home() {
         </AnimatedPage>
         <Footer />
       </main>
-    </>
+    </Fragment>
   );
 }
