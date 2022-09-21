@@ -6,7 +6,7 @@ const ContactEmail = require("../jobs/ContactEmail");
 const SellEmail = require("../jobs/SellEmail");
 
 class EmailController {
-  async sendContactEmail(request, response) {
+  async ContactEmail(request, response) {
     const { name, email, phone, subject, message } = request.body;
 
     const identifier = cryptoRandomString({ length: 10, type: "numeric" });
@@ -34,28 +34,31 @@ class EmailController {
     });
   }
 
-  async sendSellEmail(request, response) {
-    //const { name, email } = request.body;
+  async SellEmail(request, response) {
+    const { personal } = request.body;
+    const { name, email, phone } = personal;
 
     const identifier = cryptoRandomString({ length: 10, type: "numeric" });
 
-    const name = "Carlos Acácio de Lima Filho";
-    const email = "limadeacacio@gmail.com";
-
     const options = {
-      from: "WeCar <contato@wecar.com.br>",
-      subject: `Venda ${identifier}`,
-      template: "mercedesbenz",
+      from: "WeCar <vendas@wecar.com.br>",
+      to: "limadeacacio@gmail.com",
+      subject: `Proposta de Venda #${identifier}`,
+      template: "sell",
     };
 
     const context = {
+      identifier,
       name,
       email,
+      phone,
     };
 
-    await SellEmail.handle({ options, context });
+    await ContactEmail.handle({ options, context });
 
-    return response.json({ message: "Instruções enviada com sucesso." });
+    return response.json({
+      message: constant.success.email.MESSAGE_SENT_SUCCESSFULLY,
+    });
   }
 }
 

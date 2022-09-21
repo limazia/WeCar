@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Form } from "@rocketseat/unform";
 import { toast } from "react-toastify";
 
 import api from "~/utils/services/api";
@@ -16,7 +15,9 @@ export function Contact() {
   const [messageContent, setMessageContent] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (name && email && phone && subject && messageContent) {
       setLoading(true);
 
@@ -61,7 +62,7 @@ export function Contact() {
             <div className="row">
               <div className="col-md-8 mt-5 pb-5">
                 <h1>Fale conosco</h1>
-                <Form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                   <div className="row mt-4">
                     <div className="col-md-12">
                       <input
@@ -136,7 +137,7 @@ export function Contact() {
                       </button>
                     </div>
                   </div>
-                </Form>
+                </form>
               </div>
               <div className="col-md-4 mt-5 pb-5">
                 <div className="contact">

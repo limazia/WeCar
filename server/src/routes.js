@@ -76,7 +76,7 @@ routes.group("/api/car", (router) => {
 });
 
 // Rotas com Email
-routes.post("/api/contact", EmailController.sendContactEmail);
-routes.post("/api/sellcar", EmailController.sendSellEmail);
+routes.post("/api/contact", EmailController.ContactEmail);
+routes.post("/api/sellcar", EmailController.SellEmail);
 
 module.exports = routes;
