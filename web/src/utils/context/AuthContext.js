@@ -52,7 +52,9 @@ function AuthProvider({ children }) {
     };
   }, []);
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    
     if (email && password) {
       setLoading(true);
 

@@ -10,7 +10,6 @@ export function NameModal() {
   const { user } = useAuth();
 
   const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
@@ -18,13 +17,12 @@ export function NameModal() {
       try {
         setLoading(true);
 
-        const { data } = await api.put(`/api/me/update/name/${user.id}`, { name, surname });
+        const { data } = await api.put(`/api/me/update/name/${user.id}`, { name });
         const { error, message } = data;
 
         if (message) {
           toast.success(message);
           setName("");
-          setSurname("");
           window.$("#nameModal").modal("hide");
         } else {
           toast.error(error);
@@ -42,7 +40,6 @@ export function NameModal() {
 
   window.$("#nameModal").on("hide.bs.modal", function (event) {
     setName("");
-    setSurname("");
   });
 
   return (

@@ -51,6 +51,10 @@ class UserController {
             error: constant.error.TYPE_NOT_IDENTIFIED_IN_ALLOWED_SCOPE,
           });
       }
+    } else {
+      response.json({
+        error: constant.error.TYPE_NOT_IDENTIFIED_IN_ALLOWED_SCOPE,
+      });
     }
   }
 
@@ -58,13 +62,7 @@ class UserController {
     const users = await connection("users").orderBy("createdAt", "asc");
 
     const serializedItems = users.map((item) => {
-      const {
-        id,
-        name,
-        email,
-        permissions,
-        createdAt,
-      } = item;
+      const { id, name, email, permissions, createdAt } = item;
 
       return {
         id,

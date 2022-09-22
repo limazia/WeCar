@@ -996,6 +996,10 @@ select:not(select) {
   padding: 1.5rem 0.5rem;
 }
 
+textarea.form-control {
+  resize: none;
+}
+
 .wicon {
   position: relative;
 }

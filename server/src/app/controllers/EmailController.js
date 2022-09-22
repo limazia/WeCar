@@ -7,7 +7,8 @@ const SellEmail = require("../jobs/SellEmail");
 
 class EmailController {
   async ContactEmail(request, response) {
-    const { name, email, phone, subject, message } = request.body;
+    const { personal } = request.body;
+    const { name, email, phone, subject, messagecontent } = personal;
 
     const identifier = cryptoRandomString({ length: 10, type: "numeric" });
 
@@ -24,7 +25,7 @@ class EmailController {
       email,
       phone,
       subjectContent: subject,
-      message,
+      message: messagecontent,
     };
 
     await ContactEmail.handle({ options, context });

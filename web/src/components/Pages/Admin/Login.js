@@ -35,7 +35,7 @@ export function Login() {
                     <p className="text-muted mt-3 mb-4 text-center">
                       Inicie uma sessão para continuar
                     </p>
-                    <Form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                       <div className="form-group mb-3 wicon">
                         <i className="fas fa-envelope left"></i>
                         <input
@@ -69,7 +69,7 @@ export function Login() {
                       >
                         {loading ? <Spinner type="grow" /> : "Entrar"}
                       </button>
-                    </Form>
+                    </form>
                   </div>
                 </div>
               </div>

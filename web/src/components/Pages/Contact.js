@@ -8,50 +8,61 @@ import { Head } from "~/components/Partials/Head";
 import { Spinner } from "~/components/Forms/Spinner";
 
 export function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [subject, setSubject] = useState("");
-  const [messageContent, setMessageContent] = useState("");
+  const INITIAL_STATE = {
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    messagecontent: "",
+  };
+
+  const [personal, setPersonal] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "phone") {
+      setPersonal((prevState) => ({
+        ...prevState,
+        phone: maskPhone(value),
+      }));
+    } else {
+      setPersonal((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, phone, subject, messagecontent } = personal;
 
-    if (name && email && phone && subject && messageContent) {
+    if (name && email && phone && subject && messagecontent) {
       setLoading(true);
 
       try {
-        const { data } = await api.post("/api/contact", {
-          name,
-          email,
-          phone,
-          subject,
-          message: messageContent,
-        });
+        const { data } = await api.post("/api/contact", { personal });
         const { error, message } = data;
 
         if (message) {
           toast.success(message);
-          setName("");
-          setEmail("");
-          setPhone("");
-          setSubject("");
-          setMessageContent("");
+          setPersonal(INITIAL_STATE);
           setLoading(false);
         } else {
           toast.error(error);
           setLoading(false);
         }
       } catch (ex) {
-        console.log(ex)
+        console.log(ex);
         toast.error("Houve um problema com o servidor!");
         setLoading(false);
       }
     } else {
       toast.error("Preencha todos os campos para continuar!");
     }
-  }
+  };
 
   return (
     <>
@@ -70,8 +81,8 @@ export function Contact() {
                         name="name"
                         className="form-control"
                         placeholder="Nome"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={personal?.name}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -82,8 +93,8 @@ export function Contact() {
                         name="email"
                         className="form-control"
                         placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={personal?.email}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -94,8 +105,8 @@ export function Contact() {
                         name="phone"
                         className="form-control"
                         placeholder="Telefone"
-                        value={phone}
-                        onChange={(e) => setPhone(maskPhone(e.target.value))}
+                        value={personal?.phone}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -106,8 +117,8 @@ export function Contact() {
                         name="subject"
                         className="form-control"
                         placeholder="Assunto"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
+                        value={personal?.subject}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -115,11 +126,11 @@ export function Contact() {
                     <div className="col-md-12">
                       <textarea
                         className="form-control"
-                        name="message"
+                        name="messagecontent"
                         rows="4"
                         placeholder="Mensagem"
-                        value={messageContent}
-                        onChange={(e) => setMessageContent(e.target.value)}
+                        value={personal?.messagecontent}
+                        onChange={(e) => handleChange(e)}
                       />
                     </div>
                   </div>
@@ -128,7 +139,11 @@ export function Contact() {
                       <button
                         className="btn btn-warning btn-lg text-white"
                         disabled={
-                          !name || !email || !phone || !subject || !messageContent
+                          !personal?.name ||
+                          !personal?.email ||
+                          !personal?.phone ||
+                          !personal?.subject ||
+                          !personal?.messagecontent
                             ? true
                             : false
                         }
@@ -150,7 +165,7 @@ export function Contact() {
                     <span>(11) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">
-                    <i className="fab fa-whatsapp"></i>
+                     <i className="fab fa-whatsapp"></i>
                     <span>(19) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">

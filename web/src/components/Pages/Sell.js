@@ -1,24 +1,69 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-import api from "~/utils/services/api";
+import api, { getCities, getUfs } from "~/utils/services/api";
 import { maskPhone } from "~/utils/services/mask";
 
 import { Head } from "~/components/Partials/Head";
 import { Spinner } from "~/components/Forms/Spinner";
 
 export function Sell() {
-  const INITIAL_STATE_PERSONAL = {
+  const INITIAL_STATE = {
     name: "",
     email: "",
     phone: "",
     address: "",
     city: "",
     state: "",
-  }
-  
-  const [personal, setPersonal] = useState(INITIAL_STATE_PERSONAL);
+  };
+
+  const INITIAL_STATE_CAR = {
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    city: "",
+    state: "",
+  };
+
+  const [personal, setPersonal] = useState(INITIAL_STATE);
+  const [car, setCar] = useState(INITIAL_STATE_CAR);
+  const [ufs, setUfs] = useState([]);
+  const [cities, setCities] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function loadUfs() {
+      const response = await getUfs();
+
+      const ufInitials = response.data.map((uf) => {
+        return {
+          sigla: uf.sigla,
+          nome: uf.nome,
+        };
+      });
+
+      setUfs(ufInitials);
+    }
+
+    loadUfs();
+  }, []);
+
+  useEffect(() => {
+    async function loadCities() {
+      if (personal.state === "0") return;
+
+      const response = await getCities(personal.state);
+
+      const cityNames = response.data.map((city) => {
+        return { nome: city.nome };
+      });
+
+      setCities(cityNames);
+    }
+
+    loadCities();
+  }, [personal.state]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,8 +83,9 @@ export function Sell() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, phone } = personal;
 
-    if (personal.name && personal.email && personal.phone) {
+    if (name && email && phone) {
       setLoading(true);
 
       try {
@@ -50,7 +96,7 @@ export function Sell() {
 
         if (message) {
           toast.success(message);
-          setPersonal(INITIAL_STATE_PERSONAL);
+          setPersonal(INITIAL_STATE);
           setLoading(false);
         } else {
           toast.error(error);
@@ -84,9 +130,10 @@ export function Sell() {
                       <h3 className="card-title">Dados Pessoais</h3>
                       <div className="row mt-4">
                         <div className="col-md-4">
-                          <label>Nome Completo</label>
+                          <label htmlFor="name">Nome Completo</label>
                           <input
                             type="text"
+                            id="name"
                             name="name"
                             className="form-control"
                             value={personal?.name}
@@ -94,9 +141,10 @@ export function Sell() {
                           />
                         </div>
                         <div className="col-md-4">
-                          <label>Email</label>
+                          <label htmlFor="email">Email</label>
                           <input
                             type="text"
+                            id="email"
                             name="email"
                             className="form-control"
                             value={personal?.email}
@@ -104,9 +152,10 @@ export function Sell() {
                           />
                         </div>
                         <div className="col-md-4">
-                          <label>Celular</label>
+                          <label htmlFor="phone">Celular</label>
                           <input
                             type="text"
+                            id="phone"
                             name="phone"
                             className="form-control"
                             value={personal?.phone}
@@ -116,9 +165,10 @@ export function Sell() {
                       </div>
                       <div className="row mt-4">
                         <div className="col-md-4">
-                          <label>Endereço</label>
+                          <label htmlFor="address">Endereço</label>
                           <input
                             type="text"
+                            id="address"
                             name="address"
                             className="form-control"
                             value={personal?.address}
@@ -126,24 +176,36 @@ export function Sell() {
                           />
                         </div>
                         <div className="col-md-4">
-                          <label>Cidade</label>
-                          <input
-                            type="text"
+                          <label htmlFor="city">Cidade</label>
+                          <select
                             name="city"
+                            id="city"
                             className="form-control"
-                            value={personal?.city}
-                            onChange={(e) => handleChange(e)}
-                          />
+                            onChange={handleChange}
+                          >
+                            <option value="0">Selecione uma cidade</option>
+                            {cities.map((city) => (
+                              <option key={city.nome} value={city.nome}>
+                                {city.nome}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                         <div className="col-md-4">
-                          <label>Estado</label>
-                          <input
-                            type="text"
+                          <label htmlFor="state">Estado</label>
+                          <select
                             name="state"
-                            className="form-control"
-                            value={personal?.state}
-                            onChange={(e) => handleChange(e)}
-                          />
+                            id="state"
+                            className="form-control step"
+                            onChange={handleChange}
+                          >
+                            <option value="0">Selecione uma estado</option>
+                            {ufs?.map((uf) => (
+                              <option key={uf.nome} value={uf.sigla}>
+                                {uf.sigla}
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -343,18 +405,20 @@ export function Sell() {
                         </div>
                       </div>
                       <div className="row mt-3">
-                        <button
-                          className="btn btn-warning btn-lg text-white"
-                          disabled={
-                            !personal?.name ||
-                            !personal?.email ||
-                            !personal?.phone
-                              ? true
-                              : false
-                          }
-                        >
-                          {loading ? <Spinner type="grow" /> : "Enviar"}
-                        </button>
+                        <div className="col-md-12">
+                          <button
+                            className="btn btn-warning btn-lg text-white"
+                            disabled={
+                              !personal?.name ||
+                              !personal?.email ||
+                              !personal?.phone
+                                ? true
+                                : false
+                            }
+                          >
+                            {loading ? <Spinner type="grow" /> : "Enviar"}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

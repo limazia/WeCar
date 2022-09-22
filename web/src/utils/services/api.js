@@ -4,12 +4,17 @@ import { getToken } from "~/utils/services/auth";
 const token = getToken();
 
 const API_URL = process.env.REACT_APP_API_URL;
+const API_IBGE_URL = "https://servicodados.ibge.gov.br/api/v1/";
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     Authorization: `Bearer ${token}`,
   },
+});
+
+const ibge = axios.create({
+  baseURL: API_IBGE_URL,
 });
 
 export const getProfile = async () => {
@@ -79,6 +84,26 @@ export const getUsers = async () => {
     return data;
   } catch (ex) {
     console.error("[GET /user] > it was not possible to wecar from the api");
+  }
+};
+
+export const getCities = async (state) => {
+  try {
+    const response = ibge.get(`localidades/estados/${state}/municipios`);
+
+    return response;
+  } catch (ex) {
+    console.error(ex);
+  }
+};
+
+export const getUfs = async () => {
+  try {
+    const response = ibge.get("localidades/estados?orderBy=nome");
+
+    return response;
+  } catch (ex) {
+    console.error(ex);
   }
 };
 
