@@ -31,7 +31,7 @@ function GlobalFilter({
 
   const navigate = useNavigate();
 
-  const goCreate = () => navigate("/brand/create");
+  const goCreate = () => navigate("../brand/create");
 
   const refreshBrands = debounce((e) => {
     const event = new CustomEvent("refresh-brands");
@@ -51,7 +51,7 @@ function GlobalFilter({
               setValue(e.target.value);
               onChange(e.target.value);
             }}
-            placeholder={`Pesquisar ${count} marcas`}
+            placeholder={`Pesquisar ${count} ${count > 1 ? "marcas" : "marca"}`}
           />
         </div>
       </div>
@@ -60,7 +60,7 @@ function GlobalFilter({
           <i className="far fa-sync"></i>
         </button>
         <Permission required={["admin", "create_brand"]}>
-          <button className="btn btn-create add-customer" onClick={goCreate}>
+          <button className="btn btn-create-table" onClick={goCreate}>
             <i className="far fa-plus mr-1"></i> Nova marca
           </button>
         </Permission>
@@ -109,12 +109,10 @@ export function SelectColumnFilter({
 }
 
 export function TableBrands({ columns, data }) {
-  const { user } = useAuth();
-
   async function handleDelete(id) {
     if (id) {
       try {
-        const { data } = await api.delete(`api/brands/${id}`);
+        const { data } = await api.delete(`/api/brand/${id}`);
         const { error, message } = data;
 
         if (message) {
@@ -129,7 +127,7 @@ export function TableBrands({ columns, data }) {
         toast.error("Houve um problema com o servidor!");
       }
     } else {
-      toast.error("Faltando {id}");
+      toast.error("Faltando {brand_id}");
     }
   }
 

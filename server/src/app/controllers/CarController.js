@@ -36,7 +36,9 @@ class CarController {
         car_id,
         car_km: Number(car_km),
         car_price: Number(car_price),
-        car_image,
+        car_image: car_image
+        ? car_image.split(",").map((image) => image.trim())
+        : null,
         car_fuel,
         car_exchange,
         car_year,

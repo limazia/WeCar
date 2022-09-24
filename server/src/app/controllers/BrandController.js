@@ -1,4 +1,7 @@
+const cryptoRandomString = require("crypto-random-string");
+
 const connection = require("../../database/connection");
+const constant = require("../constants");
 const moment = require("../../helpers/moment");
 
 class BrandController {
@@ -6,12 +9,7 @@ class BrandController {
     const brands = await connection("brands").orderBy("createdAt", "desc");
 
     const serializedItems = brands.map((item) => {
-      const {
-        brand_id,
-        brand_name,
-        brand_slug,
-        createdAt,
-      } = item;
+      const { brand_id, brand_name, brand_slug, createdAt } = item;
 
       return {
         brand_id,
@@ -70,7 +68,9 @@ class BrandController {
         car_id,
         car_km: Number(car_km),
         car_price: Number(car_price),
-        car_image,
+        car_image: car_image
+        ? car_image.split(",").map((image) => image.trim())
+        : null,
         car_fuel,
         car_exchange,
         car_year,
@@ -87,9 +87,40 @@ class BrandController {
   }
 
   async createBrand(request, response) {
-    return response.json({
-      nome: "luis",
+    const { brand } = request.body;
+    const { brand_name, brand_slug } = brand;
+
+    const nameQuery = await connection("brands").where({ brand_name });
+    const slugQUery = await connection("brands").where({ brand_slug });
+    const brand_id = cryptoRandomString({ length: 15 });
+
+    if (!brand_name) {
+      return response.json({ error: constant.error.input.ENTER_AN_BRAND_NAME });
+    } else {
+      if (nameQuery.length > 0) {
+        return response.json({
+          error: constant.error.form.VALUE_ALREADY_REGISTERED,
+        });
+      }
+    }
+
+    if (!brand_slug) {
+      return response.json({ error: constant.error.input.ENTER_AN_BRAND_SLUG });
+    } else {
+      if (slugQUery.length > 0) {
+        return response.json({
+          error: constant.error.form.VALUE_ALREADY_REGISTERED,
+        });
+      }
+    }
+
+    await connection("brands").insert({
+      brand_id,
+      brand_name,
+      brand_slug,
     });
+
+    return response.json({ message: constant.success.SUCCESSFULLY_REGISTERED });
   }
 
   async findBrandById(request, response) {
@@ -105,9 +136,16 @@ class BrandController {
   }
 
   async deleteBrand(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { brand_id } = request.params;
+    const brand = await connection("brands").where({ brand_id });
+
+    if (brand.length >= 1) {
+      await connection("brands").delete().where({ brand_id });
+
+      return response.json({ message: constant.success.RECORD_DELETED });
+    }
+
+    return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
   }
 }
 

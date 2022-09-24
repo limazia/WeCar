@@ -1,6 +1,5 @@
-import { Fragment } from "react";
-import { Form } from "@rocketseat/unform";
-import { Link } from "react-router-dom";
+import { Fragment, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import useAuth from "~/utils/hooks/useAuth";
 
@@ -11,7 +10,22 @@ import { Logo } from "~/components/Images";
 import LoginBackground from "~/assets/bg-login.jpg";
 
 export function Login() {
-  const { handleSubmit, email, password, setEmail, setPassword, loading } = useAuth();
+  const navigate = useNavigate();
+  const {
+    handleSubmit,
+    authenticated,
+    email,
+    password,
+    setEmail,
+    setPassword,
+    loading,
+  } = useAuth();
+
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/admin");
+    }
+  }, [authenticated]);
 
   return (
     <Fragment>

@@ -1,6 +1,6 @@
 import CarDefault from "~/assets/car-default.jpg";
 
-export function CardCar({ data, brand, model }) {
+export function CardCar({ data }) {
   const {
     model_name,
     car_km,
@@ -63,11 +63,64 @@ export function CardCar({ data, brand, model }) {
         </div>
       </div>
       <div className="car-image">
-        <img
-          className="card-img-top"
-          src={car_image ? car_image : CarDefault}
-          alt=""
-        />
+        {car_image?.length > 0 ? (
+          <div
+            id="carCarouselIndicators"
+            className="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              {car_image.map((image, index) => (
+                <li
+                  key={index}
+                  data-target="#carCarouselIndicators"
+                  data-slide-to={index}
+                  className={`${index === 0 && "active"}`}
+                ></li>
+              ))}
+            </ol>
+            <div class="carousel-inner">
+              {car_image.map((image, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === 0 && "active"}`}
+                >
+                  <img className="d-block w-100" src={image} alt="" />
+                </div>
+              ))}
+            </div>
+            <a
+              className="carousel-control-prev"
+              href="#carCarouselIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              className="carousel-control-next"
+              href="#carCarouselIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                className-hidden="true"
+              ></span>
+              <span className="sr-only">Next</span>
+            </a>
+          </div>
+        ) : (
+          <img
+            className="card-img-top"
+            src={car_image ? car_image : CarDefault}
+            alt=""
+          />
+        )}
       </div>
       <div className="card-body">
         <div className="row">

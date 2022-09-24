@@ -73,6 +73,10 @@ export function Contact() {
             <div className="row">
               <div className="col-md-8 mt-5 pb-5">
                 <h1>Fale conosco</h1>
+                <span className="text-muted">
+                  Tire suas dúvidas sobre qualquer assunto enviando um
+                  formulário.
+                </span>
                 <form onSubmit={handleSubmit}>
                   <div className="row mt-4">
                     <div className="col-md-12">
@@ -165,7 +169,7 @@ export function Contact() {
                     <span>(11) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">
-                     <i className="fab fa-whatsapp"></i>
+                    <i className="fab fa-whatsapp"></i>
                     <span>(19) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">

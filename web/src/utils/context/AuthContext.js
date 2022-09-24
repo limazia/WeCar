@@ -1,7 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import retry from "retry";
 import Cookies from "universal-cookie";
 
 import api from "~/utils/services/api";
@@ -14,7 +12,6 @@ export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const cookies = new Cookies();
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +20,6 @@ function AuthProvider({ children }) {
 
   useEffect(() => {
     const token = getToken();
-    const { pathname } = window.location;
 
     if (token) {
       getProfile()
@@ -32,14 +28,12 @@ function AuthProvider({ children }) {
           setUser(data);
           const { permissions } = data;
 
-          if (!permissions.some(
-            (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
-          )) {
-            alert("sem o osadisa")
-          }
-
-          if (pathname == "/admin/login") {
-            navigate("/admin");
+          if (
+            !permissions.some(
+              (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
+            )
+          ) {
+            alert("sem o osadisa");
           }
         })
         .catch((err) => {
@@ -54,7 +48,7 @@ function AuthProvider({ children }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
+
     if (email && password) {
       setLoading(true);
 

@@ -2,8 +2,7 @@ const cryptoRandomString = require("crypto-random-string");
 
 const constant = require("../constants");
 
-const ContactEmail = require("../jobs/ContactEmail");
-const SellEmail = require("../jobs/SellEmail");
+const Email = require("../jobs/Email");
 
 class EmailController {
   async ContactEmail(request, response) {
@@ -28,7 +27,7 @@ class EmailController {
       message: messagecontent,
     };
 
-    await ContactEmail.handle({ options, context });
+    await Email.handle({ options, context });
 
     return response.json({
       message: constant.success.email.MESSAGE_SENT_SUCCESSFULLY,
@@ -36,8 +35,23 @@ class EmailController {
   }
 
   async SellEmail(request, response) {
-    const { personal } = request.body;
-    const { name, email, phone } = personal;
+    const { personal, car } = request.body;
+    const { name, email, phone, address, city, state } = personal;
+    const {
+      brand_name,
+      model_name,
+      car_version,
+      car_color,
+      car_km,
+      car_year,
+      car_fuel,
+      car_exchange,
+      car_observations,
+      firstOwner,
+      spot,
+      vehicleInsurance,
+      recoveredTheft,
+    } = car;
 
     const identifier = cryptoRandomString({ length: 10, type: "numeric" });
 
@@ -53,9 +67,25 @@ class EmailController {
       name,
       email,
       phone,
+      address,
+      city,
+      state,
+      brand_name,
+      model_name,
+      car_version,
+      car_color,
+      car_km,
+      car_year,
+      car_fuel,
+      car_exchange,
+      car_observations,
+      firstOwner,
+      spot,
+      vehicleInsurance,
+      recoveredTheft,
     };
 
-    await ContactEmail.handle({ options, context });
+    await Email.handle({ options, context });
 
     return response.json({
       message: constant.success.email.MESSAGE_SENT_SUCCESSFULLY,

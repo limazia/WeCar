@@ -31,7 +31,7 @@ function GlobalFilter({
 
   const navigate = useNavigate();
 
-  const goCreate = () => navigate("/car/create");
+  const goCreate = () => navigate("../car/create");
 
   const refreshCars = debounce((e) => {
     const event = new CustomEvent("refresh-cars");
@@ -51,7 +51,7 @@ function GlobalFilter({
               setValue(e.target.value);
               onChange(e.target.value);
             }}
-            placeholder={`Pesquisar ${count} carro`}
+            placeholder={`Pesquisar ${count} ${count > 1 ? "carros" : "carro"}`}
           />
         </div>
       </div>
@@ -60,7 +60,7 @@ function GlobalFilter({
           <i className="far fa-sync"></i>
         </button>
         <Permission required={["admin", "create_car"]}>
-          <button className="btn btn-create add-customer" onClick={goCreate}>
+          <button className="btn btn-create-table" onClick={goCreate}>
             <i className="far fa-plus mr-1"></i> Novo Carro
           </button>
         </Permission>

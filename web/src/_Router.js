@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import { CustomRoutes } from "./components/Core/CustomRoutes";
-import { Authenticated, Private } from "./components/Core/Authenticated";
+import { Authenticated } from "./components/Core/Authenticated";
 
 import { Home } from "./pages/Home";
 import { Admin } from "./pages/Admin";
@@ -44,119 +44,119 @@ function Router() {
           <Route exact path="buy/car/:brand" element={<Car />} />
           <Route exact path="buy/car/:brand/:model" element={<Car />} />
         </Route>
-        <Route path="/admin/login" element={<Login />} />
-        <Route path="/admin" element={<Authenticated children={<Admin />} />}>
+        <Route exact path="admin/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />}>
           <Route
             exact
             path=""
             element={
-              <Private roles={["admin", "login_admin"]}>
+              <Authenticated roles={["admin", "login_admin"]}>
                 <Dashboard />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="settings"
             element={
-              <Private roles={["admin", "login_admin"]}>
+              <Authenticated roles={["admin", "login_admin"]}>
                 <Settings />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="brands"
             element={
-              <Private roles={["admin", "brands"]}>
+              <Authenticated roles={["admin", "brands"]}>
                 <Brands />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="brand/:id"
             element={
-              <Private roles={["admin", "view_brand"]}>
+              <Authenticated roles={["admin", "view_brand"]}>
                 <BrandView />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="brand/create"
             element={
-              <Private roles={["admin", "create_brand"]}>
+              <Authenticated roles={["admin", "create_brand"]}>
                 <BrandCreate />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="models"
             element={
-              <Private roles={["admin", "models"]}>
+              <Authenticated roles={["admin", "models"]}>
                 <Models />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="model/:id"
             element={
-              <Private roles={["admin", "view_model"]}>
+              <Authenticated roles={["admin", "view_model"]}>
                 <ModelView />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="model/create"
             element={
-              <Private roles={["admin", "create_model"]}>
+              <Authenticated roles={["admin", "create_model"]}>
                 <ModelCreate />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="cars"
             element={
-              <Private roles={["admin", "cars"]}>
+              <Authenticated roles={["admin", "cars"]}>
                 <Cars />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="car/:id"
             element={
-              <Private roles={["admin", "view_car"]}>
+              <Authenticated roles={["admin", "view_car"]}>
                 <CarView />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="car/create"
             element={
-              <Private roles={["admin", "create_car"]}>
+              <Authenticated roles={["admin", "create_car"]}>
                 <CarCreate />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="users"
             element={
-              <Private roles={["admin", "users"]}>
+              <Authenticated roles={["admin", "users"]}>
                 <Users />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="user/:id"
             element={
-              <Private roles={["admin", "view_user"]}>
+              <Authenticated roles={["admin", "view_user"]}>
                 <UserView />
-              </Private>
+              </Authenticated>
             }
           />
           <Route
             path="user/create"
             element={
-              <Private roles={["admin", "create_user"]}>
+              <Authenticated roles={["admin", "create_user"]}>
                 <UserCreate />
-              </Private>
+              </Authenticated>
             }
           />
         </Route>

@@ -294,6 +294,7 @@ button:active:focus:not(:disabled):not(.disabled) {
   -webkit-user-drag: none;
   filter: grayscale(100%);
   transition: 0.5s ease;
+  cursor: pointer;
 }
 .marquee img:hover,
 .marquee svg:hover {
@@ -426,10 +427,10 @@ button:active:focus:not(:disabled):not(.disabled) {
 .card-car .car-image img,
 .card-car .car-image svg {
   max-width: 100%;
-  max-height: 100%;
-  height: 250px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  /*
+  height: 300px;
+  object-fit: cover;
+  */
   border-radius: 8px;
   -webkit-user-drag: none;
 }
@@ -726,6 +727,36 @@ button:active:focus:not(:disabled):not(.disabled) {
   cursor: not-allowed;
 }
 
+.btn-create-table,
+.btn-create-table:focus,
+.btn-create-table:active,
+.btn-create-table:active:focus:not(:disabled):not(.disabled) {
+  color: #fff;
+  background: #1111cb;
+  border-color: #1111cb;
+  padding: 5px 20px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
+.btn-create-table:hover,
+.btn-create-table:focus:hover,
+.btn-create-table:active:hover,
+.btn-create-table:active:focus:not(:disabled):not(.disabled):hover {
+  color: #fff;
+  background: #3935b5;
+  border-color: #3935b5;
+}
+.btn-create-table:disabled,
+.btn-create-table button[disabled],
+.btn-create-table:focus:disabled,
+.btn-create-table:focus button[disabled],
+.btn-create-table:active:disabled,
+.btn-create-table:active button[disabled],
+.btn-create-table:active:focus:not(:disabled):not(.disabled):disabled,
+.btn-create-table:active:focus:not(:disabled):not(.disabled) button[disabled] {
+  cursor: not-allowed;
+}
+
 .btn-create,
 .btn-create:focus,
 .btn-create:active,
@@ -733,15 +764,9 @@ button:active:focus:not(:disabled):not(.disabled) {
   color: #fff;
   background: #1111cb;
   border-color: #1111cb;
-  padding: 10px 30px;
+  height: 60px;
   border-radius: 10px;
   transition: 0.5s ease;
-}
-.btn-create.add-customer,
-.btn-create:focus.add-customer,
-.btn-create:active.add-customer,
-.btn-create:active:focus:not(:disabled):not(.disabled).add-customer {
-  padding: 5px 20px;
 }
 .btn-create:hover,
 .btn-create:focus:hover,

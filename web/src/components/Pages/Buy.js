@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Marquee from "react-fast-marquee";
 
 import { getBrands } from "~/utils/services/api";
@@ -10,6 +10,7 @@ import { Services } from "../Services";
 import { SelectWrapper } from "../Forms/Select";
 
 export function Buy() {
+  const navigate = useNavigate();
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
@@ -53,29 +54,32 @@ export function Buy() {
                     </Link>
                   </div>
                 </div>
-                <div className="row mt-5">
-                  <div className="col-md-12">
-                    <span>
-                      Marcas de carros <b>disponíveis</b> no WeCar:
-                    </span>
-                  </div>
-                  <Marquee className="marquee" gradientWidth={80}>
-                    {brands.map((row) => {
-                      const { brand_id, brand_slug } = row;
-                      const car = cars.find((car) => car.slug === brand_slug);
+                {brands.length > 0 && (
+                  <div className="row mt-5">
+                    <div className="col-md-12">
+                      <span>
+                        Marcas de carros <b>disponíveis</b> no WeCar:
+                      </span>
+                    </div>
+                    <Marquee className="marquee" gradientWidth={80}>
+                      {brands.map((row) => {
+                        const { brand_id, brand_slug } = row;
+                        const car = cars.find((car) => car.slug === brand_slug);
 
-                      if (car !== undefined) {
-                        return (
-                          <img
-                            key={brand_id}
-                            src={require(`~/assets/logos/${car?.image.localThumb}`)}
-                            alt={brand_slug}
-                          />
-                        );
-                      }
-                    })}
-                  </Marquee>
-                </div>
+                        if (car !== undefined) {
+                          return (
+                            <img
+                              key={brand_id}
+                              src={require(`~/assets/logos/${car?.image.localThumb}`)}
+                              alt={brand_slug}
+                              onClick={() => navigate(`/buy/car/${brand_slug}`)}
+                            />
+                          );
+                        }
+                      })}
+                    </Marquee>
+                  </div>
+                )}
               </div>
             </div>
           </div>

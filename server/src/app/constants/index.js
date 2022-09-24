@@ -7,6 +7,7 @@ module.exports = {
     UNAUTHORIZED_ACCESS: "Acesso não autorizado",
     ERROR_UNKNOWN: "Erro desconhecido",
     NO_USER_FOUND_WITH_THIS_ID: "Nenhum usuário foi encontrado com este id",
+    NO_ITEM_FOUND_WITH_THIS_ID: "Nenhum item foi encontrado com este id",
     TYPE_NOT_IDENTIFIED_IN_ALLOWED_SCOPE:
       "Tipo não identificado no escopo permitido",
     form: {
@@ -17,11 +18,14 @@ module.exports = {
       PASSWORDS_DONT_MATCH: "As senhas não coincidem",
       ERROR_SENDING_EMAIL: "Erro ao enviar e-mail",
       EMAIL_ALREADY_REGISTERED: "Email já registrado",
+      VALUE_ALREADY_REGISTERED: "Valor já registrado",
     },
     input: {
       ENTER_AN_NAME: "Digite um nome",
       ENTER_AN_EMAIL: "Digite um email",
       ENTER_AN_PASSWORD: "Digite uma senha",
+      ENTER_AN_BRAND_NAME: "Digite um nome de marca",
+      ENTER_AN_BRAND_SLUG: "Digite um slug de marca",
     },
   },
   success: {

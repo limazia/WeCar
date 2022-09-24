@@ -12,6 +12,9 @@ export function Company() {
         <div className="row justify-content-center">
           <div className="col-md-7 mt-5 pb-5">
             <h1>Conheça nossa história</h1>
+            <span className="text-muted">
+              Conheça a nossa história de sucesso.
+            </span>
             <div className="company-image mt-3">
               <img
                 src={CompanyBackground}

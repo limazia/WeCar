@@ -51,9 +51,9 @@ routes.group("/api/brand", (router) => {
   router.get("/", BrandController.listAllBrands);
   router.get("/:brand", BrandController.listBrandById);
   router.post("/", BrandController.createBrand);
-  router.get("/:id", BrandController.findBrandById);
-  router.put("/:id", BrandController.updateBrand);
-  router.delete("/:id", BrandController.deleteBrand);
+  router.get("/:brand_id", BrandController.findBrandById);
+  router.put("/:brand_id", BrandController.updateBrand);
+  router.delete("/:brand_id", BrandController.deleteBrand);
 });
 
 //Rotas de Modelos
