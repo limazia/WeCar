@@ -99,7 +99,7 @@ export function HeaderAdmin() {
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-admin navbar-light">
         <Link className="navbar-brand" to="/admin">
-          <Logo className="img-fluid ml-3" />
+          <Logo className="img-fluid" />
         </Link>
         <button
           className="navbar-toggler"

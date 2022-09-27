@@ -48,6 +48,7 @@ img,
 svg {
   display: block;
   width: 100%;
+  -webkit-user-drag: none;
 }
 
 button:hover,

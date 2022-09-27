@@ -23,6 +23,11 @@
         width: 300px;
         height: 300px;
       }
+
+      &.animated {
+        width: 500px;
+        height: 500px;
+      }
     }
 
     h1,
@@ -36,12 +41,12 @@
       animation: logo-text 2s ease infinite;
       font-size: 70px;
       text-transform: uppercase;
-      -webkit-touch-callout: none; /* iPhone OS, Safari */
-      -webkit-user-select: none; /* Chrome, Safari 3 */
-      -khtml-user-select: none; /* Safari 2 */
-      -moz-user-select: none; /* Firefox */
-      -ms-user-select: none; /* IE10+ */
-      user-select: none; /* Possível implementação no futuro */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     @keyframes logo {

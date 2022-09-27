@@ -42,12 +42,16 @@ export function Models() {
 
   const columns = [
     {
-      Header: "Marca",
+      Header: "Modelo",
       accessor: "model_name",
     },
     {
       Header: "Slug",
       accessor: "model_slug",
+    },
+    {
+      Header: "Marca",
+      accessor: "brand_name",
     },
     {
       Header: "Data de cadastro",
@@ -99,11 +103,11 @@ export function ModelCreate() {
   );
 }
 
-export function ModelView() {
+export function ModelUpdate() {
   return (
     <>
-      <Head title="ModelView" />
-      <h1>ModelView</h1>
+      <Head title="Editar modelo" />
+      <h1>ModelUpdate</h1>
     </>
   );
 }

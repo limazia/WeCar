@@ -1,6 +1,4 @@
-import { Fragment } from "react";
-
-import { Logo as LogoImage, LogoIcon } from "../Images";
+import { Logo as LogoImage, LogoIcon, Splash } from "../Images";
 
 function Logo() {
   return <LogoImage className="logo img-fluid" />;
@@ -10,12 +8,16 @@ function Icon() {
   return <LogoIcon className="icon img-fluid" />;
 }
 
+function Animated() {
+  return <img src={Splash} className="animated img-fluid" />;
+}
+
 function Text() {
   return <h1>{process.env.REACT_APP_NAME || "Carregando..."}</h1>;
 }
 
 export function Loading({ type = "icon" }) {
-  const allowedScopes = ["icon", "logo", "text"];
+  const allowedScopes = ["icon", "logo", "text", "animated"];
 
   return (
     <div className="container-fluid container-loading">
@@ -24,6 +26,7 @@ export function Loading({ type = "icon" }) {
           <>
             {type === "icon" && <Icon />}
             {type === "logo" && <Logo />}
+            {type === "animated" && <Animated />}
             {type === "text" && <Text />}
           </>
         ) : (

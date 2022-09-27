@@ -19,12 +19,12 @@ import { Settings } from "./components/Pages/Admin/Settings";
 import {
   Brands,
   BrandCreate,
-  BrandView,
+  BrandUpdate,
 } from "./components/Pages/Admin/Brands";
 import {
   Models,
   ModelCreate,
-  ModelView,
+  ModelUpdate,
 } from "./components/Pages/Admin/Models";
 import { Cars, CarCreate, CarView } from "./components/Pages/Admin/Cars";
 import { Users, UserCreate, UserView } from "./components/Pages/Admin/Users";
@@ -72,10 +72,10 @@ function Router() {
             }
           />
           <Route
-            path="brand/:id"
+            path="brand/edit/:brand_id"
             element={
-              <Private roles={["admin", "view_brand"]}>
-                <BrandView />
+              <Private roles={["admin", "edit_brand"]}>
+                <BrandUpdate />
               </Private>
             }
           />
@@ -96,10 +96,10 @@ function Router() {
             }
           />
           <Route
-            path="model/:id"
+            path="model/edit/:model_id"
             element={
-              <Private roles={["admin", "view_model"]}>
-                <ModelView />
+              <Private roles={["admin", "edit_model"]}>
+                <ModelUpdate />
               </Private>
             }
           />

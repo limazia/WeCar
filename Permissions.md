@@ -7,13 +7,11 @@ admin: Tem todas as permissões do sistema
 login_admin: Permite que o usuário acesse a página do painel
 
 brands: Permite ver as marcas
-view_brand: Permite visualizar uma página de marca
 create_brand: Permite criar uma marca
 edit_brand: Permite editar uma marca
 delete_brand: Permite excluir uma marca
 
 models: Permite ver os modelos
-view_model: Permite visualizar uma página de modelo
 create_model: Permite criar um modelo
 edit_model: Permite editar um modelo
 delete_model: Permite excluir um modelo

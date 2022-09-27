@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import classNames from "classnames";
 
-import { getCarByBrand, getBrandById, getCars } from "~/utils/services/api";
+import { getCarByBrand, getBrandByBrand, getCars } from "~/utils/services/api";
 
 import { Head } from "../Partials/Head";
 import { SelectWrapper } from "../Forms/Select";
@@ -15,6 +15,7 @@ import { ReactComponent as CarEmpty } from "~/assets/car-empty.svg";
 
 export function Car() {
   const { brand, model } = useParams();
+
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,12 +40,12 @@ export function Car() {
   };
 
   const loadCarByBrand = async (brand) => {
-    const { results } = await getBrandById(brand);
+    const { results } = await getBrandByBrand(brand);
 
     setCars(results);
   };
 
-  const loadCars = async (brand) => {
+  const loadCars = async () => {
     const { results } = await getCars();
 
     setCars(results);
@@ -84,7 +85,7 @@ export function Car() {
 
   return (
     <>
-      <Head title={`Comprar ${brand} ${model ? model : ""}`} />
+      <Head title={`Comprar ${brand ? brand : ""} ${model ? model : ""}`} />
       <div className="container-fluid bg-light">
         <div className="row justify-content-center">
           <div className="col-md-9 mt-5 pb-5">
@@ -125,18 +126,25 @@ export function Car() {
                           <a
                             href="#"
                             data-toggle="collapse"
-                            data-target="#collapse_aside2"
+                            data-target="#features"
+                            data-abc="true"
                             className="collapsed"
+                            aria-expanded="false"
                           >
                             <i className="icon-control fa fa-chevron-down"></i>
                             <h6 className="title">Características</h6>
                           </a>
                         </header>
-                        <div
-                          className="filter-content collapse"
-                          id="collapse_aside2"
-                        >
-                          <div className="card-body"></div>
+                        <div className="filter-content collapse" id="features">
+                          <div className="card-body p-0">
+                            <select className="form-control" value="">
+                              <option disabled value="">
+                                Câmbio
+                              </option>
+                              <option value="automatic">Automatica</option>
+                              <option value="manual">Manual</option>
+                            </select>
+                          </div>
                         </div>
                       </article>
                       <article className="filter-group">
@@ -144,125 +152,25 @@ export function Car() {
                           <a
                             href="#"
                             data-toggle="collapse"
-                            data-target="#collapse_aside1"
+                            data-target="#fuel"
                             className="collapsed"
                           >
                             <i className="icon-control fa fa-chevron-down"></i>
                             <h6 className="title">Combustível</h6>
                           </a>
                         </header>
-                        <div
-                          className="filter-content collapse"
-                          id="collapse_aside1"
-                        >
+                        <div className="filter-content collapse" id="fuel">
                           <div className="card-body p-0">
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">
-                                Gasolina
-                              </div>
-                            </label>
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">Flex</div>
-                            </label>
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">Diesel</div>
-                            </label>
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">
-                                Híbrido
-                              </div>
-                            </label>
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">
-                                Elétrico
-                              </div>
-                            </label>
-                          </div>
-                        </div>
-                      </article>
-
-                      <article className="filter-group">
-                        <header className="card-header px-0">
-                          <a
-                            href="#"
-                            data-toggle="collapse"
-                            data-target="#collapse_aside4"
-                            data-abc="true"
-                            className="collapsed"
-                            aria-expanded="false"
-                          >
-                            <i className="icon-control fa fa-chevron-down"></i>
-                            <h6 className="title">Outros</h6>
-                          </a>
-                        </header>
-                        <div
-                          className="filter-content collapse"
-                          id="collapse_aside4"
-                        >
-                          <div className="card-body p-0">
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">
-                                Blindagem
-                              </div>
-                            </label>
-
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">
-                                Aplicativos móveis
-                              </div>
-                            </label>
-
-                            <label className="custom-control">
-                              <input
-                                type="checkbox"
-                                checked=""
-                                className="custom-control-input"
-                                onChange={() => {}}
-                              />
-                              <div className="custom-control-label">4X4</div>
-                            </label>
+                            <select className="form-control" value="">
+                              <option disabled value="">
+                                Combustível
+                              </option>
+                              <option value="gasoline">Gasolina</option>
+                              <option value="flex">Flex</option>
+                              <option value="diesel">Diesel</option>
+                              <option value="electric">Elétrico</option>
+                              <option value="hybrid">Híbrido</option>
+                            </select>
                           </div>
                         </div>
                       </article>
@@ -278,17 +186,17 @@ export function Car() {
                         <button
                           className="btn btn-link text-muted dropdown-toggle p-0"
                           type="button"
-                          id="dropdownMenuButton"
+                          id="menuOrder"
                           data-toggle="dropdown"
                         >
-                          Ordenar: Relevância
+                          Ordenar: Novo
                         </button>
                         <div
                           className="dropdown-menu"
-                          aria-labelledby="dropdownMenuButton"
+                          aria-labelledby="menuOrder"
                         >
                           <a className="dropdown-item active" href="#">
-                            Relevância
+                            Novo
                           </a>
                           <a className="dropdown-item" href="#">
                             Menor Preço

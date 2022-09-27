@@ -232,6 +232,7 @@ export function TableModels({ columns, data }) {
               <tr {...row.getRowProps()}>
                 <td>{row.original.model_name}</td>
                 <td>{row.original.model_slug}</td>
+                <td>{row.original.brand_name}</td>
                 <td>{row.original.createdAt}</td>
                 <Permission required={["admin", "edit_model", "delete_model"]}>
                   <td>

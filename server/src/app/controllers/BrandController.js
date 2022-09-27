@@ -69,8 +69,8 @@ class BrandController {
         car_km: Number(car_km),
         car_price: Number(car_price),
         car_image: car_image
-        ? car_image.split(",").map((image) => image.trim())
-        : null,
+          ? car_image.split(",").map((image) => image.trim())
+          : null,
         car_fuel,
         car_exchange,
         car_year,
@@ -124,15 +124,43 @@ class BrandController {
   }
 
   async findBrandById(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { brand_id } = request.params;
+    const brand = await connection("brands")
+      .where({ brand_id })
+      .orderBy("createdAt", "desc");
+
+    if (brand.length >= 1) {
+      const { brand_id, brand_name, brand_slug, createdAt } = brand[0];
+
+      return response.json({
+        results: {
+          brand_id,
+          brand_name,
+          brand_slug,
+          createdAt: moment(createdAt).format("DD [de] MMMM, YYYY"),
+        },
+      });
+    } else {
+      response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
   }
 
   async updateBrand(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { brand_id } = request.params;
+
+    const brand = await connection("brands").where({ brand_id });
+
+    if (!brand_id) {
+      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
+
+    if (brand[0].length === 0) { 
+      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
+
+    await connection("brands").update(request.body).where({ brand_id });
+
+    return response.json({ message: constant.success.RECORD_SUCCESSFULLY_UPDATED });
   }
 
   async deleteBrand(request, response) {

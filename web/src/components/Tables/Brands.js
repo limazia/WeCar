@@ -248,7 +248,7 @@ export function TableBrands({ columns, data }) {
                         <Permission required={["admin", "edit_brand"]}>
                           <Link
                             className="dropdown-item"
-                            to={`/brand/edit/${row.original.brand_id}`}
+                            to={`../brand/edit/${row.original.brand_id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar

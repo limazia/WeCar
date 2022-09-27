@@ -37,13 +37,23 @@ export const getBrands = async () => {
   }
 };
 
-export const getBrandById = async (brand) => {
+export const getBrandByBrand = async (brand) => {
   try {
-    const { data } = await api.get(`/api/brand/${brand}`);
+    const { data } = await api.get(`/api/brand/brands/${brand}`);
 
     return data;
   } catch (ex) {
     console.error("[GET /brand/:brand] > it was not possible to wecar from the api");
+  }
+};
+
+export const getBrandById = async (brand_id) => {
+  try {
+    const { data } = await api.get(`/api/brand/${brand_id}`);
+
+    return data;
+  } catch (ex) {
+    console.error("[GET /brand/:brand_id] > it was not possible to wecar from the api");
   }
 };
 

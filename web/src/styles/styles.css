@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -48,6 +47,7 @@ img,
 svg {
   display: block;
   width: 100%;
+  -webkit-user-drag: none;
 }
 
 button:hover,
@@ -107,11 +107,16 @@ button:active:focus:not(:disabled):not(.disabled) {
 .navbar-main .navbar-nav .nav-item .nav-link {
   margin-left: 10px;
 }
-.navbar-main .navbar-nav .nav-link, .navbar-main .navbar-nav i {
+.navbar-main .navbar-nav .nav-link,
+.navbar-main .navbar-nav i {
   color: #000;
   transition: ease 0.5s;
 }
-.navbar-main .navbar-nav .nav-link:hover, .navbar-main .navbar-nav .nav-link:focus, .navbar-main .navbar-nav .nav-link:active, .navbar-main .navbar-nav .nav-link:active:focus:not(:disabled):not(.disabled), .navbar-main .navbar-nav i:hover, .navbar-main .navbar-nav i:focus, .navbar-main .navbar-nav i:active, .navbar-main .navbar-nav i:active:focus:not(:disabled):not(.disabled) {
+.navbar-main .navbar-nav .nav-link:hover, .navbar-main .navbar-nav .nav-link:focus, .navbar-main .navbar-nav .nav-link:active, .navbar-main .navbar-nav .nav-link:active:focus:not(:disabled):not(.disabled),
+.navbar-main .navbar-nav i:hover,
+.navbar-main .navbar-nav i:focus,
+.navbar-main .navbar-nav i:active,
+.navbar-main .navbar-nav i:active:focus:not(:disabled):not(.disabled) {
   color: #8c8c8c;
 }
 .navbar-main .navbar-nav .active > .nav-link,
@@ -132,11 +137,16 @@ button:active:focus:not(:disabled):not(.disabled) {
 .navbar-utility .navbar-nav .nav-item .nav-link:first-child {
   margin-left: 0;
 }
-.navbar-utility .navbar-nav .nav-link, .navbar-utility .navbar-nav i {
+.navbar-utility .navbar-nav .nav-link,
+.navbar-utility .navbar-nav i {
   color: #000;
   transition: ease 0.5s;
 }
-.navbar-utility .navbar-nav .nav-link:hover, .navbar-utility .navbar-nav .nav-link:focus, .navbar-utility .navbar-nav .nav-link:active, .navbar-utility .navbar-nav .nav-link:active:focus:not(:disabled):not(.disabled), .navbar-utility .navbar-nav i:hover, .navbar-utility .navbar-nav i:focus, .navbar-utility .navbar-nav i:active, .navbar-utility .navbar-nav i:active:focus:not(:disabled):not(.disabled) {
+.navbar-utility .navbar-nav .nav-link:hover, .navbar-utility .navbar-nav .nav-link:focus, .navbar-utility .navbar-nav .nav-link:active, .navbar-utility .navbar-nav .nav-link:active:focus:not(:disabled):not(.disabled),
+.navbar-utility .navbar-nav i:hover,
+.navbar-utility .navbar-nav i:focus,
+.navbar-utility .navbar-nav i:active,
+.navbar-utility .navbar-nav i:active:focus:not(:disabled):not(.disabled) {
   color: #8c8c8c;
 }
 .navbar-utility .navbar-nav .active > .nav-link,
@@ -154,6 +164,7 @@ button:active:focus:not(:disabled):not(.disabled) {
   font-size: 23px;
   font-weight: 700;
   color: #000;
+  margin-left: -15px !important;
 }
 .navbar-admin .navbar-brand:hover, .navbar-admin .navbar-brand:focus, .navbar-admin .navbar-brand:active, .navbar-admin .navbar-brand:active:focus:not(:disabled):not(.disabled) {
   color: #000;
@@ -804,6 +815,12 @@ button:active:focus:not(:disabled):not(.disabled) {
 .btn-update:active:focus:not(:disabled):not(.disabled).add-customer {
   padding: 5px 20px;
 }
+.btn-update.btn-modal,
+.btn-update:focus.btn-modal,
+.btn-update:active.btn-modal,
+.btn-update:active:focus:not(:disabled):not(.disabled).btn-modal {
+  height: 60px;
+}
 .btn-update:hover,
 .btn-update:focus:hover,
 .btn-update:active:hover,
@@ -1230,6 +1247,11 @@ textarea.form-control {
   width: 300px;
   height: 300px;
 }
+.container-loading .loading img.animated,
+.container-loading .loading svg.animated {
+  width: 500px;
+  height: 500px;
+}
 .container-loading .loading h1,
 .container-loading .loading h2,
 .container-loading .loading h3,
@@ -1242,11 +1264,11 @@ textarea.form-control {
           animation: logo-text 2s ease infinite;
   font-size: 70px;
   text-transform: uppercase;
-  -webkit-touch-callout: none; /* iPhone OS, Safari */
-  -webkit-user-select: none; /* Chrome, Safari 3 */ /* Safari 2 */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
-  user-select: none; /* Possível implementação no futuro */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 @-webkit-keyframes logo {
   0% {

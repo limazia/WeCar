@@ -89,7 +89,7 @@ export function EmailModal() {
                         ? true
                         : false
                     }
-                    className="btn btn-update btn-block"
+                    className="btn btn-update btn-modal btn-block"
                   >
                     {loading ? <Spinner type="grow" /> : "Salvar"}
                   </button>

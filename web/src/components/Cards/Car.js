@@ -63,23 +63,30 @@ export function CardCar({ data }) {
         </div>
       </div>
       <div className="car-image">
-        {car_image?.length > 0 ? (
+        {car_image?.length >= 2 ? (
           <div
             id="carCarouselIndicators"
             className="carousel slide"
             data-ride="carousel"
           >
-            <ol class="carousel-indicators">
+            <ol className="carousel-indicators">
               {car_image.map((image, index) => (
                 <li
                   key={index}
                   data-target="#carCarouselIndicators"
                   data-slide-to={index}
                   className={`${index === 0 && "active"}`}
+                  style={{
+                    width: "10px",
+                    height: "10px",
+                    borderRadius: "50%",
+                    marginRight: "7px",
+                    marginLeft: "7px",
+                  }}
                 ></li>
               ))}
             </ol>
-            <div class="carousel-inner">
+            <div className="carousel-inner">
               {car_image.map((image, index) => (
                 <div
                   key={index}
@@ -99,7 +106,7 @@ export function CardCar({ data }) {
                 className="carousel-control-prev-icon"
                 aria-hidden="true"
               ></span>
-              <span class="sr-only">Previous</span>
+              <span className="sr-only">Previous</span>
             </a>
             <a
               className="carousel-control-next"
@@ -108,8 +115,8 @@ export function CardCar({ data }) {
               data-slide="next"
             >
               <span
-                class="carousel-control-next-icon"
-                className-hidden="true"
+                className="carousel-control-next-icon"
+                aria-hidden="true"
               ></span>
               <span className="sr-only">Next</span>
             </a>
@@ -142,12 +149,16 @@ export function CardCar({ data }) {
             <b>{getExchange(car_exchange)}</b>
           </div>
         </div>
-      </div>
-      <div className="card-footer d-flex justify-content-between align-items-center">
-        <h4 className="font-weight-bold mb-0 pb-0">{price}</h4>
-        <a href="#" className="btn btn-more-details">
-          Mais detalhes
-        </a>
+        <div className="row mt-4">
+          <div className="col-md-6">
+            <h4 className="font-weight-bold mb-0 pb-0">{price}</h4>
+          </div>
+          <div className="col-md-6">
+            <a href="#" className="btn btn-more-details w-100">
+              Mais detalhes
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

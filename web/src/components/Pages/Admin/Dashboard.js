@@ -22,7 +22,7 @@ export function Dashboard() {
   }, [user, splash]);
 
   if (splash) {
-    return <Loading />;
+    return <Loading type="animated" />;
   }
 
   const goBrands = () => navigate("./brands");
@@ -49,7 +49,7 @@ export function Dashboard() {
                     >
                       <div className="d-flex align-items-center">
                         <div className="icon-box">
-                          <i className="far fa-mask"></i>
+                          <i className="far fa-compact-disc"></i>
                         </div>
                         Marcas
                       </div>

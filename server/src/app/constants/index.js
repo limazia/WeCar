@@ -31,6 +31,7 @@ module.exports = {
   success: {
     SUCCESSFULLY_REGISTERED: "Cadastro realizado com sucesso",
     RECORD_DELETED: "Registro excluido com sucesso",
+    RECORD_SUCCESSFULLY_UPDATED: "Registro atualizado com sucesso",
     ACCOUNT_SUCCESSFULLY_UPDATED: "Conta atualizada com sucesso",
     NAME_SUCCESSFULLY_UPDATED: "Nome atualizado com sucesso",
     EMAIL_SUCCESSFULLY_UPDATED: "Email atualizado com sucesso",

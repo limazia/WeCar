@@ -82,7 +82,7 @@ export function NameModal() {
                   <button
                     type="submit"
                     disabled={!name || name.length <= 5 ? true : false}
-                    className="btn btn-update btn-block"
+                    className="btn btn-update btn-modal btn-block"
                   >
                     {loading ? <Spinner type="grow" /> : "Salvar"}
                   </button>

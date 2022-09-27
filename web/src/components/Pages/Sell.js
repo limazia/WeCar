@@ -114,8 +114,8 @@ export function Sell() {
 
         if (message) {
           toast.success(message);
-          setPersonal(INITIAL_STATE);
-          setCar(INITIAL_STATE_CAR);
+          //setPersonal(INITIAL_STATE);
+          //setCar(INITIAL_STATE_CAR);
           setLoading(false);
         } else {
           toast.error(error);
@@ -162,7 +162,7 @@ export function Sell() {
                         <div className="col-md-4">
                           <label htmlFor="email">Email</label>
                           <input
-                            type="text"
+                            type="email"
                             id="email"
                             name="email"
                             className="form-control"
@@ -359,15 +359,15 @@ export function Sell() {
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
-                                id="isOwner1"
-                                name="isOwner"
+                                id="firstOwner1"
+                                name="firstOwner"
                                 className="form-check-input"
                                 value="Sim"
                                 onChange={(e) => handleChangeCar(e)}
                               />
                               <label
                                 className="form-check-label text-white"
-                                htmlFor="isOwner1"
+                                htmlFor="firstOwner1"
                               >
                                 Sim
                               </label>
@@ -376,14 +376,14 @@ export function Sell() {
                               <input
                                 className="form-check-input"
                                 type="radio"
-                                name="isOwner"
-                                id="isOwner2"
+                                id="firstOwner2"
+                                name="firstOwner"
                                 value="Não"
                                 onChange={(e) => handleChangeCar(e)}
                               />
                               <label
                                 className="form-check-label text-white"
-                                htmlFor="isOwner2"
+                                htmlFor="firstOwner2"
                               >
                                 Não
                               </label>
@@ -401,8 +401,8 @@ export function Sell() {
                               <input
                                 className="form-check-input"
                                 type="radio"
-                                name="spot"
                                 id="spot1"
+                                name="spot"
                                 value="Sim"
                                 onChange={(e) => handleChangeCar(e)}
                               />
@@ -514,7 +514,7 @@ export function Sell() {
                       </div>
                       <div className="row mt-3">
                         <div className="col-md-12">
-                          <button className="btn btn-warning btn-lg text-white" disabled>
+                          <button className="btn btn-warning btn-lg text-white">
                             {loading ? <Spinner type="grow" /> : "Enviar"}
                           </button>
                         </div>
