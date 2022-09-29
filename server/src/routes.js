@@ -52,7 +52,7 @@ routes.group("/api/brand", (router) => {
   router.get("/brands/:brand", BrandController.listBrandById);
   router.post("/", BrandController.createBrand);
   router.get("/:brand_id", BrandController.findBrandById);
-  router.patch("/:brand_id", BrandController.updateBrand);
+  router.put("/:brand_id", BrandController.updateBrand);
   router.delete("/:brand_id", BrandController.deleteBrand);
 });
 
@@ -60,9 +60,9 @@ routes.group("/api/brand", (router) => {
 routes.group("/api/model", (router) => {
   router.get("/", ModelController.listAllModels);
   router.post("/", ModelController.createModel);
-  router.get("/:id", ModelController.findModelById);
-  router.put("/:id", ModelController.updateModel);
-  router.delete("/:id", ModelController.deleteModel);
+  router.get("/:model_id", ModelController.findModelById);
+  router.put("/:model_id", ModelController.updateModel);
+  router.delete("/:model_id", ModelController.deleteModel);
 });
 
 //Rotas de Carros

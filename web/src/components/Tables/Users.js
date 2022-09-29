@@ -251,7 +251,7 @@ export function TableUsers({ columns, data }) {
                         <Permission required={["admin", "edit_user"]}>
                           <Link
                             className="dropdown-item"
-                            to={`/user/edit/${row.original.user_id}`}
+                            to={`../user/edit/${row.original.user_id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar

@@ -1,4 +1,7 @@
+const cryptoRandomString = require("crypto-random-string");
+
 const connection = require("../../database/connection");
+const constant = require("../constants");
 const moment = require("../../helpers/moment");
 
 class ModelController {
@@ -40,21 +43,83 @@ class ModelController {
   }
 
   async createModel(request, response) {
-    return response.json({
-      nome: "luis",
+    const { model } = request.body;
+    const { model_name, model_slug, id_brand } = model;
+
+    const nameQuery = await connection("models").where({ model_name });
+    const slugQUery = await connection("models").where({ model_slug });
+    const model_id = cryptoRandomString({ length: 15 });
+
+    if (!model_name) {
+      return response.json({ error: constant.error.input.ENTER_AN_MODEL_NAME });
+    } else {
+      if (nameQuery.length > 0) {
+        return response.json({
+          error: constant.error.form.VALUE_ALREADY_REGISTERED,
+        });
+      }
+    }
+
+    if (!model_slug) {
+      return response.json({ error: constant.error.input.ENTER_AN_MODEL_SLUG });
+    } else {
+      if (slugQUery.length > 0) {
+        return response.json({
+          error: constant.error.form.VALUE_ALREADY_REGISTERED,
+        });
+      }
+    }
+
+    await connection("models").insert({
+      model_id,
+      model_name,
+      model_slug,
+      id_brand,
     });
+
+    return response.json({ message: constant.success.SUCCESSFULLY_REGISTERED });
   }
 
   async findModelById(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { model_id } = request.params;
+    const model = await connection("models")
+      .where({ model_id })
+      .orderBy("createdAt", "desc");
+
+    if (model.length >= 1) {
+      const { model_id, model_name, model_slug, id_brand, createdAt } =
+        model[0];
+
+      return response.json({
+        results: {
+          model_id,
+          model_name,
+          model_slug,
+          id_brand,
+          createdAt: moment(createdAt).format("DD [de] MMMM, YYYY"),
+        },
+      });
+    } else {
+      response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
   }
 
   async updateModel(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { model_id } = request.params;
+
+    const model = await connection("models").where({ model_id });
+
+    if (!model_id) {
+      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
+
+    if (model[0].length === 0) { 
+      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    }
+
+    await connection("models").update(request.body).where({ model_id });
+
+    return response.json({ message: constant.success.RECORD_SUCCESSFULLY_UPDATED });
   }
 
   async deleteModel(request, response) {

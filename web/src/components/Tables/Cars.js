@@ -261,7 +261,7 @@ export function TableCars({ columns, data }) {
                         <Permission required={["admin", "edit_car"]}>
                           <Link
                             className="dropdown-item"
-                            to={`/car/edit/${row.original.car_id}`}
+                            to={`../car/edit/${row.original.car_id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar

@@ -26,6 +26,8 @@ module.exports = {
       ENTER_AN_PASSWORD: "Digite uma senha",
       ENTER_AN_BRAND_NAME: "Digite um nome de marca",
       ENTER_AN_BRAND_SLUG: "Digite um slug de marca",
+      ENTER_AN_MODEL_NAME: "Digite um nome de modelo",
+      ENTER_AN_MODEL_SLUG: "Digite um slug do modelo",
     },
   },
   success: {

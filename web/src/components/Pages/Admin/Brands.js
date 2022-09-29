@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import api, { getBrands, getBrandById } from "~/utils/services/api";
@@ -165,7 +165,7 @@ export function BrandCreate() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="brand_slug">Nome da marca</label>
+                          <label htmlFor="brand_slug">Slug da marca</label>
                           <input
                             type="text"
                             id="brand_slug"
@@ -242,7 +242,7 @@ export function BrandUpdate() {
       setLoading(true);
 
       try {
-        const { data } = await api.patch(`/api/brand/${brand_id}`, {
+        const { data } = await api.put(`/api/brand/${brand_id}`, {
           brand_name,
           brand_slug,
         });
@@ -293,7 +293,7 @@ export function BrandUpdate() {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="brand_slug">Nome da marca</label>
+                          <label htmlFor="brand_slug">Slug da marca</label>
                           <input
                             type="text"
                             id="brand_slug"

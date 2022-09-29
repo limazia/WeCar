@@ -65,7 +65,7 @@ export function SelectWrapper({ forcePosition }) {
       window.removeEventListener("scroll", controlDirection);
     };
   }, []);
- 
+
   const groupedOptions = [
     {
       label: "Marca",
@@ -123,7 +123,7 @@ export function SelectWrapper({ forcePosition }) {
       border: "2px solid #e9ebef",
       maxWidth: "100%",
       borderRadius: "10px",
-      caretColor: "transparent"
+      caretColor: "transparent",
     }),
 
     menuPortal: (base) => ({ ...base, zIndex: 9999 }),

@@ -251,7 +251,7 @@ export function TableModels({ columns, data }) {
                         <Permission required={["admin", "edit_model"]}>
                           <Link
                             className="dropdown-item"
-                            to={`/model/edit/${row.original.model_id}`}
+                            to={`../model/edit/${row.original.model_id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar
