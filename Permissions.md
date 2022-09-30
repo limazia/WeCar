@@ -1,6 +1,6 @@
 # Permissões do WeCar
 
-### Grupo de permissoes
+### Grupo de permissão
 
 ```
 admin: Tem todas as permissões do sistema
@@ -17,13 +17,11 @@ edit_model: Permite editar um modelo
 delete_model: Permite excluir um modelo
 
 cars: Permite ver os carros
-view_car: Permite visualizar uma página de carro
 create_car: Permite criar um carro
 edit_car: Permite editar um carro
 delete_car: Permite excluir um carro
 
 users: Permite ver os usuários
-view_user: Permite visualizar uma página de usuário
 create_user: Permite criar um usuário
 edit_user: Permite editar um usuário
 delete_user: Permite excluir um usuário

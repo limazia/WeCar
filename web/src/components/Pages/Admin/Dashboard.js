@@ -22,7 +22,7 @@ export function Dashboard() {
   }, [user, splash]);
 
   if (splash) {
-    return <Loading type="animated" />;
+    return <Loading />;
   }
 
   const goBrands = () => navigate("./brands");

@@ -7,7 +7,7 @@ import api, { getBrands, getModels, getModelById } from "~/utils/services/api";
 import { TableModels } from "~/components/Tables/Models";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 import { Empty } from "~/components/Images";
 

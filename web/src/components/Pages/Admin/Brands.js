@@ -7,7 +7,7 @@ import api, { getBrands, getBrandById } from "~/utils/services/api";
 import { TableBrands } from "~/components/Tables/Brands";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 import { Empty } from "~/components/Images";
 

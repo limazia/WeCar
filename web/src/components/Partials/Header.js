@@ -121,7 +121,7 @@ export function HeaderAdmin() {
                 id="navbarDropdownMenuLink"
                 data-toggle="dropdown"
               >
-                <span className="username">{user?.name}</span>
+                <span className="username">{user?.name || "Carregando..."}</span>
               </Link>
               <div className="dropdown-menu">
                 <Link className="dropdown-item" to="/admin/settings">

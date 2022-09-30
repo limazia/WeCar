@@ -7,7 +7,7 @@ import api, { getCars, getBrands, getModels } from "~/utils/services/api";
 import { TableCars } from "~/components/Tables/Cars";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 import { Empty } from "~/components/Images";
 
@@ -246,11 +246,11 @@ export function CarCreate() {
   );
 }
 
-export function CarView() {
+export function CarUpdate() {
   return (
     <>
-      <Head title="CarView" />
-      <h1>CarView</h1>
+      <Head title="CarUpdate" />
+      <h1>CarUpdate</h1>
     </>
   );
 }

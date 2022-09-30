@@ -3,11 +3,15 @@ exports.up = function (knex) {
     table.string("car_id").primary();
     table.string("car_km").notNullable();
     table.string("car_price").notNullable();
-    table.text("car_image").notNullable();
+    table.text("car_image");
     table
       .enu("car_fuel", ["gasoline", "flex", "diesel", "electric", "hybrid"])
+      .notNullable()
       .defaultTo(null);
-    table.enu("car_exchange", ["automatic", "manual"]).defaultTo(null);
+    table
+      .enu("car_exchange", ["automatic", "manual"])
+      .notNullable()
+      .defaultTo(null);
     table.string("car_year").notNullable();
     table.text("car_observation");
     table

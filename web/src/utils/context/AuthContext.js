@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Cookies from "universal-cookie";
+import { Loading } from "~/components/Partials/Loading";
 
 import api from "~/utils/services/api";
 import { getProfile } from "~/utils/services/api";
@@ -28,12 +29,9 @@ function AuthProvider({ children }) {
           setUser(data);
           const { permissions } = data;
 
-          if (
-            !permissions.some(
-              (perm) => ["admin", "login_admin"].indexOf(perm) >= 0
-            )
-          ) {
-            alert("sem o osadisa");
+          if (!permissions.some((perm) => ["admin", "login_admin"].indexOf(perm) >= 0)) {
+            alert("Você não tem permissão para acessar essa página");
+            logout();
           }
         })
         .catch((err) => {

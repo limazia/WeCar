@@ -1,4 +1,4 @@
-import Skeleton from "~/components/Shimmer/Skeleton";
+import Skeleton from "~/components/Partials/Skeleton";
 
 import styles from "./styles.module.css";
 

@@ -168,3 +168,35 @@
     border-top: none;
   }
 }
+
+.card-buy-car {
+  .card-body {
+    .car-image {
+      img,
+      svg {
+        max-width: 100%;
+        width: 1000px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+    }
+
+    .brand_logo {
+      padding: 10px 10px;
+      border-radius: 8px;
+      border: 2px solid #eee;
+
+      img {
+        height: 30px;
+      }
+    }
+
+    .car_id {
+      padding: 8px 10px;
+      border-radius: 8px;
+      background-color: #f5f6f7;
+      color: #979aa2;
+      font-size: 11px;
+    }
+  }
+}

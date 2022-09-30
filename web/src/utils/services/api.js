@@ -79,7 +79,7 @@ export const getModelById = async (modeL_id) => {
 
 export const getCarByBrand = async (brand, model) => {
   try {
-    const data = await api.get(`/api/car/${brand}/${model}`);
+    const { data } = await api.get(`/api/car/${brand}/${model}`);
 
     return data;
   } catch (ex) {
@@ -97,13 +97,33 @@ export const getCars = async () => {
   }
 };
 
-export const getUsers = async () => {
+export const getCarById = async (car_id) => {
   try {
-    const { data } = await api.get("/api/user");
+    const { data } = await api.get(`/api/car/${car_id}`);
 
     return data;
   } catch (ex) {
+    console.error("[GET /car] > it was not possible to wecar from the api");
+  }
+};
+
+export const getUsers = async () => {
+  try {
+    const { data } = await api.get("/api/user");
+    
+    return data;
+  } catch (ex) {
     console.error("[GET /user] > it was not possible to wecar from the api");
+  }
+};
+
+export const getUserById = async (id) => {
+  try {
+    const { data } = await api.get(`/api/user/${id}`);
+
+    return data;
+  } catch (ex) {
+    console.error("[GET /brand/:user] > it was not possible to wecar from the api");
   }
 };
 

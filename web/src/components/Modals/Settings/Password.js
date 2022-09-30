@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import api from "~/utils/services/api";
 import useAuth from "~/utils/hooks/useAuth";
 
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 export function PasswordModal() {
   const { user } = useAuth();

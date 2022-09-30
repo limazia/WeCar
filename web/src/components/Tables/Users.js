@@ -114,7 +114,7 @@ export function TableUsers({ columns, data }) {
   async function handleDelete(id) {
     if (id) {
       try {
-        const { data } = await api.delete(`api/users/${id}`);
+        const { data } = await api.delete(`api/user/${id}`);
         const { error, message } = data;
 
         if (message) {
@@ -251,24 +251,23 @@ export function TableUsers({ columns, data }) {
                         <Permission required={["admin", "edit_user"]}>
                           <Link
                             className="dropdown-item"
-                            to={`../user/edit/${row.original.user_id}`}
+                            to={`../user/edit/${row.original.id}`}
                           >
                             <i className="fas fa-pencil-alt mr-2"></i>
                             Editar
                           </Link>
                         </Permission>
                         <Permission required={["admin", "delete_user"]}>
-                          {user.id !== row.original.id &&
-                            row.original.primary_user && (
+                          {user.id !== row.original.id && (
                               <button
                                 className="dropdown-item"
                                 onClick={() => {
                                   if (
                                     window.confirm(
-                                      `Deseja excluir "${row.original.user_name}"?`
+                                      `Deseja excluir "${row.original.name}"?`
                                     )
                                   ) {
-                                    handleDelete(row.original.user_id);
+                                    handleDelete(row.original.id);
                                   }
                                 }}
                               >

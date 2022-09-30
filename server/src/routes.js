@@ -70,9 +70,9 @@ routes.group("/api/car", (router) => {
   router.get("/", CarController.listAllCars);
   router.get("/:brand/:model", CarController.listAllCarsByBrand);
   router.post("/", CarController.createCar);
-  router.get("/:id", CarController.findCarById);
-  router.put("/:id", CarController.updateCar);
-  router.delete("/:id", CarController.deleteCar);
+  router.get("/:car_id", CarController.findCarById);
+  router.put("/:car_id", CarController.updateCar);
+  router.delete("/:car_id", CarController.deleteCar);
 });
 
 // Rotas com Email

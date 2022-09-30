@@ -545,6 +545,30 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-top: none;
 }
 
+.card-buy-car .card-body .car-image img,
+.card-buy-car .card-body .car-image svg {
+  max-width: 100%;
+  width: 1000px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 8px;
+}
+.card-buy-car .card-body .brand_logo {
+  padding: 10px 10px;
+  border-radius: 8px;
+  border: 2px solid #eee;
+}
+.card-buy-car .card-body .brand_logo img {
+  height: 30px;
+}
+.card-buy-car .card-body .car_id {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background-color: #f5f6f7;
+  color: #979aa2;
+  font-size: 11px;
+}
+
 .btn-login,
 .btn-login:focus,
 .btn-login:active,
@@ -712,10 +736,30 @@ button:active:focus:not(:disabled):not(.disabled) {
   font-size: 23px;
   margin-right: 20px;
 }
-.btn-option .fas:not(.icon-box),
-.btn-option:focus .fas:not(.icon-box),
-.btn-option:active .fas:not(.icon-box),
-.btn-option:active:focus:not(:disabled):not(.disabled) .fas:not(.icon-box) {
+.btn-option .fa :not(.icon-box),
+.btn-option .fas :not(.icon-box),
+.btn-option .far :not(.icon-box),
+.btn-option .fal :not(.icon-box),
+.btn-option .fad :not(.icon-box),
+.btn-option .fab :not(.icon-box),
+.btn-option:focus .fa :not(.icon-box),
+.btn-option:focus .fas :not(.icon-box),
+.btn-option:focus .far :not(.icon-box),
+.btn-option:focus .fal :not(.icon-box),
+.btn-option:focus .fad :not(.icon-box),
+.btn-option:focus .fab :not(.icon-box),
+.btn-option:active .fa :not(.icon-box),
+.btn-option:active .fas :not(.icon-box),
+.btn-option:active .far :not(.icon-box),
+.btn-option:active .fal :not(.icon-box),
+.btn-option:active .fad :not(.icon-box),
+.btn-option:active .fab :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fa :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fas :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .far :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fal :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fad :not(.icon-box),
+.btn-option:active:focus:not(:disabled):not(.disabled) .fab :not(.icon-box) {
   font-size: 1.25rem;
   margin-right: 20px;
 }
@@ -969,6 +1013,42 @@ button:active:focus:not(:disabled):not(.disabled) {
 .btn-refresh:active button[disabled],
 .btn-refresh:active:focus:not(:disabled):not(.disabled):disabled,
 .btn-refresh:active:focus:not(:disabled):not(.disabled) button[disabled] {
+  cursor: not-allowed;
+}
+
+.btn-contact,
+.btn-contact:focus,
+.btn-contact:active,
+.btn-contact:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4dc247;
+  background-color: transparent;
+  border: 2px solid #4dc247;
+  height: 70px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  font-weight: 600;
+  transition: 0.5s ease;
+  font-size: 17px;
+}
+.btn-contact:hover,
+.btn-contact:focus:hover,
+.btn-contact:active:hover,
+.btn-contact:active:focus:not(:disabled):not(.disabled):hover {
+  color: #fff;
+  background-color: #4dc247;
+  border: 2px solid #4dc247;
+}
+.btn-contact:disabled,
+.btn-contact button[disabled],
+.btn-contact:focus:disabled,
+.btn-contact:focus button[disabled],
+.btn-contact:active:disabled,
+.btn-contact:active button[disabled],
+.btn-contact:active:focus:not(:disabled):not(.disabled):disabled,
+.btn-contact:active:focus:not(:disabled):not(.disabled) button[disabled] {
   cursor: not-allowed;
 }
 

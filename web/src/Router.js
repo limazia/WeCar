@@ -7,10 +7,11 @@ import { Authenticated, Private } from "./components/Core/Authenticated";
 import { Home } from "./pages/Home";
 import { Admin } from "./pages/Admin";
 
-import { Buy } from "./components/Pages/Buy";
+import { Landing } from "./components/Pages/Landing";
 import { Company } from "./components/Pages/Company";
 import { Sell } from "./components/Pages/Sell";
 import { Contact } from "./components/Pages/Contact";
+import { Buy } from "./components/Pages/Buy";
 import { Car } from "./components/Pages/Car";
 
 import { Login } from "./components/Pages/Admin/Login";
@@ -26,8 +27,8 @@ import {
   ModelCreate,
   ModelUpdate,
 } from "./components/Pages/Admin/Models";
-import { Cars, CarCreate, CarView } from "./components/Pages/Admin/Cars";
-import { Users, UserCreate, UserView } from "./components/Pages/Admin/Users";
+import { Cars, CarUpdate, CarCreate } from "./components/Pages/Admin/Cars";
+import { Users, UserUpdate, UserCreate } from "./components/Pages/Admin/Users";
 
 import { NotFound } from "./components/Pages/NotFound";
 
@@ -36,13 +37,14 @@ function Router() {
     <AnimatePresence exitBeforeEnter>
       <CustomRoutes>
         <Route path="/" element={<Home />}>
-          <Route path="" element={<Buy />} />
+          <Route path="" element={<Landing />} />
           <Route path="sell" element={<Sell />} />
           <Route path="company" element={<Company />} />
           <Route path="contact" element={<Contact />} />
-          <Route exact path="buy/car" element={<Car />} />
-          <Route exact path="buy/car/:brand" element={<Car />} />
-          <Route exact path="buy/car/:brand/:model" element={<Car />} />
+          <Route exact path="car/:car_id" element={<Car />} />
+          <Route exact path="buy" element={<Buy />} />
+          <Route exact path="buy/:brand" element={<Buy />} />
+          <Route exact path="buy/:brand/:model" element={<Buy />} />
         </Route>
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<Authenticated children={<Admin />} />}>
@@ -120,10 +122,10 @@ function Router() {
             }
           />
           <Route
-            path="car/:id"
+            path="car/edit/:car_id"
             element={
-              <Private roles={["admin", "view_car"]}>
-                <CarView />
+              <Private roles={["admin", "update_car"]}>
+                <CarUpdate />
               </Private>
             }
           />
@@ -144,10 +146,10 @@ function Router() {
             }
           />
           <Route
-            path="user/:id"
+            path="user/edit/:id"
             element={
-              <Private roles={["admin", "view_user"]}>
-                <UserView />
+              <Private roles={["admin", "user_update"]}>
+                <UserUpdate />
               </Private>
             }
           />

@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
+
 import CarDefault from "~/assets/car-default.jpg";
 
 export function CardCar({ data }) {
   const {
     model_name,
+    car_id,
     car_km,
     car_price,
     car_image,
@@ -28,7 +31,7 @@ export function CardCar({ data }) {
       case "manual":
         return "Manual";
       default:
-        throw new Error("exchange warning");
+        return "???";
     }
   };
 
@@ -45,7 +48,7 @@ export function CardCar({ data }) {
       case "electric":
         return "Elétrico";
       default:
-        throw new Error("fuel warning");
+        return "???";
     }
   };
 
@@ -133,10 +136,11 @@ export function CardCar({ data }) {
         <div className="row">
           <div className="col-md-6">
             <span className="text-muted d-block">KM</span>
-            <b>{km}</b>
+            <b>{km || "???"}</b>
           </div>
           <div className="col-md-6">
-            <span className="text-muted d-block">Ano</span> <b>{car_year}</b>
+            <span className="text-muted d-block">Ano</span>{" "}
+            <b>{car_year || "???"}</b>
           </div>
         </div>
         <div className="row mt-2">
@@ -154,9 +158,12 @@ export function CardCar({ data }) {
             <h4 className="font-weight-bold mb-0 pb-0">{price}</h4>
           </div>
           <div className="col-md-6">
-            <a href="#" className="btn btn-more-details w-100">
+            <Link
+              to={`../car/${car_id}`}
+              className="btn btn-more-details w-100"
+            >
               Mais detalhes
-            </a>
+            </Link>
           </div>
         </div>
       </div>

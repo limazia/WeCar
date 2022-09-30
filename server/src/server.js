@@ -9,16 +9,7 @@ const { handleError } = require("./helpers/handler");
 
 const app = express();
 
-if (process.env.APP_ENV === "development") {
-  app.use(cors());
-} else if (process.env.APP_ENV === "production") {
-  app.use(cors({
-    origin: "www.wecar.com.br"
-  }));
-} else {
-  throw new Error("{env} invalid");
-}
-
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 app.use((err, req, res, next) => {

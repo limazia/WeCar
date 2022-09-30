@@ -5,7 +5,7 @@ import api, { getCities, getUfs } from "~/utils/services/api";
 import { maskPhone } from "~/utils/services/mask";
 
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 export function Sell() {
   const INITIAL_STATE = {
@@ -355,7 +355,7 @@ export function Sell() {
                           <label>
                             Você é o primeiro proprietário do veículo
                           </label>
-                          <div className="d-flex align-items-center p-2 bg-secondary">
+                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
@@ -396,7 +396,7 @@ export function Sell() {
                           <label>
                             O estofamento, tapete ou teto possuem mancha
                           </label>
-                          <div className="d-flex align-items-center p-2 bg-secondary">
+                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
                             <div className="form-check form-check-inline">
                               <input
                                 className="form-check-input"
@@ -435,7 +435,7 @@ export function Sell() {
                       <div className="row mt-3">
                         <div className="col-sm-12 col-md-12">
                           <label>O seu veículo possui seguro?</label>
-                          <div className="d-flex align-items-center p-2 bg-secondary">
+                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
@@ -476,7 +476,7 @@ export function Sell() {
                           <label>
                             O veículo foi alguma vez recuperado de roubo
                           </label>
-                          <div className="d-flex align-items-center p-2 bg-secondary">
+                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"

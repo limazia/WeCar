@@ -12,12 +12,20 @@ function Animated() {
   return <img src={Splash} className="animated img-fluid" />;
 }
 
+function Spinner() {
+  return (
+    <div className="spinner-border" style={{ width: "3rem", height: "3rem" }}>
+      <span className="sr-only">Carregando...</span>
+    </div>
+  );
+}
+
 function Text() {
   return <h1>{process.env.REACT_APP_NAME || "Carregando..."}</h1>;
 }
 
 export function Loading({ type = "icon" }) {
-  const allowedScopes = ["icon", "logo", "text", "animated"];
+  const allowedScopes = ["icon", "logo", "text", "animated", "spinner"];
 
   return (
     <div className="container-fluid container-loading">
@@ -27,6 +35,7 @@ export function Loading({ type = "icon" }) {
             {type === "icon" && <Icon />}
             {type === "logo" && <Logo />}
             {type === "animated" && <Animated />}
+            {type === "spinner" && <Spinner />}
             {type === "text" && <Text />}
           </>
         ) : (

@@ -5,7 +5,7 @@ import api from "~/utils/services/api";
 import { maskPhone } from "~/utils/services/mask";
 
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 export function Contact() {
   const INITIAL_STATE = {

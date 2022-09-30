@@ -146,9 +146,16 @@
     margin-right: 20px;
   }
 
-  .fas:not(.icon-box) {
-    font-size: 1.25rem;
-    margin-right: 20px;
+  .fa,
+  .fas,
+  .far,
+  .fal,
+  .fad,
+  .fab {
+    :not(.icon-box) {
+      font-size: 1.25rem;
+      margin-right: 20px;
+    }
   }
 
   &:hover {
@@ -332,6 +339,35 @@
     color: #000;
     background: #fff;
     border: 2px solid rgba(0, 0, 0, 0.125);
+  }
+
+  &:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-contact,
+.btn-contact:focus,
+.btn-contact:active,
+.btn-contact:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4dc247;
+  background-color: transparent;
+  border: 2px solid #4dc247;
+  height: 70px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  font-weight: 600;
+  transition: 0.5s ease;
+  font-size: 17px;
+
+  &:hover {
+    color: #fff;
+    background-color: #4dc247;
+    border: 2px solid #4dc247;
   }
 
   &:disabled,

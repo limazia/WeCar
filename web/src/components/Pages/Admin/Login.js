@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "~/utils/hooks/useAuth";
 
 import { Head } from "~/components/Partials/Head";
-import { Spinner } from "~/components/Forms/Spinner";
+import { Spinner } from "~/components/Partials/Spinner";
 
 import { Logo } from "~/components/Images";
 import LoginBackground from "~/assets/bg-login.jpg";
