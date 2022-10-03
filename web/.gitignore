@@ -1,22 +1,9 @@
 # dependencies
 /node_modules
-<<<<<<< HEAD
-package-lock.json
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-=======
-/uploads
 package-lock.json
 
 # testing
 /test
->>>>>>> release
 
 # misc
 .DS_Store
@@ -28,8 +15,4 @@ package-lock.json
 
 npm-debug.log*
 yarn-debug.log*
-<<<<<<< HEAD
 yarn-error.log*
-=======
-yarn-error.log*
->>>>>>> release
