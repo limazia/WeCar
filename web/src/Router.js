@@ -4,8 +4,8 @@ import { AnimatePresence } from "framer-motion";
 import { CustomRoutes } from "./components/Core/CustomRoutes";
 import { Authenticated, Private } from "./components/Core/Authenticated";
 
-import { Home } from "./pages/Home";
-import { Admin } from "./pages/Admin";
+import Home from "./pages/Home";
+import Admin from "./pages/Admin";
 
 import { Landing } from "./components/Pages/Landing";
 import { Company } from "./components/Pages/Company";

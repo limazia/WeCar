@@ -5,7 +5,7 @@ import { getToken } from "~/utils/services/auth";
 
 import { HeaderAdmin } from "~/components/Partials/Header";
 
-export function Admin() {
+function Admin() {
   return (
     <Fragment>
       {getToken() && (
@@ -19,3 +19,5 @@ export function Admin() {
     </Fragment>
   );
 }
+
+export default Admin;

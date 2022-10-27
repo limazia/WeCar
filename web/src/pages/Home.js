@@ -6,7 +6,7 @@ import { Footer } from "~/components/Partials/Footer";
 import { Header, Utility } from "~/components/Partials/Header";
 import { WhatsApp } from "~/components/Misc/Floating";
 
-export function Home() {
+function Home() {
   return (
     <Fragment>
       <header>
@@ -23,3 +23,5 @@ export function Home() {
     </Fragment>
   );
 }
+
+export default Home;
