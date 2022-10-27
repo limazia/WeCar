@@ -7,7 +7,7 @@ const {
   updateName,
   updateEmail,
   updatePassword,
-} = require("../../helpers/userUpdate");
+} = require("../../helpers/user");
 const constant = require("../constants");
 
 class UserController {
