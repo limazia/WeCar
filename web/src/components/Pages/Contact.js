@@ -77,65 +77,74 @@ export function Contact() {
                   Tire suas dúvidas sobre qualquer assunto enviando um
                   formulário.
                 </span>
-                <form onSubmit={handleSubmit}>
-                  <div className="row mt-4">
-                    <div className="col-md-12">
-                      <input
-                        type="text"
-                        name="name"
-                        className="form-control"
-                        placeholder="Nome"
-                        value={personal?.name}
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-4">
-                    <div className="col-md-12">
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder="Email"
-                        value={personal?.email}
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-4">
-                    <div className="col-md-12">
-                      <input
-                        type="text"
-                        name="phone"
-                        className="form-control"
-                        placeholder="Telefone"
-                        value={personal?.phone}
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-4">
-                    <div className="col-md-12">
-                      <input
-                        type="text"
-                        name="subject"
-                        className="form-control"
-                        placeholder="Assunto"
-                        value={personal?.subject}
-                        onChange={(e) => handleChange(e)}
-                      />
-                    </div>
-                  </div>
-                  <div className="row mt-4">
-                    <div className="col-md-12">
-                      <textarea
-                        className="form-control"
-                        name="messagecontent"
-                        rows="4"
-                        placeholder="Mensagem"
-                        value={personal?.messagecontent}
-                        onChange={(e) => handleChange(e)}
-                      />
+                <form onSubmit={handleSubmit} className="mt-4">
+                  <div className="card">
+                    <div className="card-body">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <label htmlFor="name">Nome Completo</label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            className="form-control"
+                            value={personal?.name}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="row mt-4">
+                        <div className="col-md-12">
+                          <label htmlFor="email">Email</label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            className="form-control"
+                            value={personal?.email}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="row mt-4">
+                        <div className="col-md-12">
+                          <label htmlFor="phone">Telefone</label>
+                          <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            className="form-control"
+                            value={personal?.phone}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="row mt-4">
+                        <div className="col-md-12">
+                          <label htmlFor="subject">Assunto</label>
+                          <input
+                            type="text"
+                            id="subject"
+                            name="subject"
+                            className="form-control"
+                            value={personal?.subject}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="row mt-4">
+                        <div className="col-md-12">
+                          <label htmlFor="messagecontent">Email</label>
+                          <textarea
+                            className="form-control"
+                            id="messagecontent"
+                            name="messagecontent"
+                            rows="4"
+                            value={personal?.messagecontent}
+                            onChange={(e) => handleChange(e)}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="row mt-4">
@@ -158,7 +167,7 @@ export function Contact() {
                   </div>
                 </form>
               </div>
-              <div className="col-md-4 mt-5 pb-5">
+              <div className="col-md-4 pb-5" style={{ marginTop: "70px" }}>
                 <div className="contact">
                   <div className="contact-info">
                     <i className="fas fa-map-marker-alt"></i>

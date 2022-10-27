@@ -108,7 +108,7 @@ export function Sell() {
       try {
         const { data } = await api.post("/api/sellcar", {
           personal,
-          car
+          car,
         });
         const { error, message } = data;
 
@@ -355,7 +355,10 @@ export function Sell() {
                           <label>
                             Você é o primeiro proprietário do veículo
                           </label>
-                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
+                          <div
+                            className="d-flex align-items-center p-3 bg-secondary"
+                            style={{ borderRadius: "8px" }}
+                          >
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
@@ -396,7 +399,10 @@ export function Sell() {
                           <label>
                             O estofamento, tapete ou teto possuem mancha
                           </label>
-                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
+                          <div
+                            className="d-flex align-items-center p-3 bg-secondary"
+                            style={{ borderRadius: "8px" }}
+                          >
                             <div className="form-check form-check-inline">
                               <input
                                 className="form-check-input"
@@ -435,7 +441,10 @@ export function Sell() {
                       <div className="row mt-3">
                         <div className="col-sm-12 col-md-12">
                           <label>O seu veículo possui seguro?</label>
-                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
+                          <div
+                            className="d-flex align-items-center p-3 bg-secondary"
+                            style={{ borderRadius: "8px" }}
+                          >
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
@@ -476,7 +485,10 @@ export function Sell() {
                           <label>
                             O veículo foi alguma vez recuperado de roubo
                           </label>
-                          <div className="d-flex align-items-center p-3 bg-secondary" style={{ borderRadius: "8px" }}>
+                          <div
+                            className="d-flex align-items-center p-3 bg-secondary"
+                            style={{ borderRadius: "8px" }}
+                          >
                             <div className="form-check form-check-inline">
                               <input
                                 type="radio"
@@ -512,13 +524,13 @@ export function Sell() {
                           </div>
                         </div>
                       </div>
-                      <div className="row mt-3">
-                        <div className="col-md-12">
-                          <button className="btn btn-warning btn-lg text-white">
-                            {loading ? <Spinner type="grow" /> : "Enviar"}
-                          </button>
-                        </div>
-                      </div>
+                    </div>
+                  </div>
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <button className="btn btn-warning btn-lg text-white">
+                        {loading ? <Spinner type="grow" /> : "Enviar"}
+                      </button>
                     </div>
                   </div>
                 </form>
