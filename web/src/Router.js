@@ -41,11 +41,11 @@ function Router() {
           <Route path="sell" element={<Sell />} />
           <Route path="company" element={<Company />} />
           <Route path="contact" element={<Contact />} />
-          <Route exact path="car/:car_id" element={<Car />} />
           <Route exact path="buy" element={<Buy />} />
           <Route exact path="buy/:brand" element={<Buy />} />
           <Route exact path="buy/:brand/:model" element={<Buy />} />
         </Route>
+        <Route exact path="/car/:car_id" element={<Car />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<Authenticated children={<Admin />} />}>
           <Route
