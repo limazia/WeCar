@@ -210,6 +210,10 @@
     border-color: #3935b5;
   }
 
+  &.empty-button {
+    height: 50px;
+  }
+
   &:disabled,
   button[disabled] {
     cursor: not-allowed;

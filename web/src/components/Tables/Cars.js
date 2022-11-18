@@ -272,9 +272,7 @@ export function TableCars({ columns, data }) {
                             className="dropdown-item"
                             onClick={() => {
                               if (
-                                window.confirm(
-                                  `Deseja excluir "${row.original.car_name}"?`
-                                )
+                                window.confirm("Deseja excluir?")
                               ) {
                                 handleDelete(row.original.car_id);
                               }

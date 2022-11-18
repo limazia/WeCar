@@ -357,8 +357,8 @@ button:active:focus:not(:disabled):not(.disabled) {
 .empty-car .empty-image img,
 .empty-car .empty-image svg {
   max-width: 100%;
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 }
 .empty-car .empty-title {
   font-weight: bold;
@@ -831,6 +831,12 @@ button:active:focus:not(:disabled):not(.disabled) {
   background: #3935b5;
   border-color: #3935b5;
 }
+.btn-create.empty-button,
+.btn-create:focus.empty-button,
+.btn-create:active.empty-button,
+.btn-create:active:focus:not(:disabled):not(.disabled).empty-button {
+  height: 50px;
+}
 .btn-create:disabled,
 .btn-create button[disabled],
 .btn-create:focus:disabled,
@@ -1185,6 +1191,16 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .modal-settings .modal-header,

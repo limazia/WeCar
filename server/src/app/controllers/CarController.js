@@ -1,4 +1,7 @@
+const cryptoRandomString = require("crypto-random-string");
+
 const connection = require("../../database/connection");
+const constant = require("../constants");
 const moment = require("../../helpers/moment");
 
 class CarController {
@@ -120,9 +123,32 @@ class CarController {
   }
 
   async createCar(request, response) {
-    return response.json({
-      nome: "luis",
+    const {
+      car_km,
+      car_price,
+      car_image,
+      car_fuel,
+      car_exchange,
+      car_year,
+      car_observation,
+      id_model,
+    } = request.body;
+
+    const car_id = cryptoRandomString({ length: 15 });
+
+    await connection("cars").insert({
+      car_id,
+      car_km,
+      car_price,
+      car_image,
+      car_fuel,
+      car_exchange,
+      car_year,
+      car_observation,
+      id_model,
     });
+
+    return response.json({ message: constant.success.SUCCESSFULLY_REGISTERED });
   }
 
   async findCarById(request, response) {
@@ -184,15 +210,40 @@ class CarController {
   }
 
   async updateCar(request, response) {
+    const { car_id } = request.params;
+
+    const car = await connection("cars").where({ car_id });
+
+    if (!car_id) {
+      return response.json({
+        error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID,
+      });
+    }
+
+    if (car[0].length === 0) {
+      return response.json({
+        error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID,
+      });
+    }
+
+    await connection("cars").update(request.body).where({ car_id });
+
     return response.json({
-      nome: "luis",
+      message: constant.success.RECORD_SUCCESSFULLY_UPDATED,
     });
   }
 
   async deleteCar(request, response) {
-    return response.json({
-      nome: "luis",
-    });
+    const { car_id } = request.params;
+    const car = await connection("cars").where({ car_id });
+
+    if (car.length >= 1) {
+      await connection("cars").delete().where({ car_id });
+
+      return response.json({ message: constant.success.RECORD_DELETED });
+    }
+
+    return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
   }
 }
 

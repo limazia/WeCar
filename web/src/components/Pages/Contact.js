@@ -19,7 +19,7 @@ export function Contact() {
   const [personal, setPersonal] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (event) => {
+  const onInputChange = (event) => {
     const { name, value } = event.target;
 
     if (name === "phone") {
@@ -89,7 +89,7 @@ export function Contact() {
                             name="name"
                             className="form-control"
                             value={personal?.name}
-                            onChange={(e) => handleChange(e)}
+                            onChange={onInputChange}
                           />
                         </div>
                       </div>
@@ -102,7 +102,7 @@ export function Contact() {
                             name="email"
                             className="form-control"
                             value={personal?.email}
-                            onChange={(e) => handleChange(e)}
+                            onChange={onInputChange}
                           />
                         </div>
                       </div>
@@ -115,7 +115,7 @@ export function Contact() {
                             name="phone"
                             className="form-control"
                             value={personal?.phone}
-                            onChange={(e) => handleChange(e)}
+                            onChange={onInputChange}
                           />
                         </div>
                       </div>
@@ -128,7 +128,7 @@ export function Contact() {
                             name="subject"
                             className="form-control"
                             value={personal?.subject}
-                            onChange={(e) => handleChange(e)}
+                            onChange={onInputChange}
                           />
                         </div>
                       </div>
@@ -141,7 +141,7 @@ export function Contact() {
                             name="messagecontent"
                             rows="4"
                             value={personal?.messagecontent}
-                            onChange={(e) => handleChange(e)}
+                            onChange={onInputChange}
                           />
                         </div>
                       </div>

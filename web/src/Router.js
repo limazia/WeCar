@@ -17,19 +17,23 @@ import { Car } from "./components/Pages/Car";
 import { Login } from "./components/Pages/Admin/Login";
 import { Dashboard } from "./components/Pages/Admin/Dashboard";
 import { Settings } from "./components/Pages/Admin/Settings";
-import {
-  Brands,
-  BrandCreate,
-  BrandUpdate,
-} from "./components/Pages/Admin/Brands";
-import {
-  Models,
-  ModelCreate,
-  ModelUpdate,
-} from "./components/Pages/Admin/Models";
-import { Cars, CarUpdate, CarCreate } from "./components/Pages/Admin/Cars";
-import { Users, UserUpdate, UserCreate } from "./components/Pages/Admin/Users";
 
+import { BrandsList } from "./components/Pages/Admin/Brands/BrandsList";
+import { BrandCreate } from "./components/Pages/Admin/Brands/BrandCreate";
+import { BrandUpdate } from "./components/Pages/Admin/Brands/BrandUpdate";
+
+import { ModelsList } from "./components/Pages/Admin/Models/ModelsList";
+import { ModelCreate } from "./components/Pages/Admin/Models/ModelCreate";
+import { ModelUpdate } from "./components/Pages/Admin/Models/ModelUpdate";
+
+import { CarsList } from "./components/Pages/Admin/Cars/CarsList";
+import { CarCreate } from "./components/Pages/Admin/Cars/CarCreate";
+import { CarUpdate } from "./components/Pages/Admin/Cars/CarUpdate";
+
+import { UsersList } from "./components/Pages/Admin/Users/UsersList";
+import { UserCreate } from "./components/Pages/Admin/Users/UserCreate";
+import { UserUpdate } from "./components/Pages/Admin/Users/UserUpdate";
+ 
 import { NotFound } from "./components/Pages/NotFound";
 
 function Router() {
@@ -69,7 +73,7 @@ function Router() {
             path="brands"
             element={
               <Private roles={["admin", "brands"]}>
-                <Brands />
+                <BrandsList />
               </Private>
             }
           />
@@ -93,7 +97,7 @@ function Router() {
             path="models"
             element={
               <Private roles={["admin", "models"]}>
-                <Models />
+                <ModelsList />
               </Private>
             }
           />
@@ -117,7 +121,7 @@ function Router() {
             path="cars"
             element={
               <Private roles={["admin", "cars"]}>
-                <Cars />
+                <CarsList />
               </Private>
             }
           />
@@ -141,7 +145,7 @@ function Router() {
             path="users"
             element={
               <Private roles={["admin", "users"]}>
-                <Users />
+                <UsersList />
               </Private>
             }
           />

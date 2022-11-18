@@ -103,23 +103,29 @@ class ModelController {
       response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
     }
   }
-
+ 
   async updateModel(request, response) {
     const { model_id } = request.params;
 
     const model = await connection("models").where({ model_id });
 
     if (!model_id) {
-      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+      return response.json({
+        error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID,
+      });
     }
 
-    if (model[0].length === 0) { 
-      return response.json({ error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID });
+    if (model[0].length === 0) {
+      return response.json({
+        error: constant.error.NO_ITEM_FOUND_WITH_THIS_ID,
+      });
     }
 
     await connection("models").update(request.body).where({ model_id });
 
-    return response.json({ message: constant.success.RECORD_SUCCESSFULLY_UPDATED });
+    return response.json({
+      message: constant.success.RECORD_SUCCESSFULLY_UPDATED,
+    });
   }
 
   async deleteModel(request, response) {

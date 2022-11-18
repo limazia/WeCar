@@ -76,7 +76,7 @@ export const getModelById = async (modeL_id) => {
     console.error("[GET /model/:modeL_id] > it was not possible to wecar from the api");
   }
 };
-
+ 
 export const getCarByBrand = async (brand, model) => {
   try {
     const { data } = await api.get(`/api/car/${brand}/${model}`);
