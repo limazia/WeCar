@@ -9,6 +9,7 @@ import { Spinner } from "~/components/Partials/Spinner";
 
 export function ModelCreate() {
   const navigate = useNavigate();
+  
   const INITIAL_STATE = {
     model_name: "",
     model_slug: "",
@@ -113,7 +114,7 @@ export function ModelCreate() {
                             id="id_brand"
                             className="form-control"
                             onChange={onInputChange}
-                            value=""
+                            defaultValue=""
                           >
                             <option disabled value="" />
                             {brands.map((brand) => (
