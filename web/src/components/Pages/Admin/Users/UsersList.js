@@ -6,6 +6,7 @@ import { getUsers } from "~/utils/services/api";
 import { TableUsers } from "~/components/Tables/Users";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
+import { Permission } from "~/components/Core/Permission";
 
 import { Empty } from "~/components/Images";
 
@@ -75,12 +76,17 @@ export function UsersList() {
                     <span className="empty-title">
                       Nenhum usuário foi encontrado
                     </span>
-                    <small className="empty-description mt-3 pb-4">
-                      Começe cadastrando agora mesmo
-                    </small>
-                    <button className="btn btn-create-table" onClick={goCreate}>
-                      <i className="far fa-plus mr-1"></i> Cadastrar usuário
-                    </button>
+                    <Permission required={["admin", "create_user"]}>
+                      <small className="empty-description mt-3 pb-4">
+                        Começe cadastrando agora mesmo
+                      </small>
+                      <button
+                        className="btn btn-create-table"
+                        onClick={goCreate}
+                      >
+                        <i className="far fa-plus mr-1"></i> Cadastrar usuário
+                      </button>
+                    </Permission>
                   </div>
                 )}
               </div>

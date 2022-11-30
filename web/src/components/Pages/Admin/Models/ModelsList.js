@@ -6,6 +6,7 @@ import { getModels } from "~/utils/services/api";
 import { TableModels } from "~/components/Tables/Models";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
+import { Permission } from "~/components/Core/Permission";
 
 import { Empty } from "~/components/Images";
 
@@ -75,12 +76,17 @@ export function ModelsList() {
                     <span className="empty-title">
                       Nenhum modelo foi encontrado
                     </span>
-                    <small className="empty-description mt-3 pb-4">
-                      Começe cadastrando agora mesmo
-                    </small>
-                    <button className="btn btn-create-table" onClick={goCreate}>
-                      <i className="far fa-plus mr-1"></i> Cadastrar modelo
-                    </button>
+                    <Permission required={["admin", "create_model"]}>
+                      <small className="empty-description mt-3 pb-4">
+                        Começe cadastrando agora mesmo
+                      </small>
+                      <button
+                        className="btn btn-create-table"
+                        onClick={goCreate}
+                      >
+                        <i className="far fa-plus mr-1"></i> Cadastrar modelo
+                      </button>
+                    </Permission>
                   </div>
                 )}
               </div>

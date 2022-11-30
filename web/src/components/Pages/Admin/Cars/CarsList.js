@@ -6,6 +6,7 @@ import { getCars } from "~/utils/services/api";
 import { TableCars } from "~/components/Tables/Cars";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
+import { Permission } from "~/components/Core/Permission";
 
 import { Empty } from "~/components/Images";
 
@@ -79,12 +80,17 @@ export function CarsList() {
                     <span className="empty-title">
                       Nenhum carro foi encontrado
                     </span>
-                    <small className="empty-description mt-3 pb-4">
-                      Começe cadastrando agora mesmo
-                    </small>
-                    <button className="btn btn-create-table" onClick={goCreate}>
-                      <i className="far fa-plus mr-1"></i> Cadastrar carro
-                    </button>
+                    <Permission required={["admin", "create_car"]}>
+                      <small className="empty-description mt-3 pb-4">
+                        Começe cadastrando agora mesmo
+                      </small>
+                      <button
+                        className="btn btn-create-table"
+                        onClick={goCreate}
+                      >
+                        <i className="far fa-plus mr-1"></i> Cadastrar carro
+                      </button>
+                    </Permission>
                   </div>
                 )}
               </div>

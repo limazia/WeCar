@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { getBrands } from "~/utils/services/api";
 
 import { TableBrands } from "~/components/Tables/Brands";
 import { Loading } from "~/components/Partials/Loading";
 import { Head } from "~/components/Partials/Head";
+import { Permission } from "~/components/Core/Permission";
 
 import { Empty } from "~/components/Images";
 
@@ -71,12 +72,17 @@ export function BrandsList() {
                     <span className="empty-title">
                       Nenhuma marca foi encontrada
                     </span>
-                    <small className="empty-description mt-3 pb-4">
-                      Começe cadastrando agora mesmo
-                    </small>
-                    <button className="btn btn-create-table" onClick={goCreate}>
-                      <i className="far fa-plus mr-1"></i> Cadastrar marca
-                    </button>
+                    <Permission required={["admin", "create_brand"]}>
+                      <small className="empty-description mt-3 pb-4">
+                        Começe cadastrando agora mesmo
+                      </small>
+                      <button
+                        className="btn btn-create-table"
+                        onClick={goCreate}
+                      >
+                        <i className="far fa-plus mr-1"></i> Cadastrar marca
+                      </button>
+                    </Permission>
                   </div>
                 )}
               </div>
