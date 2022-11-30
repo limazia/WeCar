@@ -56,12 +56,12 @@ export function Utility() {
       <ul className="navbar-nav mr-auto">
         <li className="nav-item">
           <a className="nav-link" href="#">
-            <i className="fas fa-map-marker-alt"></i> Rua dos Pinheiros, 248.
+            <i className="fas fa-map-marker-alt"></i> Alguma rua, 000.
           </a>
         </li>
         <li className="nav-item">
           <a className="nav-link mx-3" href="#">
-            <i className="fas fa-phone"></i> (19) xxxx-xxxx
+            <i className="fas fa-phone"></i> (DDD) xxxx-xxxx
           </a>
         </li>
         <li className="nav-item">

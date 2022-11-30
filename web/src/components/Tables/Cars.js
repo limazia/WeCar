@@ -114,7 +114,7 @@ export function TableCars({ columns, data }) {
   async function handleDelete(id) {
     if (id) {
       try {
-        const { data } = await api.delete(`api/cars/${id}`);
+        const { data } = await api.delete(`api/car/${id}`);
         const { error, message } = data;
 
         if (message) {

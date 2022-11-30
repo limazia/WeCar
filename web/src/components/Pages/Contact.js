@@ -171,15 +171,15 @@ export function Contact() {
                 <div className="contact">
                   <div className="contact-info">
                     <i className="fas fa-map-marker-alt"></i>
-                    <span>Rua dos Pinheiros, 248 - São Paulo, SP</span>
+                    <span>Alguma rua, 000 - São Paulo, SP</span>
                   </div>
                   <div className="contact-info">
                     <i className="fa fa-phone"></i>
-                    <span>(11) xxxx-xxxx</span>
+                    <span>(DDD) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">
                     <i className="fab fa-whatsapp"></i>
-                    <span>(19) xxxx-xxxx</span>
+                    <span>(DDD) xxxx-xxxx</span>
                   </div>
                   <div className="contact-info">
                     <i className="fa fa-envelope"></i>
