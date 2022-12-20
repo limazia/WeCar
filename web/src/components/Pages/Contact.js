@@ -134,7 +134,7 @@ export function Contact() {
                       </div>
                       <div className="row mt-4">
                         <div className="col-md-12">
-                          <label htmlFor="messagecontent">Email</label>
+                          <label htmlFor="messagecontent">Mensagem</label>
                           <textarea
                             className="form-control"
                             id="messagecontent"
