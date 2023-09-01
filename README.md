@@ -1,5 +1,5 @@
 # WeCar
-O sistema de WeCar é um aplicativo para venda de carros com um painel de administração moderno.
+O sistema WeCar é uma plataforma web para venda de veículos, equipada com um painel de administração moderno.
  
 ## Instalação
 Para mais informações sobre como configurar, instalar e iniciar acesse a pasta do **servidor (server)** ou **cliente (web)**
