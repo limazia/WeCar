@@ -1,53 +1,49 @@
-# WeCar Server
+## ✨ Instalação
 
-## Instalação
+* WeCar requer [Node.js](https://nodejs.org/) v10+ para execução.
+* Configure a conexão com seu banco de dados.
 
-WeCar requer [Node.js](https://nodejs.org/) v10+ para execução.
+1. Trocar o nome do arquivo `.env.exemple` para `.env`
 
-Configure a conexão com seu banco de dados.
+2. Coloque os valores das variavés de ambiente no arquivo `.env`
+   ```js
+   # App
+   NODE_ENV="development"
+   APP_PORT=3333
 
-Crie uma cópia do arquivo `.env.example` e renomeie-o para `.env`
+   # MySQL
+   DATABASE_DRIVE="mysql"
+   DATABASE_URL="mysql://<username>:<password>@<host>:<port>/<database>"
 
-```sh
-.env
-DB_DRIVE=mysql
-DB_HOST=localhost
-DB_PORT=3306
-DB_DATABASE=wecar
-DB_USERNAME=
-DB_PASSWORD=
-```
+   # JWT
+   JWT_TOKEN="SUA_CHAVE"
 
-Instale as dependências e inicie o servidor.
+   ```
 
-```sh
-.env
-APP_ENV=development
-```
+3. Instalar as dependências
+   ```sh
+   npm install ou yarn
 
-```sh
-cd wecar
-cd server
-npm i
-npm run knex:migrate
-npm run knex:seed
-npm run dev
-```
+   ```
 
-Para ambientes de produção...
+## 📝 Como Usar
 
-```sh
-.env
-APP_ENV=production
-```
-
-```sh
-cd wecar
-cd server
-npm i
-npm run knex:migrate
-npm start
-```
+1. Executar como desenvolvimento
+   ```
+   cd wecar
+   cd server
+   npm run knex:migrate
+   npm run knex:seed
+   npm run dev
+   ```
+2. Executar em produção
+   ```
+   cd wecar
+   cd server
+   npm run knex:migrate
+   npm run build
+   npm start
+   ```
 
 ## License
 
