@@ -44,6 +44,12 @@
    npm run build
    npm start
    ```
+      __Se tudo ocorreu bem, deve ver no console as seguintes messagens:__
+   ```
+   🌎 Environment: development
+   📦 Database successfully connected
+   🚀 Server is running on port http://localhost:3333/
+   ```
 
 ## License
 
