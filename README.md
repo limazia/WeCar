@@ -1,19 +1,12 @@
 # WeCar
 O sistema WeCar é uma plataforma web para venda de veículos, equipada com um painel de administração moderno.
  
-## ✨ Instalação
-_Para executar o projeto, precisa seguir os passos a seguir._
+## Instalação
+Para mais informações sobre como configurar, instalar e iniciar acesse a pasta do **servidor (server)** ou **cliente (web)**
 
-1. Clone o repositório
-   ```sh
-   git clone https://github.com/limazia/wecar
-   ```
-2. Executar servidor ou cliente
-   ```sh
-   Para mais informações sobre como iniciar, acesse a pasta server ou web
-   ```
+## Tecnologias
 
-## 💻 Tecnologias 
+O aplicativo WeCar será desenvolvido em:
 
 - Node.js (Express, Knex.js)
 - MySQL
