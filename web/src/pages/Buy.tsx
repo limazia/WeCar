@@ -5,7 +5,6 @@ import { formatCurrency, formatKM } from "@utils/helpers/format";
 import { Car, ExchangeOptions, FuelOptions } from "@utils/interfaces";
 import { exchangeOptions, fuelOptions } from "@utils/helpers/options";
 import { CarService } from "@utils/services/CarService";
-import { number } from "@utils/config/social";
 
 import { Head } from "@components/Head";
 import { Loading } from "@components/Loading";
@@ -70,6 +69,7 @@ export function Buy() {
   const exchangeKey: keyof ExchangeOptions =
     car.car_exchange as keyof ExchangeOptions;
 
+  const number = import.meta.env.VITE_PHONE_NUMBER;
   const message = `Olá! Estou interessado no carro ${car_id}!`;
   const whatsapp_url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
 
