@@ -34,6 +34,10 @@ const database: KnexConfig = {
       directory: './migrations',
       extension: 'ts'
     },
+    seeds: {
+      directory: './seeds',
+      extension: 'ts'
+    },
   },
 }
 

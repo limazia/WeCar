@@ -32,6 +32,16 @@ class UpdateCarService {
       throw new AppError(messages.error.NO_ITEM_FOUND_WITH_THIS_ID)
     }
 
+    console.log(    car_id,
+      car_km,
+      car_price,
+      car_image,
+      car_fuel,
+      car_exchange,
+      car_year,
+      car_observation,
+      id_model)
+
     car.car_id = car_id
     car.car_km = car_km
     car.car_price = car_price

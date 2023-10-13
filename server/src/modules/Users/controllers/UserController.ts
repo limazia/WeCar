@@ -1,13 +1,12 @@
 import { Request, Response } from 'express'
 
 import { messages } from '@shared/helpers/constants/messages'
-import { moment } from '@shared/helpers/moment'
 
 import { ListUsersService } from '../services/ListUsersService'
 import { CreateUserService } from '../services/CreateUserService'
 import { FindUserByIdService } from '../services/FindUserByIdService'
-import { UpdateUserService } from '../services/UpdateUserService'
 import { DeleteUserService } from '../services/DeleteUserService'
+import { UpdateUserService } from '../services/UpdateUserService'
 
 class UserController {
   async index(request: Request, response: Response): Promise<Response> {
@@ -15,32 +14,20 @@ class UserController {
 
     const users = await listUsers.execute()
 
-    const serializedItems = users.map(({
-      permissions,
-      updated_at,
-      created_at,
-      ...rest
-    }) => ({
-      ...rest,
-      permissions: permissions ? (permissions as string).split(',').map(permission => permission.trim()) : [],
-      updated_at: moment(updated_at).format('LL'),
-      created_at: moment(created_at).format('LL'),
-    }))
-
-    return response.json({ results: serializedItems })
+    return response.json(users)
   }
 
   async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, password, confirm_password, permissions } = request.body
+    const { name, email, id_group, password, confirmPassword } = request.body
 
     const createUser = new CreateUserService()
 
     await createUser.execute({
       name,
       email,
+      id_group,
       password,
-      confirm_password,
-      permissions
+      confirmPassword,
     })
 
     return response.json({ message: messages.success.SUCCESSFULLY_REGISTERED })
@@ -57,7 +44,7 @@ class UserController {
   }
 
   async update(request: Request, response: Response): Promise<Response> {
-    const { name, email, password, confirm_password, permissions } = request.body
+    const { name, email, id_group, newPassword, confirmPassword } = request.body
     const { id } = request.params
 
     const updateUser = new UpdateUserService()
@@ -66,9 +53,9 @@ class UserController {
       id,
       name,
       email,
-      password,
-      confirm_password,
-      permissions
+      id_group,
+      newPassword,
+      confirmPassword
     })
 
     return response.json({ message: messages.success.RECORD_SUCCESSFULLY_UPDATED })

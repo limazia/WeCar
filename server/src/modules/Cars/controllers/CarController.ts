@@ -5,21 +5,17 @@ import { moment } from '@shared/helpers/moment'
 
 import { ListCarsService } from '../services/ListCarsService'
 import { CreateCarService } from '../services/CreateCarService'
-import { FindCarsByBrandService } from '../services/FindCarsByBrandService'
+import { ListByBrandAndModelSlugService } from '../services/ListByBrandAndModelSlugService'
+import { ListByBrandSlugService } from '../services/ListByBrandSlugService'
 import { FindCarsByIdService } from '../services/FindCarsByIdService'
 import { UpdateCarService } from '../services/UpdateCarService'
 import { DeleteCarService } from '../services/DeleteCarService'
 
 class CarController {
   async index(request: Request, response: Response): Promise<Response> {
-    const { page = 1, limit = 10 } = request.query
-
-    const parsedPage = parseInt(page as string)
-    const parsedLimit = parseInt(limit as string)
-
     const listCars = new ListCarsService()
 
-    const cars = await listCars.execute({ page: parsedPage, limit: parsedLimit })
+    const cars = await listCars.execute()
 
     return response.json(cars)
   }
@@ -33,7 +29,7 @@ class CarController {
       car_exchange,
       car_year,
       car_observation,
-      id_model,
+      id_model
     } = request.body
 
     const createCar = new CreateCarService()
@@ -46,18 +42,43 @@ class CarController {
       car_exchange,
       car_year,
       car_observation,
-      id_model,
+      id_model
     })
 
     return response.json({ message: messages.success.SUCCESSFULLY_REGISTERED })
   }
 
-  async listByBrand(request: Request, response: Response): Promise<Response> {
-    const { brand, model } = request.params
+  async listByBrandSlug(request: Request, response: Response): Promise<Response> {
+    const { brand_slug } = request.params
 
-    const findCarsByBrand = new FindCarsByBrandService()
+    const findCarsByBrandSlug = new ListByBrandSlugService()
 
-    const cars = await findCarsByBrand.execute({ brand, model })
+    const cars = await findCarsByBrandSlug.execute({ brand_slug })
+
+    const serializedItems = cars.map(({
+      car_km,
+      car_price,
+      car_image,
+      updated_at,
+      created_at,
+      ...rest
+    }) => ({
+      ...rest,
+      car_km: Number(car_km),
+      car_price: Number(car_price),
+      car_image: car_image ? (car_image as string).split(',').map(image => image.trim()) : [],
+      updated_at: moment(updated_at).format('DD [de] MMMM, YYYY'),
+      created_at: moment(created_at).format('DD [de] MMMM, YYYY'),
+    }))
+
+    return response.json({ results: serializedItems })
+  }
+  async listByBrandAndModelSlug(request: Request, response: Response): Promise<Response> {
+    const { brand_slug, model_slug } = request.params
+
+    const findCarsByBrand = new ListByBrandAndModelSlugService()
+
+    const cars = await findCarsByBrand.execute({ brand_slug, model_slug })
 
     const serializedItems = cars.map(({
       car_km,

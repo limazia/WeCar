@@ -20,11 +20,11 @@ class CreateModelService {
     }
 
     if (!model_name) {
-      throw new AppError(messages.error.input.ENTER_MODEL_NAME)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!model_slug) {
-      throw new AppError(messages.error.input.ENTER_MODEL_SLUG)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     const nameQuery = await connection('models').where({ model_name }).first()

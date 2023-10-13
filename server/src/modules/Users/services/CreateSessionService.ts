@@ -26,11 +26,11 @@ class CreateSessionService {
     }
 
     if (!email) {
-      throw new AppError(messages.error.input.ENTER_EMAIL)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!password) {
-      throw new AppError(messages.error.input.ENTER_PASSWORD)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!(await compare(password, user.password))) {

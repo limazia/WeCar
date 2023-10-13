@@ -17,7 +17,7 @@ class AccountController {
   }
 
   async updateByScope(request: Request, response: Response): Promise<Response> {
-    const { name, email, password, new_password, confirm_password } = request.body
+    const { name, email, password, newPassword, confirmPassword } = request.body
     const { scope, id } = request.params
 
     const updateUser = new UpdateAccountService()
@@ -28,8 +28,8 @@ class AccountController {
       name,
       email,
       password,
-      new_password,
-      confirm_password
+      newPassword,
+      confirmPassword
     })
 
     return response.json({ message: messages.success.RECORD_SUCCESSFULLY_UPDATED })

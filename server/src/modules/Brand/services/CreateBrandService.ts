@@ -11,11 +11,11 @@ interface IRequest {
 class CreateBrandService {
   public async execute({ brand_name, brand_slug }: IRequest): Promise<void> {
     if (!brand_name) {
-      throw new AppError(messages.error.input.ENTER_BRAND_NAME)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!brand_slug) {
-      throw new AppError(messages.error.input.ENTER_BRAND_SLUG)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     const nameQuery = await connection('brands').where({ brand_name }).first()

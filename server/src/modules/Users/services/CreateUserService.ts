@@ -9,18 +9,18 @@ import { messages } from '@shared/helpers/constants/messages'
 interface IRequest {
   name: string;
   email: string;
+  id_group: string;
   password: string;
-  confirm_password: string;
-  permissions: { value: string }[];
+  confirmPassword: string;
 }
 
 class CreateUserService {
   public async execute({
     name,
     email,
+    id_group,
     password,
-    confirm_password,
-    permissions
+    confirmPassword
   }: IRequest): Promise<void> {
     const emailExists = await connection('users').where({ email }).first()
 
@@ -29,18 +29,22 @@ class CreateUserService {
     }
 
     if (!name) {
-      throw new AppError(messages.error.input.ENTER_NAME)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!email) {
-      throw new AppError(messages.error.input.ENTER_EMAIL)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
+    }
+
+    if (!id_group) {
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
     if (!password) {
-      throw new AppError(messages.error.input.ENTER_PASSWORD)
+      throw new AppError(messages.error.input.COMPLETE_FIELD)
     }
 
-    if (password !== confirm_password) {
+    if (password !== confirmPassword) {
       throw new AppError(messages.error.form.PASSWORDS_DONT_MATCH)
     }
 
@@ -48,14 +52,12 @@ class CreateUserService {
     const salt = genSaltSync(10)
     const passwordHash = hashSync(password, salt)
 
-    const formattedPermissions = permissions.map(({ value }) => value).toString()
-
     await connection('users').insert({
       id,
       name,
       email,
+      id_group,
       password: passwordHash,
-      permissions: formattedPermissions,
     })
   }
 }
