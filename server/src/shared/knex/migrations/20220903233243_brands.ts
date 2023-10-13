@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('brand_slug').notNullable()
 
     table
-      .timestamp('updated_at')
+      .timestamp('update_at')
       .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
     table.timestamp('created_at').defaultTo(knex.raw('CURRENT_TIMESTAMP'))
   })

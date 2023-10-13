@@ -1,2 +1,0 @@
-export { WhatsAppIcon } from "./WhatsApp";
-

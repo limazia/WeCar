@@ -1,49 +1,39 @@
-## ✨ Instalação
+# WeCar Web
 
-* WeCar requer [Node.js](https://nodejs.org/) v10+ e [Vite](https://vitejs.dev/) para execução.
+## Instalação
 
-1. Trocar o nome do arquivo `.env.exemple` para `.env`
-2. Crie uma conta no [EmailJS](https://www.emailjs.com/) e siga este tutorial "[Enviar email em formulário com React JS de uma forma simples](https://www.youtube.com/watch?v=Zbg1BHOVzRg)"
-3. Coloque os valores das variavés de ambiente no arquivo `.env`
-   ```js
-   # App
-   VITE_APP_NAME="WeCar"
-   VITE_APP_ENV="development"
-   VITE_APP_URL="http://localhost:5173"
+WeCar requer [Node.js](https://nodejs.org/) v10+ para execução e a biblioteca do [React](https://pt-br.reactjs.org/).
 
-   # API
-   VITE_API_URL="http://localhost:3333"
+Crie uma cópia do arquivo `.env.example` e renomeie-o para `.env`
 
-   # EmailJS
-   VITE_EMAILJS_SERVICE_KEY=
-   VITE_EMAILJS_PUBLIC_KEY=
-   VITE_EMAILJS_TEMPLATE_ID=
+Instale as dependências e inicie o servidor.
 
-   # Social
-   VITE_NUMBER_PHONE="551999999999"
-   VITE_FACEBOOK_URL="https://www.facebook.com/"
-   VITE_INSTAGRAM_URL="https://www.instagram.com/"
-   ```
-4. Instalar as dependências
-   ```sh
-   npm install ou yarn
-   ```
+```sh
+.env
+REACT_APP_ENV=development
+```
 
-## 📝 Como Usar
+```sh
+cd wecar
+cd web
+npm i
+npm start
+```
 
-1. Executar como desenvolvimento
-   ```
-   cd wecar
-   cd web
-   npm run dev
-   ```
-2. Executar em produção
+Para ambientes de produção...
 
-    ```
-    cd wecar
-    cd server
-    npm run build
-    ```
+```sh
+.env
+REACT_APP_ENV=production
+```
+
+```sh
+cd wecar
+cd web
+npm i
+npm start
+```
 
 ## License
+
 MIT

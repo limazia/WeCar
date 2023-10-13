@@ -17,34 +17,13 @@
 
    # JWT
    JWT_TOKEN="SUA_CHAVE"
+
    ```
 
-3. Editar arquivo de usuário admin
-
-   1. Acesse a pasta `server/src/config`
-   2. Abra o arquivo `user.ts`
-   3. Edite com suas informações
-      ```sh
-      // Usuário master usado em ultimo caso
-      export const master = {
-        name: 'WeCar',
-        email: 'master@wecar.com',
-        password: 'wecar',
-      }
-
-      // Usuário administrador do sistema
-      export const admin = {
-        name: 'Acacio de Lima',
-        email: 'acacio@wecar.com',
-        password: '1234',
-      }
-
-      ```
-
-
-4. Instalar as dependências
+3. Instalar as dependências
    ```sh
    npm install ou yarn
+
    ```
 
 ## 📝 Como Usar
@@ -53,22 +32,18 @@
    ```
    cd wecar
    cd server
-   npm run knex:migrate:latest
-   npm run knex:seed:run
+   npm run knex:migrate
+   npm run knex:seed
    npm run dev
    ```
 2. Executar em produção
-
-    ```
-    Obs: No caminho server\src\shared\knex\seeds, exclua o arquivo 01_cars.ts
-
-    cd wecar
-    cd server
-    npm run knex:migrate:latest
-    npm run knex:seed:run
-    npm run build
-    npm start
-    ```
+   ```
+   cd wecar
+   cd server
+   npm run knex:migrate
+   npm run build
+   npm start
+   ```
       __Se tudo ocorreu bem, deve ver no console as seguintes messagens:__
    ```
    🌎 Environment: development
@@ -77,4 +52,5 @@
    ```
 
 ## License
+
 MIT

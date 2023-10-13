@@ -72,7 +72,14 @@ exports.seed = async function (knex: Knex): Promise<void> {
       car_id: '4ac38535',
       car_km: '90000',
       car_price: '100000',
-      car_image: '',
+      car_image: [
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175046526.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175165221.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175307421.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175484038.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175518440.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175643437.jpg?s=fill&w=1920&h=1440&q=75',
+        'https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175940226.jpg?s=fill&w=1920&h=1440&q=75'],
       car_fuel: 'gasoline',
       car_exchange: 'automatic',
       car_year: '2017/2017',
@@ -103,13 +110,3 @@ exports.seed = async function (knex: Knex): Promise<void> {
 
   return Promise.resolve()
 }
-
-/*
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175046526.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175165221.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175307421.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175484038.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175518440.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175643437.jpg?s=fill&w=1920&h=1440&q=75,
-https://image.webmotors.com.br/_fotos/anunciousados/gigante/2022/202208/20220804/mercedesbenz-c-180-1.6-cgi-16v-turbo-flex-4p-automatico-wmimagem18175940226.jpg?s=fill&w=1920&h=1440&q=75
-*/

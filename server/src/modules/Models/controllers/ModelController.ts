@@ -5,7 +5,6 @@ import { moment } from '@shared/helpers/moment'
 
 import { ListModelsService } from '../services/ListModelsService'
 import { CreateModelService } from '../services/CreateModelService'
-import { ListBrandBySlugService } from '../services/ListBrandBySlugService'
 import { FindModelByIdService } from '../services/FindModelByIdService'
 import { UpdateModelService } from '../services/UpdateModelService'
 import { DeleteModelService } from '../services/DeleteModelService'
@@ -16,7 +15,17 @@ class ModelController {
 
     const models = await listModels.execute()
 
-    return response.json(models)
+    const serializedItems = models.map(({
+      updated_at,
+      created_at,
+      ...rest
+    }) => ({
+      ...rest,
+      updated_at: moment(updated_at).format('LL'),
+      created_at: moment(created_at).format('LL'),
+    }))
+
+    return response.json({ results: serializedItems })
   }
 
   async create(request: Request, response: Response): Promise<Response> {
@@ -31,26 +40,6 @@ class ModelController {
     })
 
     return response.json({ message: messages.success.SUCCESSFULLY_REGISTERED })
-  }
-
-  async listByBrandSlug(request: Request, response: Response): Promise<Response> {
-    const { brand_slug } = request.params
-
-    const listBrand = new ListBrandBySlugService()
-
-    const brands = await listBrand.execute({ brand_slug })
-
-    const serializedItems = brands.map(({
-      updated_at,
-      created_at,
-      ...rest
-    }) => ({
-      ...rest,
-      updated_at: moment(updated_at).format('LL'),
-      created_at: moment(created_at).format('LL'),
-    }))
-
-    return response.json({ results: serializedItems })
   }
 
   async findById(request: Request, response: Response): Promise<Response> {

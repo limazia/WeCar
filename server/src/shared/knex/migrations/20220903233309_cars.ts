@@ -3,8 +3,8 @@ import { Knex } from 'knex'
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('cars', (table: Knex.TableBuilder) => {
     table.string('car_id').primary().notNullable().unique()
-    table.integer('car_km').notNullable()
-    table.integer('car_price').notNullable()
+    table.string('car_km').notNullable()
+    table.string('car_price').notNullable()
     table.text('car_image')
     table
       .enu('car_fuel', ['gasoline', 'flex', 'diesel', 'electric', 'hybrid'])
@@ -24,7 +24,7 @@ export async function up(knex: Knex): Promise<void> {
       .onDelete('CASCADE')
 
     table
-      .timestamp('updated_at')
+      .timestamp('update_at')
       .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
     table.timestamp('created_at').defaultTo(knex.raw('CURRENT_TIMESTAMP'))
   })

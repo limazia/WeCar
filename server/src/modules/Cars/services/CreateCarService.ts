@@ -24,7 +24,7 @@ class CreateCarService {
     car_observation,
     id_model
   }: IRequest): Promise<void> {
-    if (!car_km || !car_price || !car_fuel || !car_exchange || !car_year || !id_model) {
+    if (!car_km || !car_price || !car_image || !car_fuel || !car_exchange || !car_year || !car_observation || !id_model) {
       throw new AppError('Missing data')
     }
 
@@ -39,7 +39,7 @@ class CreateCarService {
       car_exchange,
       car_year,
       car_observation,
-      id_model
+      id_model,
     })
   }
 }

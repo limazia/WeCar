@@ -11,7 +11,7 @@
     "clean": "tsc --build --clean",
     "test": "jest",
     "knex": "knex --knexfile src/shared/knex/knexfile.ts",
-    "knex:migrate:make": "npm run knex migrate:make",
+    "knex:migrate:make": "npm run knex -x ts migrate:make",
     "knex:migrate:latest": "npm run knex migrate:latest",
     "knex:migrate:rollback": "npm run knex migrate:rollback",
     "knex:seed:run": "npm run knex seed:run"

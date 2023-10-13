@@ -6,11 +6,10 @@ export async function up(knex: Knex): Promise<void> {
     table.string('name').notNullable()
     table.string('email').notNullable()
     table.string('password').notNullable()
-    table.boolean('is_deleteable').notNullable().defaultTo(true)
-    table.string('id_group').notNullable()
+    table.text('permissions').notNullable().defaultTo('[]')
 
     table
-      .timestamp('updated_at')
+      .timestamp('update_at')
       .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
     table.timestamp('created_at').defaultTo(knex.raw('CURRENT_TIMESTAMP'))
   })

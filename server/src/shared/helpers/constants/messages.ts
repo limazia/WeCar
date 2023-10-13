@@ -21,7 +21,13 @@ export const messages = {
       VALUE_ALREADY_REGISTERED: 'Valor já registrado',
     },
     input: {
-      COMPLETE_FIELD: 'Campo vazio',
+      ENTER_NAME: 'Digite um nome',
+      ENTER_EMAIL: 'Digite um email',
+      ENTER_PASSWORD: 'Digite uma senha',
+      ENTER_BRAND_NAME: 'Digite um nome de marca',
+      ENTER_BRAND_SLUG: 'Digite um slug de marca',
+      ENTER_MODEL_NAME: 'Digite um nome de modelo',
+      ENTER_MODEL_SLUG: 'Digite um slug do modelo',
     },
   },
   success: {
