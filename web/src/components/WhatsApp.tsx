@@ -2,7 +2,7 @@
 import { WhatsAppIcon } from "./Icons";
 
 export function WhatsApp() {
-  const number = import.meta.env.VITE_NUMBER_PHONE;
+  const number = import.meta.env.VITE_PHONE_NUMBER;
   const message = "Olá, gostaria de falar com um vendedor da WeCar!";
 
   const whatsapp_url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
