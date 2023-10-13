@@ -20,7 +20,7 @@
    VITE_EMAILJS_TEMPLATE_ID=
 
    # Social
-   VITE_NUMBER_PHONE="551999999999"
+   VITE_PHONE_NUMBER="551999999999"
    VITE_FACEBOOK_URL="https://www.facebook.com/"
    VITE_INSTAGRAM_URL="https://www.instagram.com/"
    ```
