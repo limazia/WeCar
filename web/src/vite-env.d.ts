@@ -9,7 +9,7 @@ interface ImportMetaEnv {
   readonly VITE_EMAILJS_SERVICE_KEY: string;
   readonly VITE_EMAILJS_PUBLIC_KEY: string;
   readonly VITE_EMAILJS_TEMPLATE_ID: string;
-  readonly VITE_NUMBER_PHONE: string;
+  readonly VITE_PHONE_NUMBER: string;
   readonly VITE_FACEBOOK_URL: string;
   readonly VITE_INSTAGRAM_URL: string;
 }
