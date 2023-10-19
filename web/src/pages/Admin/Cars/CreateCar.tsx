@@ -135,7 +135,7 @@ export function CreateCar() {
   return (
     <>
       <Head title="Novo carro" />
-      <RedirectPermission required={["create_car"]} />
+      <RedirectPermission required={["cars.create"]} />
       <div className="container pb-5">
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">

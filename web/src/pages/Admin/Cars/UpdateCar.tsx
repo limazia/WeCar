@@ -47,9 +47,7 @@ export function UpdateCar() {
   }
 
   async function loadCarById(car_id: string) {
-    const data = await CarService.findById({ car_id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await CarService.findById({ car_id });
 
     if (response === undefined) {
       navigate("/admin/cars");
@@ -156,7 +154,7 @@ export function UpdateCar() {
   return (
     <>
       <Head title="Editando carro" />
-      <RedirectPermission required={["update_car"]} />
+      <RedirectPermission required={["cars.update"]} />
       <div className="container pb-5">
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">

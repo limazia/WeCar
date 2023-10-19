@@ -90,7 +90,7 @@ export function CreateUser() {
   return (
     <>
       <Head title="Novo usuário" />
-      <RedirectPermission required={["create_user"]} />
+      <RedirectPermission required={["users.create"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">

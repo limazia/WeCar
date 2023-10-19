@@ -102,11 +102,18 @@
   .menu {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: start;
 
     .logout {
+      display: flex;
+      align-items: center;
+      gap: 3px;
       font-weight: 500;
       color: #f46a6a;
+
+      svg {
+        fill: #f46a6a;
+      }
 
       &:hover {
         color: #f46a6a;

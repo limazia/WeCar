@@ -5,7 +5,7 @@ import { ArrowLeft } from "@phosphor-icons/react";
 
 import { GroupService } from "@utils/services/GroupService";
 import { Permission } from "@utils/interfaces";
-import { permissions as ListPermissions } from "@utils/database/permisisons";
+import { permissions as ListPermissions } from "@utils/helpers/database/permisisons";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
@@ -83,7 +83,7 @@ export function CreateGroup() {
   return (
     <>
       <Head title="Novo grupo" />
-      <RedirectPermission required={["create_group"]} />
+      <RedirectPermission required={["groups.create"]} />
       <div className="container pb-5">
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">
@@ -126,7 +126,7 @@ export function CreateGroup() {
                               key={`permission-${index}`}
                               className="col-md-6"
                             >
-                              <div className="card">
+                              <div className="card h-100">
                                 <div className="card-body">
                                   <b>{item.name}</b>
                                   {item.permissions.map((permission, index) => (

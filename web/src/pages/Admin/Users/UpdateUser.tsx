@@ -39,9 +39,7 @@ export function UpdateUser() {
   }
 
   async function loadUserById(id: string) {
-    const data = await UserService.findById({ id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await UserService.findById({ id });
 
     if (response === undefined) {
       navigate("/admin/users");
@@ -52,7 +50,7 @@ export function UpdateUser() {
 
       setName(response.name);
       setEmail(response.email);
-      setGroup(response.group.id);
+      setGroup(response.role_id);
     }
   }
 
@@ -104,7 +102,7 @@ export function UpdateUser() {
   return (
     <>
       <Head title="Editando usuário" />
-      <RedirectPermission required={["update_user"]} />
+      <RedirectPermission required={["users.update"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">

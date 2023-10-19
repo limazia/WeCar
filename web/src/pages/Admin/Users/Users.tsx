@@ -12,7 +12,7 @@ import { Head } from "@components/Head";
 import { Empty } from "@components/Empty";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
-import { Permission } from "@components/Permission";
+import { Permission, RedirectPermission } from "@components/Permission";
 
 import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
@@ -98,6 +98,7 @@ export function Users() {
   return (
     <>
       <Head title="Usuários" />
+      <RedirectPermission required={["users.list"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
@@ -118,7 +119,7 @@ export function Users() {
                 <button className="btn btn-link" onClick={refreshUsers}>
                   <ArrowsClockwise size={20} />
                 </button>
-                <Permission required={["create_user"]}>
+                <Permission required={["users.create"]}>
                   <Link className="btn btn-primary-w" to="/admin/users/create">
                     <Plus size={20} className="mr-1" /> Novo usuário
                   </Link>
@@ -131,8 +132,8 @@ export function Users() {
               <>
                 {groupsOfThreeItems.map((group, index) => (
                   <div
+                    key={`users-${index}`}
                     className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
-                    key={index}
                   >
                     {group.map((item, itemIndex) => (
                       <>
@@ -150,7 +151,7 @@ export function Users() {
                                   )}
 
                                   <small className="text-muted d-block">
-                                    {item.group.name}
+                                    {item.role}
                                   </small>
                                   <small className="text-muted">
                                     {item.email}
@@ -160,10 +161,10 @@ export function Users() {
 
                               {item.is_deleteable && (
                                 <Permission
-                                  required={["update_user", "delete_user"]}
+                                  required={["users.update", "users.delete"]}
                                 >
                                   <div className="card-footer">
-                                    <Permission required={["update_user"]}>
+                                    <Permission required={["users.update"]}>
                                       <Link
                                         className="btn btn-edit btn-block"
                                         to={`/admin/users/edit/${item.id}`}
@@ -173,7 +174,7 @@ export function Users() {
                                     </Permission>
 
                                     {item.id !== user?.id && (
-                                      <Permission required={["delete_user"]}>
+                                      <Permission required={["users.delete"]}>
                                         <Button
                                           className="btn btn-delete btn-block"
                                           loading={loading}

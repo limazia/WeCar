@@ -51,7 +51,7 @@ export function CreateBrand() {
   return (
     <>
       <Head title="Nova marca" />
-      <RedirectPermission required={["create_brand"]} />
+      <RedirectPermission required={["brands.create"]} />
       <div className="container pb-5">
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">

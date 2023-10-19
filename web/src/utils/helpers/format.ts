@@ -27,11 +27,14 @@ export function wasWeeksAgo(date: string | undefined): boolean {
     return false;
   }
 
-  const createdAtDate = new Date(date);
+  // Reformatando a string de data para o formato "MM/DD/YYYY"
+  const formattedDate = date.split("/").reverse().join("-");
+
+  const createdAtDate = new Date(formattedDate);
   const currentDate = new Date();
 
   const differenceInMilliseconds = currentDate.getTime() - createdAtDate.getTime();
   const differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-  return differenceInDays > 7 ? false : true;
+  return differenceInDays < 5;
 }

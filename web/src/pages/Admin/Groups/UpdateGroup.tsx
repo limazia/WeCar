@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { ArrowLeft } from "@phosphor-icons/react";
 
 import { GroupService } from "@utils/services/GroupService";
-import { permissions as ListPermissions } from "@utils/database/permisisons";
+import { permissions as ListPermissions } from "@utils/helpers/database/permisisons";
 import { Permission } from "@utils/interfaces";
 
 import { Head } from "@components/Head";
@@ -30,9 +30,7 @@ export function UpdateGroup() {
   }, []);
 
   async function loadGroupById(group_id: string) {
-    const data = await GroupService.findById({ group_id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await GroupService.findById({ group_id });
 
     if (response === undefined) {
       navigate("/admin/groups");
@@ -115,7 +113,7 @@ export function UpdateGroup() {
   return (
     <>
       <Head title="Editando grupo" />
-      <RedirectPermission required={["update_group"]} />
+      <RedirectPermission required={["groups.update"]} />
       <div className="container pb-5">
         <div className="row d-flex justify-content-center">
           <div className="col-md-12">
@@ -158,7 +156,7 @@ export function UpdateGroup() {
                               key={`permission-${index}`}
                               className="col-md-6"
                             >
-                              <div className="card">
+                              <div className="card h-100">
                                 <div className="card-body">
                                   <b>{item.name}</b>
                                   {item.permissions.map((permission, index) => (

@@ -37,9 +37,7 @@ export function UpdateModel() {
   }
 
   async function loadBrandById(model_id: string) {
-    const data = await ModelService.findById({ model_id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await ModelService.findById({ model_id });
 
     if (response === undefined) {
       navigate("/admin/models");
@@ -87,7 +85,7 @@ export function UpdateModel() {
   return (
     <>
       <Head title="Editando modelo" />
-      <RedirectPermission required={["update_model"]} />
+      <RedirectPermission required={["models.update"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">

@@ -58,7 +58,7 @@ export function Name() {
 
   return (
     <>
-      <RedirectPermission required={["update_name"]} />
+      <RedirectPermission required={["update.name"]} />
       <div className="card">
         <div className="card-body">
           <h5 className="card-title font-weight-bold">Alterar nome</h5>

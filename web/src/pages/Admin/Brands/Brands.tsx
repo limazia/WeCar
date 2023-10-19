@@ -96,7 +96,7 @@ export function Brands() {
   return (
     <>
       <Head title="Marcas" />
-      <RedirectPermission required={["brands"]} />
+      <RedirectPermission required={["brands.list"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
@@ -117,7 +117,7 @@ export function Brands() {
                 <button className="btn btn-link" onClick={refreshBrands}>
                   <ArrowsClockwise size={20} />
                 </button>
-                <Permission required={["create_brand"]}>
+                <Permission required={["brands.create"]}>
                   <Link className="btn btn-primary-w" to="/admin/brands/create">
                     <Plus size={20} className="mr-1" /> Nova marca
                   </Link>
@@ -150,10 +150,10 @@ export function Brands() {
                           </div>
 
                           <Permission
-                            required={["update_brand", "delete_brand"]}
+                            required={["brands.update", "brands.delete"]}
                           >
                             <div className="card-footer">
-                              <Permission required={["update_brand"]}>
+                              <Permission required={["brands.update"]}>
                                 <Link
                                   className="btn btn-edit btn-block"
                                   to={`/admin/brands/edit/${item.brand_id}`}
@@ -162,7 +162,7 @@ export function Brands() {
                                 </Link>
                               </Permission>
 
-                              <Permission required={["delete_brand"]}>
+                              <Permission required={["brands.delete"]}>
                                 <Button
                                   className="btn btn-delete btn-block"
                                   loading={loading}

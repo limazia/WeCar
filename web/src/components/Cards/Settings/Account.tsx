@@ -7,7 +7,7 @@ export function Account() {
 
   return (
     <>
-      <RedirectPermission required={["view_account"]} />
+      <RedirectPermission required={["view.account"]} />
       <div className="card">
         <div className="card-body">
           <h5 className="card-title font-weight-bold">Informações da Conta</h5>
@@ -25,12 +25,12 @@ export function Account() {
 
             <div className="d-flex flex-column">
               <span className="text-muted font-weight-bold">Grupo</span>
-              <p>{user?.group?.name}</p>
+              <p>{user?.role}</p>
             </div>
 
             <div className="d-flex flex-column">
               <span className="text-muted font-weight-bold">Registro</span>
-              <p>{user?.created_at.toString()}</p>
+              <p>{user?.created_at}</p>
             </div>
           </div>
         </div>

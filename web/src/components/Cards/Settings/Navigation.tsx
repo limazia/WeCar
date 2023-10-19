@@ -21,7 +21,7 @@ export function Navigation() {
           </NavLink>
         </div>
 
-        <Permission required={["update_name"]}>
+        <Permission required={["update.name"]}>
           <div className="menu pt-3">
             <NavLink
               to="/admin/settings/name"
@@ -32,7 +32,7 @@ export function Navigation() {
           </div>
         </Permission>
 
-        <Permission required={["update_email"]}>
+        <Permission required={["update.email"]}>
           <div className="menu py-3">
             <NavLink
               to="/admin/settings/email"
@@ -43,7 +43,7 @@ export function Navigation() {
           </div>
         </Permission>
 
-        <Permission required={["update_password"]}>
+        <Permission required={["update.password"]}>
           <div className="menu">
             <NavLink
               to="/admin/settings/password"

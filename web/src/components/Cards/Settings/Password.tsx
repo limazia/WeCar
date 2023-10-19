@@ -65,7 +65,7 @@ export function Password() {
 
   return (
     <>
-      <RedirectPermission required={["update_password"]} />
+      <RedirectPermission required={["update.password"]} />
       <div className="card">
         <div className="card-body">
           <h5 className="card-title font-weight-bold">Alterar senha</h5>

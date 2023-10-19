@@ -72,7 +72,7 @@ export function CreateModel() {
   return (
     <>
       <Head title="Novo modelo" />
-      <RedirectPermission required={["create_model"]} />
+      <RedirectPermission required={["models.create"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">

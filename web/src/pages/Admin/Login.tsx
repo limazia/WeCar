@@ -1,6 +1,5 @@
 import { useState, FormEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { useAuth } from "@utils/hooks/useAuth";
 
@@ -30,17 +29,12 @@ export function Login() {
     setLoading(true);
 
     try {
-      const { error } = await login({
+      await login({
         email,
         password,
       });
 
-      if (error) {
-        toast.error(error);
-        setEmail("");
-        setPassword("");
-        setLoading(false);
-      }
+      setLoading(false);
     } catch (ex) {
       setLoading(false);
     }
@@ -59,7 +53,9 @@ export function Login() {
                 <Link to="/">
                   <Logo width={150} />
                 </Link>
-                <small className="text-muted">Faça o login para continuar navegando.</small>
+                <small className="text-muted">
+                  Faça o login para continuar navegando.
+                </small>
 
                 <div className="text-center mt-4">
                   <form onSubmit={handleSubmit}>

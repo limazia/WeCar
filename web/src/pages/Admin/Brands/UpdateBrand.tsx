@@ -23,9 +23,7 @@ export function UpdateBrand() {
   }, []);
 
   async function loadBrandById(brand_id: string) {
-    const data = await BrandService.findById({ brand_id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await BrandService.findById({ brand_id });
 
     if (response === undefined) {
       navigate("/admin/brands");
@@ -70,7 +68,7 @@ export function UpdateBrand() {
   return (
     <>
       <Head title="Editando marca" />
-      <RedirectPermission required={["update_brand"]} />
+      <RedirectPermission required={["brands.update"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">

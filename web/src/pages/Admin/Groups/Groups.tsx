@@ -93,7 +93,7 @@ export function Groups() {
   return (
     <>
       <Head title="Grupos" />
-      <RedirectPermission required={["groups"]} />
+      <RedirectPermission required={["groups.list"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
@@ -143,11 +143,10 @@ export function Groups() {
                                       <span key={`permission-${index}`}>
                                         <small className="text-muted">
                                           {permission}
+                                          {index <
+                                            item.group_permissions.length -
+                                              1 && <>, </>}
                                         </small>
-                                        {index <
-                                          item.group_permissions.length - 1 && (
-                                          <span>, </span>
-                                        )}
                                       </span>
                                     )
                                   )}

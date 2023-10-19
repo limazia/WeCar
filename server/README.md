@@ -8,7 +8,7 @@
 2. Coloque os valores das variavés de ambiente no arquivo `.env`
    ```js
    # App
-   NODE_ENV="development"
+   APP_ENV="development"
    APP_PORT=3333
 
    # MySQL

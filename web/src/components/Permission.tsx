@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuth } from "@utils/hooks/useAuth";
+import { useCan } from "@utils/hooks/useCan";
 
 interface PermissionProps {
   children?: ReactNode;
@@ -13,33 +13,24 @@ interface RedirectPermissionProps {
 }
 
 export function Permission({ children, required }: PermissionProps) {
-  const { user } = useAuth();
-  const permissions = user?.group?.permissions;
-  const hasRequiredPermissions =
-    permissions &&
-    (permissions.includes("admin") ||
-      permissions.some((permission) => required.includes(permission)));
+  const userCanSeeComponent = useCan({ required });
 
-  if (hasRequiredPermissions) {
-    return children;
+  if (!userCanSeeComponent) {
+    return null;
   }
+
+  return <>{children}</>;
 }
 
 export function RedirectPermission({ required }: RedirectPermissionProps) {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const permissions = user?.group?.permissions;
+  const userCanSeeComponent = useCan({ required });
 
   useEffect(() => {
-    const hasRequiredPermissions =
-      permissions &&
-      (permissions.includes("admin") ||
-        permissions.some((permission) => required.includes(permission)));
-
-    if (!hasRequiredPermissions) {
+    if (!userCanSeeComponent) {
       navigate("/admin/");
     }
-  }, [permissions, required, navigate]);
+  }, [userCanSeeComponent, required, navigate]);
 
   return <></>;
 }

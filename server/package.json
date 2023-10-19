@@ -6,11 +6,11 @@
   "license": "",
   "scripts": {
     "start": "node ./dist/server.js",
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/shared/http/server.ts",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "clean": "tsc --build --clean",
     "test": "jest",
-    "knex": "knex --knexfile src/shared/knex/knexfile.ts",
+    "knex": "knex --knexfile src/knex/knexfile.ts",
     "knex:migrate:make": "npm run knex migrate:make",
     "knex:migrate:latest": "npm run knex migrate:latest",
     "knex:migrate:rollback": "npm run knex migrate:rollback",

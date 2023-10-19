@@ -10,7 +10,7 @@ import { Head } from "@components/Head";
 import { Loading } from "@components/Loading";
 import { Footer } from "@components/Footer";
 import { Navbar, Utility } from "@components/Navbar";
-import { WhatsApp } from "@components/WhatsApp";
+import { WhatsApp } from "@components/Floating";
 import { BrandLogo } from "@components/BrandLogo";
 import { WhatsAppIcon } from "@components/Icons/WhatsApp";
 import { Carousel, SingleImage } from "@components/Images";
@@ -42,9 +42,7 @@ export function Buy() {
   }, [loading]);
 
   async function fetchData() {
-    const data = await CarService.findById({ car_id });
-
-    const response = Array.isArray(data) ? data[0] : data;
+    const response = await CarService.findById({ car_id });
 
     if (response === undefined) {
       navigate("/admin/cars");

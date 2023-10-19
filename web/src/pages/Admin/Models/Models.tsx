@@ -96,7 +96,7 @@ export function Models() {
   return (
     <>
       <Head title="Modelos" />
-      <RedirectPermission required={["models"]} />
+      <RedirectPermission required={["models.list"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
@@ -117,7 +117,7 @@ export function Models() {
                 <button className="btn btn-link" onClick={refreshModels}>
                   <ArrowsClockwise size={20} />
                 </button>
-                <Permission required={["create_model"]}>
+                <Permission required={["models.create"]}>
                   <Link className="btn btn-primary-w" to="/admin/models/create">
                     <Plus size={20} className="mr-1" /> Novo modelo
                   </Link>
@@ -150,10 +150,10 @@ export function Models() {
                           </div>
 
                           <Permission
-                            required={["update_model", "delete_model"]}
+                            required={["models.update", "models.delete"]}
                           >
                             <div className="card-footer">
-                              <Permission required={["update_model"]}>
+                              <Permission required={["models.update"]}>
                                 <Link
                                   className="btn btn-edit btn-block"
                                   to={`/admin/models/edit/${item.model_id}`}
@@ -162,7 +162,7 @@ export function Models() {
                                 </Link>
                               </Permission>
 
-                              <Permission required={["delete_model"]}>
+                              <Permission required={["models.delete"]}>
                                 <Button
                                   className="btn btn-delete btn-block"
                                   loading={loading}

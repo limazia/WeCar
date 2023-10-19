@@ -197,6 +197,29 @@ button:active:focus:not(:disabled):not(.disabled) {
   border-radius: 0.25rem;
 }
 
+.home {
+  height: 500px;
+  width: 100%;
+}
+.home .content {
+  margin-top: 60px;
+  text-align: center;
+}
+.home .content .title {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 123.5%;
+  letter-spacing: -1.5px;
+}
+.home .content .description {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 133.4%;
+  letter-spacing: 0px;
+  color: rgba(20, 26, 29, 0.6);
+}
+
 .navbar {
   padding: 0px;
 }
@@ -278,11 +301,17 @@ button:active:focus:not(:disabled):not(.disabled) {
 .navbar-admin .menu {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: start;
 }
 .navbar-admin .menu .logout {
+  display: flex;
+  align-items: center;
+  gap: 3px;
   font-weight: 500;
   color: #f46a6a;
+}
+.navbar-admin .menu .logout svg {
+  fill: #f46a6a;
 }
 .navbar-admin .menu .logout:hover {
   color: #f46a6a;
@@ -348,8 +377,7 @@ button:active:focus:not(:disabled):not(.disabled) {
 .card-car .car-image {
   padding: 0 20px;
 }
-.card-car .car-image img,
-.card-car .car-image svg {
+.card-car .car-image img {
   max-width: 100%;
   /*
   height: 300px;
@@ -962,14 +990,24 @@ input[type=number] {
   cursor: pointer;
   z-index: 999;
   background-color: rgb(77, 194, 71);
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
 }
-.btn-whatsapp:hover {
-  color: #fff;
+
+.btn-home {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 999;
+  background-color: #FF009F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-create-table,
@@ -1121,8 +1159,8 @@ input[type=number] {
   align-items: center;
   height: 50px;
   color: #fff;
-  background-color: #5244A0;
-  border-color: #5244A0;
+  background-color: #5244a0;
+  border-color: #5244a0;
   border-radius: 10px;
   transition: 0.5s ease;
 }

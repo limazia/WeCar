@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { AnimatedOutlet } from "@components/AnimatedOutlet";
 import { Footer } from "@components/Footer";
 import { Navbar, NavbarAdmin, Utility } from "@components/Navbar";
-import { WhatsApp } from "@components/WhatsApp";
+import { WhatsApp, ReturnToApp } from "@components/Floating";
 
 export function Layout() {
   return (
@@ -32,6 +32,7 @@ export function AdminLayout() {
         <NavbarAdmin />
       </header>
       <main className="h-100">
+        <ReturnToApp />
         <Outlet />
       </main>
     </>

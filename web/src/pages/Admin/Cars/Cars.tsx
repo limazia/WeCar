@@ -100,7 +100,7 @@ export function Cars() {
   return (
     <>
       <Head title="Carros" />
-      <RedirectPermission required={["cars"]} />
+      <RedirectPermission required={["cars.list"]} />
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
@@ -121,7 +121,7 @@ export function Cars() {
                 <button className="btn btn-link" onClick={refreshModels}>
                   <ArrowsClockwise size={20} />
                 </button>
-                <Permission required={["create_car"]}>
+                <Permission required={["cars.create"]}>
                   <Link className="btn btn-primary-w" to="/admin/cars/create">
                     <Plus size={20} className="mr-1" /> Novo carro
                   </Link>
@@ -178,9 +178,9 @@ export function Cars() {
                             </div>
                           </div>
 
-                          <Permission required={["update_car", "delete_car"]}>
+                          <Permission required={["cars.update", "cars.delete"]}>
                             <div className="card-footer">
-                              <Permission required={["update_car"]}>
+                              <Permission required={["cars.update"]}>
                                 <Link
                                   className="btn btn-edit btn-block"
                                   to={`/admin/cars/edit/${item.car_id}`}
@@ -189,7 +189,7 @@ export function Cars() {
                                 </Link>
                               </Permission>
 
-                              <Permission required={["delete_car"]}>
+                              <Permission required={["cars.delete"]}>
                                 <Button
                                   className="btn btn-delete btn-block"
                                   loading={loading}

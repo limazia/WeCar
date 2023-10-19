@@ -7,31 +7,31 @@ import { Account } from "@utils/interfaces";
 import { api } from "@utils/axios/apiClient";
 import { useCookie } from "@utils/hooks/useCookies";
 
-interface AuthContextData {
-  user: Account | null;
+type AuthContextData = {
+  user: Account | undefined;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (credentials: LoginProps) => Promise<LoginResponse>;
+  login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
-}
+};
 
-interface LoginProps {
+type LoginCredentials = {
   email: string;
   password: string;
-}
+};
 
-interface LoginResponse {
-  token: string;
-  error: string | null;
-}
+type AuthProviderProps = {
+  children: ReactNode;
+};
 
 export const AuthContext = createContext({} as AuthContextData);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
+
   const { getCookie, setCookie, removeCookie } = useCookie("@wecar.token");
 
-  const [user, setUser] = useState<Account | null>(null);
+  const [user, setUser] = useState<Account>();
   const [isLoading, setIsLoading] = useState(true);
   const isAuthenticated = !!user;
 
@@ -50,21 +50,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (token) {
       try {
-        const data = await UserService.account();
-        const response = Array.isArray(data) ? data[0] : data;
+        const response = await UserService.account();
 
         if (response) {
           setUser(response);
 
-          const permissions = response?.group?.permissions;
+          const permissions = response?.permissions;
 
           const hasLoginAdminPermission =
             permissions &&
             (permissions.includes("admin") ||
-              permissions.some((permission: string) => ["dashboard"].includes(permission)));
+              permissions.some((permission: string) =>
+                ["dashboard"].includes(permission)
+              ));
 
           if (!hasLoginAdminPermission) {
-            toast.error("Você não tem permissão para acessar o painel administrativo.");
+            toast.error(
+              "Você não tem permissão para acessar o painel administrativo."
+            );
 
             logout();
             navigate("/admin/");
@@ -80,12 +83,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  async function login({ email, password }: LoginProps) {
+  async function login({ email, password }: LoginCredentials) {
     const response = await api.post("/api/auth/login", {
       email,
       password,
     });
-    const { token, error } = response.data;
+    const { token } = response.data;
 
     if (token) {
       setCookie(token, {
@@ -97,27 +100,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       window.location.replace("/admin/");
     }
-
-    return {
-      token,
-      error,
-    };
   }
 
   function logout() {
     removeCookie({ path: "/" });
-    setUser(null);
+    removeCookie({ path: "/" });
+
+    setUser(undefined);
 
     navigate("/admin");
   }
 
-  const value = {
-    user,
-    isAuthenticated,
-    isLoading,
-    login,
-    logout,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        isLoading,
+        login,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

@@ -5,6 +5,7 @@ import {
   Envelope,
   FacebookLogo,
   InstagramLogo,
+  SignOut,
 } from "@phosphor-icons/react";
 
 import { useAuth } from "@utils/hooks/useAuth";
@@ -89,11 +90,19 @@ export function Utility() {
         </a>
       </div>
       <div className="social">
-        <a href={import.meta.env.VITE_FACEBOOK_URL} target="_blank" rel="noreferrer">
+        <a
+          href={import.meta.env.VITE_FACEBOOK_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
           <FacebookLogo size={20} />
         </a>
 
-        <a href={import.meta.env.VITE_INSTAGRAM_URL} target="_blank" rel="noreferrer">
+        <a
+          href={import.meta.env.VITE_INSTAGRAM_URL}
+          target="_blank"
+          rel="noreferrer"
+        >
           <InstagramLogo size={20} />
         </a>
       </div>
@@ -104,11 +113,11 @@ export function Utility() {
 export function NavbarAdmin() {
   const { user, logout } = useAuth();
 
-  const permissions = user?.group?.permissions;
+  const permissions = user?.permissions;
   const hasPermission =
     permissions &&
     (permissions.includes("admin") ||
-      permissions.some((permission) => ["view_account"].includes(permission)));
+      permissions.some((permission) => ["view.account"].includes(permission)));
 
   const handleLogout = () => logout();
 
@@ -129,7 +138,7 @@ export function NavbarAdmin() {
           )}
           <div className="d-flex align-items-center">
             <small role="button" className="logout" onClick={handleLogout}>
-              Sair
+              <SignOut size={15} /> Sair
             </small>
           </div>
         </div>

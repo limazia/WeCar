@@ -15,7 +15,15 @@ export function Dashboard() {
   return (
     <>
       <Head title="Painel Administrativo" />
-      <Permission required={["brands", "models", "cars", "grouos", "users"]}>
+      <Permission
+        required={[
+          "brands.list",
+          "models.list",
+          "cars.list",
+          "groups.list",
+          "users.list",
+        ]}
+      >
         <div className="container">
           <div className="row">
             <div className="col-md-7">
@@ -24,7 +32,7 @@ export function Dashboard() {
                   <h5>Opções do sistema</h5>
                 </div>
                 <div className="card-body">
-                  <Permission required={["brands"]}>
+                  <Permission required={["brands.list"]}>
                     <Link className="item" to="./brands">
                       <div className="options">
                         <div className="icon">
@@ -37,7 +45,7 @@ export function Dashboard() {
                     </Link>
                   </Permission>
 
-                  <Permission required={["models"]}>
+                  <Permission required={["models.list"]}>
                     <Link className="item" to="./models">
                       <div className="options">
                         <div className="icon">
@@ -50,7 +58,7 @@ export function Dashboard() {
                     </Link>
                   </Permission>
 
-                  <Permission required={["cars"]}>
+                  <Permission required={["cars.list"]}>
                     <Link className="item" to="./cars">
                       <div className="options">
                         <div className="icon">
@@ -63,7 +71,7 @@ export function Dashboard() {
                     </Link>
                   </Permission>
 
-                  <Permission required={["groups"]}>
+                  <Permission required={["groups.list"]}>
                     <Link className="item" to="./groups">
                       <div className="options">
                         <div className="icon">
@@ -76,7 +84,7 @@ export function Dashboard() {
                     </Link>
                   </Permission>
 
-                  <Permission required={["users"]}>
+                  <Permission required={["users.list"]}>
                     <Link className="item" to="./users">
                       <div className="options">
                         <div className="icon">
