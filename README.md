@@ -3,7 +3,6 @@ O sistema WeCar é uma plataforma web para venda de veículos, equipada com um p
  
 **Nota:** O código do sistema contém contribuições de desenvolvedores em estágio inicial de aprendizado. Na época em que o projeto foi criado, estávamos no início da faculdade e do nosso aprendizado. Pedimos desculpas por qualquer imperfeição no código e agradecemos por sua compreensão enquanto continuamos a melhorar e aprimorar o sistema.
 
-
 ## ✨ Instalação
 _Para executar o projeto, precisa seguir os passos a seguir._
 
@@ -17,13 +16,17 @@ _Para executar o projeto, precisa seguir os passos a seguir._
    ```
 
 ## 💻 Tecnologias 
-- Node.js (Express, Knex.js)
-- MySQL
-- React (Bootstrap 4, Styled Components e Font Awesome 5)
+  - Node com TypeScript
+  - MySQL
+  - React com Vite
 
 ## 🤴 Autores
-| [<img src="https://avatars.githubusercontent.com/u/32038004?v=2" width="200px" height="auto"><br><sub>@limazia</sub>](https://github.com/limazia) | [<img src="https://avatars.githubusercontent.com/u/102265413?v=4" width="200px" height="auto"><br><sub>@dosantosv</sub>](https://github.com/dosantosv) | [<img src="https://avatars.githubusercontent.com/u/89888509?v=2" width="200px" height="auto"><br><sub>@luisrenato02</sub>](https://github.com/luisrenato02) | [<img src="https://avatars.githubusercontent.com/u/83615741?v=4" width="200px" height="auto"><br><sub>@gabrieloliveira2111</sub>](https://github.com/gabrieloliveira2111) | [<img src="https://avatars.githubusercontent.com/u/102265662?v=4" width="200px" height="auto"><br><sub>@Viniciusferreiraw</sub>](https://github.com/Viniciusferreiraw) | [<img src="https://i.imgur.com/S6ghpTQ.jpg" width="200px" height="auto"><br><sub>Leandro Felipe Carvalho</sub>](https://github.com/) | 
-|---|---|---|---|---|---|
+* [Acacio de Lima](https://github.com/limazia)
+* [Luís Renato](https://github.com/luisrenato02)
+* [Vinícius Santos](https://github.com/dosantosv)
+* [Vinicius Ferreira](https://github.com/Viniciusferreiraw)
+* [Gabriel de Oliveira Marques da Silva](https://github.com/gabrieloliveira2111) 
+* Leandro Felipe Carvalho (Professor)
 
 ## License
 MIT
