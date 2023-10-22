@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import { House } from "@phosphor-icons/react";
-
 import { WhatsAppIcon } from "./Icons";
 
 export function WhatsApp() {
@@ -18,13 +15,5 @@ export function WhatsApp() {
     >
       <WhatsAppIcon />
     </a>
-  );
-}
-
-export function ReturnToApp() {
-  return (
-    <Link to="/" className="btn btn-home d-none d-md-flex">
-      <House size={32} color="#fff" />
-    </Link>
   );
 }

@@ -14,7 +14,7 @@ export function Footer() {
           <div className="col-lg-4 col-md-6 mb-lg-0">
             <div className="logo">
               <Logo className="img-fluid" />
-              <p className="text-muted ml-3">
+              <p className="text-muted">
                 Plataforma que facilita a <br /> busca pelo novo automóvel
               </p>
             </div>
@@ -78,7 +78,7 @@ export function Footer() {
       <div className="bg-white py-4">
         <div className="container-fluid">
           <p className="copyright mb-0 py-2">
-            © {year} {company}. Todos os direitos reservados.
+            © {year} {company}.
           </p>
         </div>
       </div>

@@ -1,0 +1,37 @@
+.navigation-bar {
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+  border-top: 2px solid rgba(0, 0, 0, 0.12);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: 10px 0;
+
+  .list-items {
+    list-style: none;
+    display: flex;
+    position: relative;
+    margin-bottom: 0;
+
+    .item {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+
+      .link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #acb8c1;
+
+        &.active {
+          color: #ff767d;
+        }
+      }
+    }
+  }
+}

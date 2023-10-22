@@ -6,6 +6,7 @@ import {
   FacebookLogo,
   InstagramLogo,
   SignOut,
+  House,
 } from "@phosphor-icons/react";
 
 import { useAuth } from "@utils/hooks/useAuth";
@@ -124,22 +125,34 @@ export function NavbarAdmin() {
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg navbar-admin navbar-light">
-        <Link className="navbar-brand" to="/admin">
+        <Link className="navbar-brand d-sm-block d-lg-none" to="/admin">
           <Logo className="img-fluid" />
         </Link>
 
+        <div className="mx-auto d-sm-block d-lg-none">
+          <Link to="/">
+            <House size={32} color="#000" />
+          </Link>
+        </div>
+
         <div className="ml-auto menu">
-          {hasPermission ? (
-            <Link to="/admin/settings/info">
+          <Link to="/" className="d-sm-none d-lg-block">
+            <House size={32} color="#000" />
+          </Link>
+
+          <div className="d-sm-block d-lg-none">
+            {hasPermission ? (
+              <Link to="/admin/settings/info">
+                <span className="username">{user?.name}</span>
+              </Link>
+            ) : (
               <span className="username">{user?.name}</span>
-            </Link>
-          ) : (
-            <span className="username">{user?.name}</span>
-          )}
-          <div className="d-flex align-items-center">
-            <small role="button" className="logout" onClick={handleLogout}>
-              <SignOut size={15} /> Sair
-            </small>
+            )}
+            <div className="d-flex align-items-center">
+              <small role="button" className="logout" onClick={handleLogout}>
+                <SignOut size={15} /> Sair
+              </small>
+            </div>
           </div>
         </div>
       </nav>

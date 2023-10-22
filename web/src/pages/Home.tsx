@@ -6,7 +6,7 @@ export function Home() {
   return (
     <>
       <Head />
-      <div className="container-fluid home bg-light">
+      <div className="container-fluid home bg-light pb-5">
         <div className="row justify-content-center">
           <div className="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <div className="content">
@@ -28,6 +28,7 @@ export function Home() {
           </div>
         </div>
       </div>
+
       <Services />
     </>
   );

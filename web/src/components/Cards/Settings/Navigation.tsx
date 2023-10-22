@@ -10,7 +10,7 @@ import { Permission } from "@components/Permission";
 
 export function Navigation() {
   return (
-    <div className="card card-settings">
+    <div className="card card-settings mb-sm-5 mb-lg-0">
       <div className="card-body">
         <div className="menu">
           <NavLink

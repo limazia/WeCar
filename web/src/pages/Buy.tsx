@@ -10,7 +10,7 @@ import { Head } from "@components/Head";
 import { Loading } from "@components/Loading";
 import { Footer } from "@components/Footer";
 import { Navbar, Utility } from "@components/Navbar";
-import { WhatsApp } from "@components/Floating";
+import { WhatsApp } from "@components/WhatsApp";
 import { BrandLogo } from "@components/BrandLogo";
 import { WhatsAppIcon } from "@components/Icons/WhatsApp";
 import { Carousel, SingleImage } from "@components/Images";
