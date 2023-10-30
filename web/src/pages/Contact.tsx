@@ -2,9 +2,11 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 import { MapPin, Phone, Envelope } from "@phosphor-icons/react";
 
-import { EmailService } from "@utils/services/EmailService";
-import { maskPhone } from "@utils/helpers/mask";
-import { Contact as IContact } from "@utils/interfaces";
+import { EmailService } from "@shared/services/EmailService";
+import { maskPhone } from "@shared/helpers/mask";
+import { Contact as IContact } from "@shared/interfaces";
+
+import { useConfig } from "@shared/hooks/useConfig";
 
 import { Head } from "@components/Head";
 import { SectionTitle } from "@components/SectionTitle";
@@ -13,6 +15,8 @@ import { Input } from "@components/Forms/Input";
 import { Textarea } from "@components/Forms/Textarea";
 
 export function Contact() {
+  const { config } = useConfig();
+
   const [formValues, setFormValues] = useState<IContact>({
     name: "",
     email: "",
@@ -81,6 +85,10 @@ export function Contact() {
       !message
     );
   };
+
+  const address = config?.address;
+  const telephone = config?.telephone;
+  const email = config?.email;
 
   return (
     <>
@@ -185,15 +193,15 @@ export function Contact() {
                 <div className="contact">
                   <div className="contact-info">
                     <MapPin size={20} />
-                    <span>Rua das Flores, 123 - São Paulo, SP</span>
+                    <span>{address}</span>
                   </div>
                   <div className="contact-info">
                     <Phone size={20} />
-                    <span>(123) 4560-7890</span>
+                    <span>{telephone}</span>
                   </div>
                   <div className="contact-info">
                     <Envelope size={20} />
-                    <span>contato@wecar.com.br</span>
+                    <span>{email}</span>
                   </div>
                 </div>
               </div>

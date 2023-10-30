@@ -1,3 +1,3 @@
-export { Cars } from "./Cars";
-export { CreateCar } from "./CreateCar";
-export { UpdateCar } from "./UpdateCar";
+export * from "./Cars";
+export * from "./CreateCar";
+export * from "./UpdateCar";

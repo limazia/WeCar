@@ -5,16 +5,15 @@ import styles from "./styles.module.css";
 export function CarShimmer() {
   return (
     <div className="card card-car p-1">
-      <div className="card-header">
-        <div className="car-info">
-          <Skeleton className={styles["car--day"]} />
-          <Skeleton className={styles["car--tilte"]} />
-        </div>
-      </div>
       <div className="car-image">
         <Skeleton className={styles["car--image"]} />
       </div>
       <div className="card-body">
+        <div className="row">
+          <div className="col-md-12">
+            <Skeleton className={styles["car--tilte"]} />
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-6">
             <span className="text-muted d-block">

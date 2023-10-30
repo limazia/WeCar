@@ -6,13 +6,13 @@ import {
   FacebookLogo,
   InstagramLogo,
   SignOut,
-  House,
 } from "@phosphor-icons/react";
 
-import { useAuth } from "@utils/hooks/useAuth";
+import { useAuth } from "@shared/hooks/useAuth";
 
 import { ReactComponent as Logo } from "@assets/logo.svg";
 import { ReactComponent as MenuHamburguer } from "@assets/menu.svg";
+import { useConfig } from "@shared/hooks/useConfig";
 
 export function Navbar() {
   return (
@@ -77,22 +77,31 @@ export function Navbar() {
 }
 
 export function Utility() {
+  const { config } = useConfig();
+
+  const address = config?.address;
+  const telephone = config?.telephone;
+  const email = config?.email;
+
+  const facebook = `https://www.facebook.com/${config?.facebook}`;
+  const instagram = `https://www.instagram.com/${config?.instagram}`;
+
   return (
     <nav className="navbar-utility d-none d-md-flex">
       <div className="links">
         <a href="#">
-          <MapPin size={20} /> Rua das Flores, 123.
+          <MapPin size={20} /> {address}
         </a>
         <a href="#">
-          <Phone size={20} /> (123) 4560-7890
+          <Phone size={20} /> {telephone}
         </a>
         <a href="#">
-          <Envelope size={20} /> contato@wecar.com.br
+          <Envelope size={20} /> {email}
         </a>
       </div>
       <div className="social">
         <a
-          href={import.meta.env.VITE_FACEBOOK_URL}
+          href={facebook}
           target="_blank"
           rel="noreferrer"
         >
@@ -100,7 +109,7 @@ export function Utility() {
         </a>
 
         <a
-          href={import.meta.env.VITE_INSTAGRAM_URL}
+          href={instagram}
           target="_blank"
           rel="noreferrer"
         >
@@ -129,30 +138,28 @@ export function NavbarAdmin() {
           <Logo className="img-fluid" />
         </Link>
 
-        <div className="mx-auto d-sm-block d-lg-none">
-          <Link to="/">
-            <House size={32} color="#000" />
-          </Link>
+        <div className="mr-auto d-sm-none d-lg-block">
+          <Link to="/">Voltar para aplicação</Link>
         </div>
 
-        <div className="ml-auto menu">
-          <Link to="/" className="d-sm-none d-lg-block">
-            <House size={32} color="#000" />
-          </Link>
-
-          <div className="d-sm-block d-lg-none">
-            {hasPermission ? (
-              <Link to="/admin/settings/info">
-                <span className="username">{user?.name}</span>
-              </Link>
-            ) : (
-              <span className="username">{user?.name}</span>
-            )}
-            <div className="d-flex align-items-center">
-              <small role="button" className="logout" onClick={handleLogout}>
-                <SignOut size={15} /> Sair
-              </small>
+        <div className="ml-auto">
+          <div className="info">
+            <div className="user">
+              <div className="user-info">
+                {hasPermission ? (
+                  <Link to="/admin/settings/info">
+                    <span className="username">{user?.name}</span>
+                  </Link>
+                ) : (
+                  <span className="username">{user?.name}</span>
+                )}
+                <small className="text-muted">{user?.email}</small>
+              </div>
             </div>
+
+            <span role="button" className="logout" onClick={handleLogout}>
+              <SignOut size={20} />
+            </span>
           </div>
         </div>
       </nav>

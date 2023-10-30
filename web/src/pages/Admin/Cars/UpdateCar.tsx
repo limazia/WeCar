@@ -3,10 +3,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ArrowLeft } from "@phosphor-icons/react";
 
-import { ModelService } from "@utils/services/ModelService";
-import { CarService } from "@utils/services/CarService";
-import { Car } from "@utils/interfaces";
-import { maskMoney } from "@utils/helpers/mask";
+import { ModelService } from "@shared/services/ModelService";
+import { CarService } from "@shared/services/CarService";
+import { Car } from "@shared/interfaces";
+import { maskMoney } from "@shared/helpers/mask";
 
 import { Head } from "@components/Head";
 import { Button } from "@components/Forms/Button";

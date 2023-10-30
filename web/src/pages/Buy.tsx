@@ -1,10 +1,10 @@
 import { useState, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { formatCurrency, formatKM } from "@utils/helpers/format";
-import { Car, ExchangeOptions, FuelOptions } from "@utils/interfaces";
-import { exchangeOptions, fuelOptions } from "@utils/helpers/options";
-import { CarService } from "@utils/services/CarService";
+import { formatCurrency, formatKM } from "@shared/helpers/format";
+import { Car, ExchangeOptions, FuelOptions } from "@shared/interfaces";
+import { exchangeOptions, fuelOptions } from "@shared/helpers/options";
+import { CarService } from "@shared/services/CarService";
 
 import { Head } from "@components/Head";
 import { Loading } from "@components/Loading";
@@ -12,7 +12,6 @@ import { Footer } from "@components/Footer";
 import { Navbar, Utility } from "@components/Navbar";
 import { WhatsApp } from "@components/WhatsApp";
 import { BrandLogo } from "@components/BrandLogo";
-import { WhatsAppIcon } from "@components/Icons/WhatsApp";
 import { Carousel, SingleImage } from "@components/Images";
 
 type IParams = {
@@ -66,10 +65,6 @@ export function Buy() {
   const fuelKey: keyof FuelOptions = car.car_fuel as keyof FuelOptions;
   const exchangeKey: keyof ExchangeOptions =
     car.car_exchange as keyof ExchangeOptions;
-
-  const number = import.meta.env.VITE_PHONE_NUMBER;
-  const message = `Olá! Estou interessado no carro ${car_id}!`;
-  const whatsapp_url = `https://api.whatsapp.com/send?phone=${number}&text=${message}`;
 
   if (loading) {
     return <Loading />;
@@ -193,11 +188,11 @@ export function Buy() {
                           <div className="col-md-6">
                             <a
                               className="btn btn-contact-whatsapp w-100"
-                              href={whatsapp_url}
+                              href="#"
                               target="_blank"
                               rel="noreferrer"
                             >
-                              <WhatsAppIcon /> Entrar em contato
+                              Entrar em contato
                             </a>
                           </div>
                         </div>

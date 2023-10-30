@@ -1,58 +1,66 @@
 import { Link } from "react-router-dom";
 
-import { formatCurrency, formatKM, wasWeeksAgo } from "@utils/helpers/format";
-import { Car, ExchangeOptions, FuelOptions } from "@utils/interfaces";
-import { exchangeOptions, fuelOptions } from "@utils/helpers/options";
+import { formatCurrency, formatKM, wasWeeksAgo } from "@shared/helpers/format";
+import { ExchangeOptions, FuelOptions } from "@shared/interfaces";
+import { exchangeOptions, fuelOptions } from "@shared/helpers/options";
 
 import { Carousel, SingleImage } from "@components/Images";
 
-export function CarCard({
-  model_name,
-  car_id,
-  car_km,
-  car_price,
-  car_image,
-  car_fuel,
-  car_exchange,
-  car_year,
-  created_at,
-}: Car) {
+interface CarCardProps {
+  data: {
+    car_id: string;
+    car_image: string[];
+    car_km: number;
+    car_price: number;
+    car_year: string;
+    created_at: string;
+    model_name: string;
+    car_fuel: string;
+    car_exchange: string;
+  };
+}
+
+export function CarCard({ data }: CarCardProps) {
+  const {
+    car_id,
+    car_image,
+    car_km,
+    car_price,
+    car_year,
+    created_at,
+    model_name,
+    car_fuel,
+    car_exchange,
+  } = data;
+
   const fuelKey: keyof FuelOptions = car_fuel as keyof FuelOptions;
   const exchangeKey: keyof ExchangeOptions =
     car_exchange as keyof ExchangeOptions;
 
   return (
-    <div className="card card-car p-1">
-      <div className="card-header">
-        <div className="car-info">
-          <div className="d-flex flex-column">
-            <small className="d-block text-muted">
-              <span className="font-weight-bold">{created_at}</span>
-            </small>
-            <span className="font-weight-bold text-uppercase">
-              {model_name}
-            </span>
-          </div>
-
-          {wasWeeksAgo(created_at) && <div className="new">Novo</div>}
-        </div>
-      </div>
+    <div className="card card-car p-1 h-100">
       <div className="car-image">
         {car_image.length >= 2 ? (
           <>{Array.isArray(car_image) && <Carousel images={car_image} />}</>
         ) : (
           <SingleImage image={car_image[0]} />
         )}
+        {wasWeeksAgo(created_at) && <div className="new">Novo</div>}
       </div>
-      <div className="card-body">
+      <div className="card-body h-100">
+        <div className="row">
+          <div className="col-md-12">
+            <h5 className="font-weight-bold text-uppercase pb-2">{model_name}</h5>
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-6">
             <span className="text-muted d-block">KM</span>
-            <b>{formatKM(car_km) || "???"}</b>
+            <b>{formatKM(car_km)}</b>
           </div>
           <div className="col-md-6">
             <span className="text-muted d-block">Ano</span>{" "}
-            <b>{car_year || "???"}</b>
+            <b>{car_year}</b>
           </div>
         </div>
         <div className="row mt-2">
@@ -67,9 +75,9 @@ export function CarCard({
         </div>
         <div className="row mt-4 d-flex align-items-center">
           <div className="col-md-6">
-            <h4 className="font-weight-bold mb-0 pb-0">
+            <span className="font-weight-bold mb-0 pb-0">
               {formatCurrency(car_price)}
-            </h4>
+            </span>
           </div>
           <div className="col-md-6">
             <Link

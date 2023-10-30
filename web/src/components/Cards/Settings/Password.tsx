@@ -2,8 +2,8 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { useAuth } from "@utils/hooks/useAuth";
-import { UserService } from "@utils/services/UserService";
+import { useAuth } from "@shared/hooks/useAuth";
+import { UserService } from "@shared/services/UserService";
 
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";

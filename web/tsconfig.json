@@ -21,7 +21,7 @@
       "@components/*": ["./components/*"],
       "@routes/*": ["./routes/*"],
       "@pages/*": ["./pages/*"],
-      "@utils/*": ["./utils/*"],
+      "@shared/*": ["./shared/*"],
     }
   },
   "include": ["src"],

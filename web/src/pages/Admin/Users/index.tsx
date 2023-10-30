@@ -1,3 +1,3 @@
-export { Users } from "./Users";
-export { CreateUser } from "./CreateUser";
-export { UpdateUser } from "./UpdateUser";
+export * from "./Users";
+export * from "./CreateUser";
+export * from "./UpdateUser";

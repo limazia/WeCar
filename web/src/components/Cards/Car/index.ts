@@ -1,2 +1,2 @@
-export { CarCard } from "./Card";
-export { CarShimmer } from "./Shimmer";
+export * from "./Card";
+export * from "./Shimmer";

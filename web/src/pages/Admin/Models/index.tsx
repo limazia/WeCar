@@ -1,3 +1,3 @@
-export { Models } from "./Models";
-export { CreateModel } from "./CreateModel";
-export { UpdateModel } from "./UpdateModel";
+export * from "./Models";
+export * from "./CreateModel";
+export * from "./UpdateModel";

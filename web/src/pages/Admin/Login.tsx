@@ -1,7 +1,7 @@
 import { useState, FormEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAuth } from "@utils/hooks/useAuth";
+import { useAuth } from "@shared/hooks/useAuth";
 
 import { Head } from "@components/Head";
 import { Button } from "@components/Forms/Button";
@@ -57,46 +57,50 @@ export function Login() {
                   Faça o login para continuar navegando.
                 </small>
 
-                <div className="text-center mt-4">
-                  <form onSubmit={handleSubmit}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <Input
-                          type="text"
-                          placeholder="E-mail"
-                          disabled={loading}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
+                <form onSubmit={handleSubmit} className="mt-4">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <Input
+                        type="text"
+                        placeholder="E-mail"
+                        disabled={loading}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <Input
+                        type="password"
+                        placeholder="*********"
+                        disabled={loading}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mt-3">
+                    <div className="col-md-12">
+                      <Button
+                        type="submit"
+                        className="btn btn-login btn-block"
+                        disabled={validate}
+                        loading={loading}
+                      >
+                        Entrar
+                      </Button>
                     </div>
 
-                    <div className="row mt-3">
-                      <div className="col-md-12">
-                        <Input
-                          type="password"
-                          placeholder="*********"
-                          disabled={loading}
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </div>
+                    <div className="col-md-12 mt-1">
+                      <small className="text-muted">
+                        <Link to="/admin/forgot">Esqueceu a senha?</Link>
+                      </small>
                     </div>
-
-                    <div className="row mt-3">
-                      <div className="col-md-12">
-                        <Button
-                          type="submit"
-                          className="btn btn-login btn-block"
-                          disabled={validate}
-                          loading={loading}
-                        >
-                          Entrar
-                        </Button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

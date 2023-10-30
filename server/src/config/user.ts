@@ -7,7 +7,7 @@ export const master = {
 
 // Usuário administrador do sistema
 export const admin = {
-  name: 'Mr. Lima',
+  name: 'Acacio de Lima',
   email: 'lima@wecar.com',
   password: '1234',
 }

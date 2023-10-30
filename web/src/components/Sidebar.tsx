@@ -1,15 +1,15 @@
 import { ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
 import {
-  Disc,
+  House,
+  Tag,
   Car,
   Cards,
-  Archive,
+  ShieldStar,
   Users,
-  DotsThree,
-} from "@phosphor-icons/react";
+  Gear,
 
-import { useAuth } from "@utils/hooks/useAuth";
+} from "@phosphor-icons/react";
 
 import { Permission } from "./Permission";
 
@@ -35,34 +35,49 @@ function LinkActive({ children, className, to = "/" }: LinkProps) {
 }
 
 export function Sidebar() {
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => logout();
-
   return (
     <div className="sidebar">
-      <div className="sidebar-container">
-        <div>
-          <div className="d-flex justify-content-center">
-            <Link to="/admin">
-              <Logo className="logo img-fluid" />
-            </Link>
-          </div>
+      <div className="d-flex justify-content-center">
+        <Link to="/admin/">
+          <Logo className="logo img-fluid" />
+        </Link>
+      </div>
 
+      <Permission
+        required={[
+          "dashboard",
+          "brands.list",
+          "models.list",
+          "cars.list",
+          "users.list",
+          "groups.list",
+          "settings.view",
+        ]}
+      >
+        <ul className="list-items">
           <Permission
             required={[
+              "dashboard",
               "brands.list",
               "models.list",
               "cars.list",
-              "groups.list",
               "users.list",
             ]}
           >
-            <ul className="list-items">
+            <div className="group">
+              <div className="label">Geral</div>
+              <Permission required={["dashboard"]}>
+                <li className="item">
+                  <LinkActive className="link" to="/admin/">
+                    <House size={20} /> <span>Dashboard</span>
+                  </LinkActive>
+                </li>
+              </Permission>
+
               <Permission required={["brands.list"]}>
                 <li className="item">
                   <LinkActive className="link" to="/admin/brands">
-                    <Disc size={20} /> <span>Marcas</span>
+                    <Tag size={20} /> <span>Marcas</span>
                   </LinkActive>
                 </li>
               </Permission>
@@ -83,14 +98,6 @@ export function Sidebar() {
                 </li>
               </Permission>
 
-              <Permission required={["groups.list"]}>
-                <li className="item">
-                  <LinkActive className="link" to="/admin/groups">
-                    <Archive size={20} /> <span>Grupos</span>
-                  </LinkActive>
-                </li>
-              </Permission>
-
               <Permission required={["users.list"]}>
                 <li className="item">
                   <LinkActive className="link" to="/admin/users">
@@ -98,38 +105,31 @@ export function Sidebar() {
                   </LinkActive>
                 </li>
               </Permission>
-            </ul>
+            </div>
           </Permission>
-        </div>
 
-        <div className="user">
-          <strong>{user?.name}</strong>
-
-          <div className="dropdown">
-            <DotsThree
-              size={25}
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-            />
-
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <Permission required={["view.account"]}>
-                <Link className="dropdown-item" to="/admin/settings/info">
-                  Minha conta
-                </Link>
+          <Permission required={["groups.list", "settings.view"]}>
+            <div className="group">
+              <div className="label">Administração</div>
+              <Permission required={["groups.list"]}>
+                <li className="item">
+                  <LinkActive className="link" to="/admin/groups">
+                    <ShieldStar size={20} /> <span>Grupos de permissões</span>
+                  </LinkActive>
+                </li>
               </Permission>
 
-              <a
-                className="dropdown-item logout"
-                href="#"
-                onClick={handleLogout}
-              >
-                Sair
-              </a>
+              <Permission required={["settings.view"]}>
+                <li className="item">
+                  <LinkActive className="link" to="/admin/settings/web">
+                    <Gear size={20} /> <span>Configurações</span>
+                  </LinkActive>
+                </li>
+              </Permission>
             </div>
-          </div>
-        </div>
-      </div>
+          </Permission>
+        </ul>
+      </Permission>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { Router } from 'express'
 
+import { configRouter } from './config.route'
 import { brandsRouter } from './brands.route'
 import { modelsRouter } from './models.route'
 import { carsRouter } from './cars.route'
@@ -18,6 +19,7 @@ routes.get('/', function (request, response) {
   })
 })
 
+routes.use('/api/config', configRouter)
 routes.use('/api/brands', brandsRouter)
 routes.use('/api/models', modelsRouter)
 routes.use('/api/cars', carsRouter)

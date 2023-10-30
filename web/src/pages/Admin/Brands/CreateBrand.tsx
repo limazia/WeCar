@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ArrowLeft } from "@phosphor-icons/react";
 
-import { BrandService } from "@utils/services/BrandService";
+import { BrandService } from "@shared/services/BrandService";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
@@ -53,7 +53,7 @@ export function CreateBrand() {
       <Head title="Nova marca" />
       <RedirectPermission required={["brands.create"]} />
       <div className="container pb-5">
-        <div className="row d-flex justify-content-center">
+        <div className="row">
           <div className="col-md-12">
             <div className="card card-brands">
               <div className="card-body">

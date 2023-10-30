@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 
-import { BrandService } from "@utils/services/BrandService";
+import { BrandService } from "@shared/services/BrandService";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";

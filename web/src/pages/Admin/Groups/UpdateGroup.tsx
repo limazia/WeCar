@@ -3,9 +3,9 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ArrowLeft } from "@phosphor-icons/react";
 
-import { GroupService } from "@utils/services/GroupService";
-import { permissions as ListPermissions } from "@utils/helpers/database/permisisons";
-import { Permission } from "@utils/interfaces";
+import { GroupService } from "@shared/services/GroupService";
+import { permissions as ListPermissions } from "@shared/helpers/database/permisisons";
+import { Permission } from "@shared/interfaces";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";

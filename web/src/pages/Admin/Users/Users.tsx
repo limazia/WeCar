@@ -1,99 +1,95 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ArrowsClockwise, Plus, Trash } from "@phosphor-icons/react";
+import { Plus } from "@phosphor-icons/react";
 import debounce from "lodash/debounce";
 
-import { UserService } from "@utils/services/UserService";
-import { useAuth } from "@utils/hooks/useAuth";
-import { User } from "@utils/interfaces";
+import { User } from "@shared/interfaces";
+import { UserService } from "@shared/services/UserService";
+import { useAuth } from "@shared/hooks/useAuth";
+import { groupRow } from "@shared/helpers/groupRow";
 
 import { Head } from "@components/Head";
 import { Empty } from "@components/Empty";
-import { Input } from "@components/Forms/Input";
-import { Button } from "@components/Forms/Button";
-import { Permission, RedirectPermission } from "@components/Permission";
+import { UserCard } from "@components/Cards/Admin";
+import { RedirectPermission } from "@components/Permission";
+import { ActionButtons } from "@components/ActionButtons";
+import { Loading } from "@components/Loading";
 
 import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
 export function Users() {
   const { user } = useAuth();
 
-  const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
+  const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadUsers();
-  }, [search]);
+  const sortUsers = (userA: User, userB: User): number => {
+    const myUserId = user?.id;
 
-  useEffect(() => {
-    window.addEventListener("refresh-brands", () => loadUsers());
-
-    return () => {
-      window.removeEventListener("refresh-brands", () => loadUsers());
+    const parseDate = (dateString: string | undefined): Date | undefined => {
+      if (dateString) {
+        return new Date(dateString);
+      }
+      return undefined;
     };
-  }, []);
 
-  async function loadUsers() {
+    const dateA = parseDate(userA.created_at);
+    const dateB = parseDate(userB.created_at);
+
+    if (dateA && dateB) {
+      if (userA.id === myUserId) {
+        return -1;
+      }
+      return dateB.getTime() - dateA.getTime();
+    }
+
+    return 0;
+  };
+
+  const loadData = async () => {
     try {
       const { results } = await UserService.list();
 
       if (results) {
-        const filtered = results.filter(
-          (user: User) =>
-            user.name.toLowerCase().includes(search.toLowerCase()) ||
-            user.email.toLowerCase().includes(search.toLowerCase())
-        );
-        setUsers(filtered);
+        const sortedUsers = [...results].sort(sortUsers);
+        setUsers(sortedUsers);
         setLoading(false);
       }
-    } catch (ex) {
+    } catch (error) {
       setLoading(true);
     }
-  }
+  };
 
-  const handleDeleteClick = async (item: User) => {
-    if (window.confirm(`Deseja excluir "${item.name}"?`)) {
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleDeleteClick = async ({ id, name }: User): Promise<void> => {
+    if (window.confirm(`Deseja excluir "${name}"?`)) {
       try {
-        const { error, message } = await UserService.delete({
-          id: item.id.toString(),
-        });
-
-        if (message) {
-          toast.success(message);
-          const event = new CustomEvent("refresh-brands");
-          window.dispatchEvent(event);
-        }
+        const { error, message } = await UserService.delete(id);
 
         if (error) {
           toast.error(error);
         }
-      } catch (ex) {
-        toast.error("Houve um problema com o servidor!");
+
+        toast.success(message);
+        loadData();
+      } catch (error) {
+        toast.error("Erro ao excluir usuário!");
       }
     }
   };
 
-  const refreshUsers = debounce(() => {
+  const refreshList = debounce(() => {
     toast.success("Lista atualizada!");
-
-    const event = new CustomEvent("refresh-brands");
-    window.dispatchEvent(event);
+    loadData();
   }, 3000);
 
-  const groupsOfThreeItems = users.reduce((grupos, item, index) => {
-    const grupoIndex = Math.floor(index / 3);
+  const userItems = groupRow(users);
 
-    if (!grupos[grupoIndex]) {
-      grupos[grupoIndex] = [];
-    }
-
-    grupos[grupoIndex].push(item);
-    return grupos;
-  }, [] as User[][]);
-
-  if (loading) return <div />;
+  if (loading) return <Loading type="spinner" />;
 
   return (
     <>
@@ -102,98 +98,34 @@ export function Users() {
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center">
-                <Input
-                  type="text"
-                  name="search"
-                  placeholder={`Pesquisar ${
-                    users.length === 1 ? "usuário" : "usuários"
-                  }`}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-
-              <div className="d-flex">
-                <button className="btn btn-link" onClick={refreshUsers}>
-                  <ArrowsClockwise size={20} />
-                </button>
-                <Permission required={["users.create"]}>
-                  <Link className="btn btn-primary-w" to="/admin/users/create">
-                    <Plus size={20} className="mr-1" /> Novo usuário
-                  </Link>
-                </Permission>
-              </div>
+            <div className="d-flex align-items-center justify-content-end">
+              <ActionButtons
+                onRefreshClick={refreshList}
+                permission={["users.create"]}
+                to="/admin/users/create"
+                label="Novo usuário"
+              />
             </div>
           </div>
           <div className="col-md-12 mt-4">
             {users?.length > 0 ? (
               <>
-                {groupsOfThreeItems.map((group, index) => (
+                {userItems.map((group, index) => (
                   <div
-                    key={`users-${index}`}
                     className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
+                    key={index}
                   >
-                    {group.map((item, itemIndex) => (
-                      <>
-                        {item.is_deleteable && (
-                          <div className="col-md-4" key={itemIndex}>
-                            <div className="card card-users">
-                              <div className="card-body">
-                                <div>
-                                  {item.id === user?.id ? (
-                                    <h5 className="font-weight-bold">
-                                      {item.name}
-                                    </h5>
-                                  ) : (
-                                    <h5>{item.name}</h5>
-                                  )}
-
-                                  <small className="text-muted d-block">
-                                    {item.role}
-                                  </small>
-                                  <small className="text-muted">
-                                    {item.email}
-                                  </small>
-                                </div>
-                              </div>
-
-                              {item.is_deleteable && (
-                                <Permission
-                                  required={["users.update", "users.delete"]}
-                                >
-                                  <div className="card-footer">
-                                    <Permission required={["users.update"]}>
-                                      <Link
-                                        className="btn btn-edit btn-block"
-                                        to={`/admin/users/edit/${item.id}`}
-                                      >
-                                        Editar
-                                      </Link>
-                                    </Permission>
-
-                                    {item.id !== user?.id && (
-                                      <Permission required={["users.delete"]}>
-                                        <Button
-                                          className="btn btn-delete btn-block"
-                                          loading={loading}
-                                          disabled={loading}
-                                          onClick={() =>
-                                            handleDeleteClick(item)
-                                          }
-                                        >
-                                          <Trash size={20} />
-                                        </Button>
-                                      </Permission>
-                                    )}
-                                  </div>
-                                </Permission>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </>
+                    {group.map((user) => (
+                      <div
+                        key={user.id}
+                        className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0"
+                      >
+                        <UserCard
+                          item={user}
+                          loading={loading}
+                          handleDeleteClick={handleDeleteClick}
+                        />
+                      </div>
                     ))}
                   </div>
                 ))}
@@ -204,7 +136,7 @@ export function Users() {
                   <div className="col-md-12">
                     <Empty
                       imageElement={EmptyImage}
-                      title="Nenhuma marca foi encontrada"
+                      title="Nenhum usuário foi encontrado"
                       description=" Começe cadastrando agora mesmo"
                     />
 
@@ -213,7 +145,7 @@ export function Users() {
                         className="btn btn-primary-w"
                         to="/admin/users/create"
                       >
-                        <Plus size={20} className="mr-1" /> Nova marca
+                        <Plus size={20} className="mr-1" /> Novo usuário
                       </Link>
                     </div>
                   </div>

@@ -1,94 +1,71 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ArrowsClockwise, Plus, Trash } from "@phosphor-icons/react";
+import { Plus } from "@phosphor-icons/react";
 import debounce from "lodash/debounce";
 
-import { GroupService } from "@utils/services/GroupService";
-import { Group } from "@utils/interfaces";
+import { Group } from "@shared/interfaces";
+import { GroupService } from "@shared/services/GroupService";
+import { groupRow } from "@shared/helpers/groupRow";
 
 import { Head } from "@components/Head";
 import { Empty } from "@components/Empty";
-import { Input } from "@components/Forms/Input";
-import { Button } from "@components/Forms/Button";
-import { Permission, RedirectPermission } from "@components/Permission";
+import { GroupCard } from "@components/Cards/Admin";
+import { RedirectPermission } from "@components/Permission";
+import { ActionButtons } from "@components/ActionButtons";
+import { Loading } from "@components/Loading";
 
 import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
 export function Groups() {
-  const [groups, setGroups] = useState([]);
-  const [search, setSearch] = useState("");
+  const [groups, setGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadGroups();
-  }, [search]);
-
-  useEffect(() => {
-    window.addEventListener("refresh-groups", () => loadGroups());
-
-    return () => {
-      window.removeEventListener("refresh-groups", () => loadGroups());
-    };
-  }, []);
-
-  async function loadGroups() {
+  const loadData = async () => {
     try {
       const { results } = await GroupService.list();
 
       if (results) {
-        const filtered = results.filter((group: Group) =>
-          group.group_name.toLowerCase().includes(search.toLowerCase())
-        );
-        setGroups(filtered);
+        setGroups(results);
         setLoading(false);
       }
-    } catch (ex) {
+    } catch (error) {
       setLoading(true);
     }
-  }
+  };
 
-  const handleDeleteClick = async (item: Group) => {
-    if (window.confirm(`Deseja excluir "${item.group_name}"?`)) {
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleDeleteClick = async ({
+    group_id,
+    group_name,
+  }: Group): Promise<void> => {
+    if (window.confirm(`Deseja excluir "${group_name}"?`)) {
       try {
-        const { error, message } = await GroupService.delete({
-          group_id: item.group_id.toString(),
-        });
-
-        if (message) {
-          toast.success(message);
-          const event = new CustomEvent("refresh-groups");
-          window.dispatchEvent(event);
-        }
+        const { error, message } = await GroupService.delete(group_id);
 
         if (error) {
           toast.error(error);
         }
-      } catch (ex) {
-        toast.error("Houve um problema com o servidor!");
+
+        toast.success(message);
+        loadData();
+      } catch (error) {
+        toast.error("Erro ao excluir grupo!");
       }
     }
   };
 
-  const refreshUsers = debounce(() => {
+  const refreshList = debounce(() => {
     toast.success("Lista atualizada!");
-
-    const event = new CustomEvent("refresh-groups");
-    window.dispatchEvent(event);
+    loadData();
   }, 3000);
 
-  const groupsOfThreeItems = groups.reduce((grupos, item, index) => {
-    const grupoIndex = Math.floor(index / 3);
+  const groupItems = groupRow(groups);
 
-    if (!grupos[grupoIndex]) {
-      grupos[grupoIndex] = [];
-    }
-
-    grupos[grupoIndex].push(item);
-    return grupos;
-  }, [] as Group[][]);
-
-  if (loading) return <div />;
+  if (loading) return <Loading type="spinner" />;
 
   return (
     <>
@@ -97,93 +74,31 @@ export function Groups() {
       <div className="container pb-5">
         <div className="row">
           <div className="col-md-12">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center">
-                <Input
-                  type="text"
-                  name="search"
-                  placeholder={`Pesquisar ${
-                    groups.length === 1 ? "grupo" : "grupos"
-                  }`}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-
-              <div className="d-flex">
-                <button className="btn btn-link" onClick={refreshUsers}>
-                  <ArrowsClockwise size={20} />
-                </button>
-                <Permission required={["create_group"]}>
-                  <Link className="btn btn-primary-w" to="/admin/groups/create">
-                    <Plus size={20} className="mr-1" /> Novo grupo
-                  </Link>
-                </Permission>
-              </div>
+            <div className="d-flex align-items-center justify-content-end">
+              <ActionButtons
+                onRefreshClick={refreshList}
+                permission={["groups.create"]}
+                to="/admin/groups/create"
+                label="Novo grupo"
+              />
             </div>
           </div>
           <div className="col-md-12 mt-4">
             {groups?.length > 0 ? (
               <>
-                {groupsOfThreeItems.map((group, index) => (
+                {groupItems.map((group, index) => (
                   <div
                     className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
                     key={index}
                   >
-                    {group.map((item, itemIndex) => (
-                      <>
-                        {item.is_deleteable && (
-                          <div className="col-md-4" key={itemIndex}>
-                            <div className="card card-groups">
-                              <div className="card-body">
-                                <div>
-                                  <h5>{item.group_name}</h5>
-                                  {item.group_permissions.map(
-                                    (permission, index) => (
-                                      <span key={`permission-${index}`}>
-                                        <small className="text-muted">
-                                          {permission}
-                                          {index <
-                                            item.group_permissions.length -
-                                              1 && <>, </>}
-                                        </small>
-                                      </span>
-                                    )
-                                  )}
-                                </div>
-                              </div>
-
-                              {item.is_deleteable && (
-                                <Permission
-                                  required={["update_group", "delete_group"]}
-                                >
-                                  <div className="card-footer">
-                                    <Permission required={["update_brand"]}>
-                                      <Link
-                                        className="btn btn-edit btn-block"
-                                        to={`/admin/groups/edit/${item.group_id}`}
-                                      >
-                                        Editar
-                                      </Link>
-                                    </Permission>
-
-                                    <Permission required={["delete_group"]}>
-                                      <Button
-                                        className="btn btn-delete btn-block"
-                                        loading={loading}
-                                        disabled={loading}
-                                        onClick={() => handleDeleteClick(item)}
-                                      >
-                                        <Trash size={20} />
-                                      </Button>
-                                    </Permission>
-                                  </div>
-                                </Permission>
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      </>
+                    {group.map((group) => (
+                      <div key={group.group_id} className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0">
+                        <GroupCard
+                          item={group}
+                          loading={loading}
+                          handleDeleteClick={handleDeleteClick}
+                        />
+                      </div>
                     ))}
                   </div>
                 ))}
@@ -194,7 +109,7 @@ export function Groups() {
                   <div className="col-md-12">
                     <Empty
                       imageElement={EmptyImage}
-                      title="Nenhuma marca foi encontrada"
+                      title="Nenhum grupo foi encontrado"
                       description=" Começe cadastrando agora mesmo"
                     />
 
@@ -203,7 +118,7 @@ export function Groups() {
                         className="btn btn-primary-w"
                         to="/admin/groups/create"
                       >
-                        <Plus size={20} className="mr-1" /> Nova marca
+                        <Plus size={20} className="mr-1" /> Novo grupo
                       </Link>
                     </div>
                   </div>

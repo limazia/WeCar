@@ -1,4 +1,4 @@
-import { cars } from "@utils/helpers/database/cars";
+import { cars } from "@shared/helpers/database/cars";
 
 interface BrandLogoProps {
   brand_slug: string;

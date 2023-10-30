@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Toastify = styled(ToastContainer).attrs({
+  position: "top-right",
+  autoClose: 5000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnFocusLoss: false,
@@ -22,10 +24,7 @@ export const Toastify = styled(ToastContainer).attrs({
     padding: 10px 15px;
     background-color: #ffffff;
     color: #757575;
-
-    svg {
-      fill: #757575;
-    }
+    border: 1px solid #757575;
   }
   .BODY_CLASS_NAME {
     margin: 0;

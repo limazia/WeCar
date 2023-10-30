@@ -3,8 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 
-import { GroupService } from "@utils/services/GroupService";
-import { UserService } from "@utils/services/UserService";
+import { GroupService } from "@shared/services/GroupService";
+import { UserService } from "@shared/services/UserService";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";

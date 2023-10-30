@@ -1,0 +1,67 @@
+import { Trash } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
+
+import { Group } from "@shared/interfaces";
+
+import { Button } from "@components/Forms/Button";
+import { Permission } from "@components/Permission";
+
+interface GroupCardProps {
+  item: Group;
+  loading: boolean;
+  handleDeleteClick: (item: Group) => void;
+}
+
+export function GroupCard({
+  item,
+  loading,
+  handleDeleteClick,
+}: GroupCardProps) {
+  return (
+    <>
+      {item.is_deleteable && (
+        <div className="card card-groups">
+          <div className="card-body">
+            <div>
+              <h5>{item.group_name}</h5>
+              {item.group_permissions.map((permission, index) => (
+                <span key={`permission-${index}`}>
+                  <small className="text-muted">
+                    {permission}
+                    {index < item.group_permissions.length - 1 && <>, </>}
+                  </small>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {item.is_deleteable && (
+            <Permission required={["update_group", "delete_group"]}>
+              <div className="card-footer">
+                <Permission required={["update_brand"]}>
+                  <Link
+                    className="btn btn-edit btn-block"
+                    to={`/admin/groups/update/${item.group_id}`}
+                  >
+                    Editar
+                  </Link>
+                </Permission>
+
+                <Permission required={["delete_group"]}>
+                  <Button
+                    className="btn btn-delete btn-block"
+                    loading={loading}
+                    disabled={loading}
+                    onClick={() => handleDeleteClick(item)}
+                  >
+                    <Trash size={20} />
+                  </Button>
+                </Permission>
+              </div>
+            </Permission>
+          )}
+        </div>
+      )}
+    </>
+  );
+}

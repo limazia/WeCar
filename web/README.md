@@ -8,7 +8,6 @@
    ```js
    # App
    VITE_APP_NAME="WeCar"
-   VITE_APP_ENV="development"
    VITE_APP_URL="http://localhost:5173"
 
    # API
@@ -18,11 +17,6 @@
    VITE_EMAILJS_SERVICE_KEY=
    VITE_EMAILJS_PUBLIC_KEY=
    VITE_EMAILJS_TEMPLATE_ID=
-
-   # Social
-   VITE_PHONE_NUMBER="551999999999"
-   VITE_FACEBOOK_URL="https://www.facebook.com/"
-   VITE_INSTAGRAM_URL="https://www.instagram.com/"
    ```
 4. Instalar as dependências
    ```sh

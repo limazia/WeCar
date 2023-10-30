@@ -1,3 +1,3 @@
-export { Carousel } from "./Carousel";
-export { SingleImage } from "./SingleImage";
+export * from "./Carousel";
+export * from "./SingleImage";
 

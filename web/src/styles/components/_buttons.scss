@@ -21,35 +21,6 @@
   }
 }
 
-.btn-explore-now,
-.btn-explore-now:focus,
-.btn-explore-now:active,
-.btn-explore-now:active:focus:not(:disabled):not(.disabled) {
-  height: 70px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background-color: #7618f3;
-  border-color: #7618f3;
-  border-radius: 50px;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: 0.5s ease;
-
-  &:hover {
-    color: #fff;
-    opacity: 0.9;
-  }
-
-  &:disabled,
-  button[disabled] {
-    cursor: not-allowed;
-    opacity: 0.8;
-  }
-}
-
 .btn-primary-w,
 .btn-primary-w:focus,
 .btn-primary-w:active,
@@ -160,9 +131,10 @@
   color: #fff;
   background: #ff5857;
   border-color: #ff5857;
-  height: 60px;
+  height: 40px;
   text-transform: uppercase;
   font-weight: bold;
+  font-size: 0.8rem;
   border-radius: 6px;
   transition: 0.5s ease;
 

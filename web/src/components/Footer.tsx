@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom";
 import { FacebookLogo, InstagramLogo } from "@phosphor-icons/react";
 
+import { useConfig } from "@shared/hooks/useConfig";
+
 import { ReactComponent as Logo } from "@assets/logo.svg";
 
 export function Footer() {
+  const { config } = useConfig();
+
+  const facebook = `https://www.facebook.com/${config?.facebook}`;
+  const instagram = `https://www.instagram.com/${config?.instagram}`;
+
   const company = import.meta.env.VITE_APP_NAME;
   const year = new Date().getFullYear();
 
@@ -54,7 +61,7 @@ export function Footer() {
             <ul className="list-unstyled mb-0">
               <li className="list-inline-item">
                 <a
-                  href={import.meta.env.VITE_FACEBOOK_URL}
+                  href={facebook}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -63,7 +70,7 @@ export function Footer() {
               </li>
               <li className="list-inline-item">
                 <a
-                  href={import.meta.env.VITE_INSTAGRAM_URL}
+                  href={instagram}
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -3,8 +3,8 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 
-import { BrandService } from "@utils/services/BrandService";
-import { ModelService } from "@utils/services/ModelService";
+import { BrandService } from "@shared/services/BrandService";
+import { ModelService } from "@shared/services/ModelService";
 
 import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
@@ -37,7 +37,7 @@ export function UpdateModel() {
   }
 
   async function loadBrandById(model_id: string) {
-    const response = await ModelService.findById({ model_id });
+    const response = await ModelService.findById(model_id);
 
     if (response === undefined) {
       navigate("/admin/models");

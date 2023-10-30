@@ -1,4 +1,4 @@
-import { useAuth } from "@utils/hooks/useAuth";
+import { useAuth } from "@shared/hooks/useAuth";
 
 import { RedirectPermission } from "@components/Permission";
 

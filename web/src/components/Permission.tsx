@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useCan } from "@utils/hooks/useCan";
+import { useCan } from "@shared/hooks/useCan";
 
 interface PermissionProps {
   children?: ReactNode;

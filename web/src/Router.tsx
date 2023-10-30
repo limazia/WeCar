@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 
 import { CustomRoutes } from "./components/CustomRoutes";
 import { Authenticated } from "@components/Authenticated";
-import { Layout, AdminLayout } from "@components/Layout";
+import { DefaultLayout, AdminLayout } from "@components/Layouts";
 
 import { Home } from "@pages/Home";
 import { Store } from "@pages/Store";
@@ -13,6 +13,7 @@ import { Company } from "@pages/Company";
 import { Contact } from "@pages/Contact";
 
 import { Login } from "@pages/Admin/Login";
+import { ForgotPassword } from "@pages/Admin/ForgotPassword";
 import { Dashboard } from "@pages/Admin/Dashboard";
 import { Settings } from "@pages/Admin/Settings";
 import { Account, Name, Email, Password } from "@components/Cards/Settings";
@@ -21,6 +22,7 @@ import { Models, CreateModel, UpdateModel } from "@pages/Admin/Models";
 import { Cars, CreateCar, UpdateCar } from "@pages/Admin/Cars";
 import { Groups, CreateGroup, UpdateGroup } from "@pages/Admin/Groups";
 import { Users, CreateUser, UpdateUser } from "@pages/Admin/Users";
+import { SystemSettings, UpdateSystemSettings } from "@pages/Admin/Config";
 
 import { NotFound } from "@pages/NotFound";
 
@@ -28,7 +30,7 @@ export function Routes() {
   return (
     <AnimatePresence mode="wait">
       <CustomRoutes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Home />} />
           <Route path="sell" element={<Sell />} />
           <Route path="company" element={<Company />} />
@@ -42,6 +44,7 @@ export function Routes() {
 
         <Route path="/car/:car_id" element={<Buy />} />
         <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/forgot" element={<ForgotPassword />} />
 
         <Route
           path="/admin"
@@ -64,34 +67,39 @@ export function Routes() {
             <Route path="password" element={<Password />} />
           </Route>
 
+          <Route path="settings/web">
+            <Route index element={<SystemSettings />} />
+            <Route path="update" element={<UpdateSystemSettings />} />
+          </Route>
+
           <Route path="brands">
             <Route index element={<Brands />} />
             <Route path="create" element={<CreateBrand />} />
-            <Route path="edit/:brand_id" element={<UpdateBrand />} />
+            <Route path="update/:brand_id" element={<UpdateBrand />} />
           </Route>
 
           <Route path="models">
             <Route index element={<Models />} />
             <Route path="create" element={<CreateModel />} />
-            <Route path="edit/:model_id" element={<UpdateModel />} />
+            <Route path="update/:model_id" element={<UpdateModel />} />
           </Route>
 
           <Route path="cars">
             <Route index element={<Cars />} />
             <Route path="create" element={<CreateCar />} />
-            <Route path="edit/:car_id" element={<UpdateCar />} />
+            <Route path="update/:car_id" element={<UpdateCar />} />
           </Route>
 
           <Route path="groups">
             <Route index element={<Groups />} />
             <Route path="create" element={<CreateGroup />} />
-            <Route path="edit/:group_id" element={<UpdateGroup />} />
+            <Route path="update/:group_id" element={<UpdateGroup />} />
           </Route>
 
           <Route path="users">
             <Route index element={<Users />} />
             <Route path="create" element={<CreateUser />} />
-            <Route path="edit/:id" element={<UpdateUser />} />
+            <Route path="update/:id" element={<UpdateUser />} />
           </Route>
         </Route>
 

@@ -15,14 +15,8 @@ export function Home() {
                 Encontre o melhor carro para você
               </span>
 
-              <div className="card p-2 mt-5">
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <Search />
-                    </div>
-                  </div>
-                </div>
+              <div className="mt-5 pb-5">
+                <Search />
               </div>
             </div>
           </div>

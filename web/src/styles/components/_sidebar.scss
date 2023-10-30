@@ -1,37 +1,52 @@
-.sidebar-container {
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-}
-
 .sidebar {
   background-color: #fff;
   border-right: 1px solid #d0d7de;
   height: 100%;
+  max-width: 300px;
+  width: 280px;
+  overflow-x: hidden;
+
+  position: sticky;
+  top: 0;
+  height: 100vh;
 
   .logo {
+    max-width: 100%;
+    width: 160px;
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    max-width: 100%;
-    width: 200px;
   }
 
   .list-items {
     list-style: none;
-    margin: 20px;
+    margin: 20px 0 20px 0;
+    overflow-y: auto;
+    max-height: 100%;
+
+    .group {
+      .label {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #aab1b8;
+        font-size: 0.8rem;
+
+        margin: 10px 0;
+        padding: 10px;
+        padding-left: 20px;
+      }
+    }
 
     .item {
       .link {
         display: flex;
         align-items: center;
-        color: #acb8c1;
+        color: rgb(111, 135, 155);
         font-weight: 500;
         margin: 10px 0;
         padding: 10px;
+        padding-left: 20px;
+        font-weight: 500;
 
         &:first-child {
           margin-top: 0;
@@ -46,45 +61,11 @@
         }
 
         &.active {
-          background-color: #ff767d;
-          border-radius: 20px;
-          padding: 10px;
-          color: #fff;
-        }
-      }
-    }
-  }
-
-  .user {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 1rem;
-    background-color: #fff;
-    border-top: 1px solid #d0d7de;
-
-    .dropdown {
-      .dropdown-menu {
-        .dropdown-item.active,
-        .dropdown-item:active {
+          width: 100%;
           color: #000;
-
-          background-color: transparent;
+          text-decoration: none;
+          background-color: rgb(119, 113, 246, 0.1);
         }
-      }
-    }
-
-    svg {
-      cursor: pointer;
-    }
-
-    .logout {
-      font-weight: 500;
-      color: #f46a6a;
-
-      &:hover {
-        color: #f46a6a;
-        opacity: 0.8;
       }
     }
   }

@@ -1,3 +1,3 @@
-export { Brands } from "./Brands";
-export { CreateBrand } from "./CreateBrand";
-export { UpdateBrand } from "./UpdateBrand";
+export * from "./Brands";
+export * from "./CreateBrand";
+export * from "./UpdateBrand";

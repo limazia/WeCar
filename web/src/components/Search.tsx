@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CarSimple, Cards, CaretDown } from "@phosphor-icons/react";
+import { CaretDown, XCircle } from "@phosphor-icons/react";
 
-import { Brand, Model } from "@utils/interfaces";
-import { BrandService } from "@utils/services/BrandService";
-import { ModelService } from "@utils/services/ModelService";
+import { Brand, Model } from "@shared/interfaces";
+import { BrandService } from "@shared/services/BrandService";
+import { ModelService } from "@shared/services/ModelService";
 
-import { OutsideWrapper } from "./OutsideWrapper";
-import { BrandLogo } from "./BrandLogo";
+import { BrandModal, ModelModal } from "./Modal";
 
 export function Search() {
   const location = useLocation();
@@ -17,22 +16,16 @@ export function Search() {
   const [models, setModels] = useState<Model[]>([]);
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
-  const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false);
-  const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
 
   useEffect(() => {
     loadBrands();
   }, []);
 
   useEffect(() => {
-    setIsBrandDropdownOpen(false);
-    setIsModelDropdownOpen(false);
     setSelectedModel(null);
   }, [selectedBrand]);
 
   useEffect(() => {
-    setIsBrandDropdownOpen(false);
-    setIsModelDropdownOpen(false);
     setSelectedBrand(null);
     setSelectedModel(null);
   }, [location]);
@@ -43,14 +36,12 @@ export function Search() {
     }
   }, [selectedBrand]);
 
-  const handleBrandClick = (brand: Brand) => {
+  const handleBrand = (brand: Brand) => {
     setSelectedBrand(brand);
-    setIsBrandDropdownOpen(false);
   };
 
-  const handleModelClick = (model: Model) => {
+  const handleModel = (model: Model) => {
     setSelectedModel(model);
-    setIsModelDropdownOpen(false);
   };
 
   const handleNavigate = () => {
@@ -70,130 +61,66 @@ export function Search() {
   };
 
   async function loadBrands() {
-    try {
-      const { results } = await BrandService.list();
+    const { results } = await BrandService.list();
 
-      setBrands(results);
-    } catch (error) {
-      console.error("Error loading brands:", error);
-    }
+    setBrands(results);
   }
 
   async function loadModelsByBrand(brand: Brand) {
-    try {
-      const { brand_slug } = brand;
-      const { results } = await ModelService.findModelsByBrandSlug({ brand_slug });
+    const { brand_slug } = brand;
+    const { results } = await ModelService.findModelsByBrandSlug(brand_slug);
 
-      setModels(results);
-    } catch (error) {
-      console.error("Error loading models:", error);
-    }
+    setModels(results);
   }
 
   return (
-    <div>
-      <div className="row d-flex align-items-center">
-        <div className="col-md-4">
-          <OutsideWrapper onClickOutside={() => setIsBrandDropdownOpen(false)}>
-            {isBrandDropdownOpen && (
-              <div className="card card-select-brand">
-                <div className="card-body">
-                  {brands.length > 0 ? (
-                    <>
-                      {brands.map((brand, index) => (
-                        <span
-                          key={`brand-${index}`}
-                          className="item"
-                          onClick={() => handleBrandClick(brand)}
-                        >
-                          {brand.brand_name}{" "}
-                          <BrandLogo brand_slug={brand.brand_slug} size={30} />
-                        </span>
-                      ))}
-                    </>
-                  ) : (
-                    <span>Nenhuma marca encontrada</span>
-                  )}
-                </div>
-              </div>
+    <div className="search">
+      <BrandModal brands={brands} handleBrand={handleBrand} />
+      <ModelModal models={models} handleModel={handleModel} />
+
+      <div
+        className="search-brands"
+        data-toggle="modal"
+        data-target="#brandsModal"
+      >
+        <div className="options">
+          <div className="title-box">
+            <span className="title">Marca</span>
+            <CaretDown size={10} weight="bold" />
+          </div>
+          <div className="item">
+            <span>{selectedBrand?.brand_name || "Escolher marca"}</span>
+
+            {selectedBrand && (
+              <XCircle size={16} onClick={() => setSelectedBrand(null)} />
             )}
-
-            <div
-              className="card card-search"
-              onClick={() => setIsBrandDropdownOpen(!isBrandDropdownOpen)}
-            >
-              <div className="card-body">
-                <div className="icon brand">
-                  <Cards size={25} />
-                </div>
-                <div className="options">
-                  <div className="title-box">
-                    <span className="title">Marca</span>
-                    <CaretDown size={10} weight="bold" />
-                  </div>
-                  <span className="item">
-                    {selectedBrand?.brand_name || "Escolher marca"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </OutsideWrapper>
-        </div>
-
-        <div className="col-md-5">
-          <OutsideWrapper onClickOutside={() => setIsModelDropdownOpen(false)}>
-            {isModelDropdownOpen && (
-              <div className="card card-select-model">
-                <div className="card-body">
-                  {models.length > 0 ? (
-                    <>
-                      {models.map((model, index) => (
-                        <span
-                          key={`model-${index}`}
-                          className="item"
-                          onClick={() => handleModelClick(model)}
-                        >
-                          {model.model_name}
-                        </span>
-                      ))}
-                    </>
-                  ) : (
-                    <span>Nenhum modelo encontrado</span>
-                  )}
-                </div>
-              </div>
-            )}
-
-            <div
-              className={`card card-search ${
-                selectedBrand ? "" : "disabled"
-              }`.trim()}
-              onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-            >
-              <div className="card-body">
-                <div className="icon model">
-                  <CarSimple size={25} />
-                </div>
-                <div className="options">
-                  <div className="title-box">
-                    <span className="title">Modelo</span>
-                    <CaretDown size={10} weight="bold" />
-                  </div>
-                  <span className="item">
-                    {selectedModel?.model_name || "Escolher modelo"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </OutsideWrapper>
-        </div>
-
-        <div className="col-md-3">
-          <button className="btn btn-explore-now" onClick={handleNavigate}>
-            Explorar agora
-          </button>
+          </div>
         </div>
       </div>
+
+      <div
+        className={`search-models ${selectedBrand ? "" : "disabled"}`.trim()}
+        data-toggle="modal"
+        data-target="#modelsModal"
+      >
+        <div className="options">
+          <div className="title-box">
+            <span className="title">Modelo</span>
+            <CaretDown size={10} weight="bold" />
+          </div>
+          <div className="item">
+            <span>{selectedModel?.model_name || "Escolher modelo"}</span>
+
+            {selectedModel && (
+              <XCircle size={16} onClick={() => setSelectedModel(null)} />
+            )}
+          </div>
+        </div>
+      </div>
+
+      <button className="btn btn-explore-now" onClick={handleNavigate}>
+        Explorar agora
+      </button>
     </div>
   );
 }
