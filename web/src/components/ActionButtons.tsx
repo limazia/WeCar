@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import { Permission } from "./Permission";
 
 interface ActionButtonsProps {
-  label?: string;
   to?: string;
   permission?: string[];
   onRefreshClick?: () => void;
 }
 
 export function ActionButtons({
-  label,
   to = "/",
   permission = [],
   onRefreshClick,
@@ -26,8 +24,8 @@ export function ActionButtons({
 
       {permission.length > 0 && (
         <Permission required={permission}>
-          <Link className="btn btn-primary-w" to={to}>
-            <Plus size={20} className="mr-1" /> {label}
+          <Link className="btn btn-link" to={to}>
+            <Plus size={20} />
           </Link>
         </Permission>
       )}

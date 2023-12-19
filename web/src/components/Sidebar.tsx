@@ -19,15 +19,17 @@ interface LinkProps {
   children: ReactNode;
   className: string;
   to: string;
+  end?: boolean;
 }
 
-function LinkActive({ children, className, to = "/" }: LinkProps) {
+function LinkActive({ children, className, to = "/", end }: LinkProps) {
   return (
     <NavLink
       className={({ isActive }) =>
         isActive ? `${className} active` : className
       }
       to={to}
+      end={end}
     >
       {children}
     </NavLink>
@@ -68,7 +70,7 @@ export function Sidebar() {
               <div className="label">Geral</div>
               <Permission required={["dashboard"]}>
                 <li className="item">
-                  <LinkActive className="link" to="/admin/">
+                  <LinkActive className="link" to="/admin/" end>
                     <House size={20} /> <span>Dashboard</span>
                   </LinkActive>
                 </li>

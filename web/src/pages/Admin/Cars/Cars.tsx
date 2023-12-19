@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Plus } from "@phosphor-icons/react";
 import debounce from "lodash/debounce";
 
 import { Car } from "@shared/interfaces";
@@ -14,8 +12,6 @@ import { CarCard } from "@components/Cards/Admin";
 import { RedirectPermission } from "@components/Permission";
 import { ActionButtons } from "@components/ActionButtons";
 import { Loading } from "@components/Loading";
-
-import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
 export function Cars() {
   const [cars, setCars] = useState<Car[]>([]);
@@ -71,60 +67,56 @@ export function Cars() {
     <>
       <Head title="Carros" />
       <RedirectPermission required={["cars.list"]} />
+
       <div className="container pb-5">
         <div className="row">
-          <div className="col-md-12">
-            <div className="d-flex align-items-center justify-content-end">
-              <ActionButtons
-                onRefreshClick={refreshList}
-                permission={["cars.create"]}
-                to="/admin/cars/create"
-                label="Novo carro"
-              />
-            </div>
-          </div>
           <div className="col-md-12 mt-4">
-            {cars?.length > 0 ? (
-              <>
-                {carItems.map((group, index) => (
-                  <div
-                    className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
-                    key={index}
-                  >
-                    {group.map((car) => (
-                      <div key={car.car_id} className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0">
-                        <CarCard
-                          data={car}
-                          loading={loading}
-                          handleDeleteClick={handleDeleteClick}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </>
-            ) : (
-              <div className="card">
-                <div className="card-body">
-                  <div className="col-md-12">
-                    <Empty
-                      imageElement={EmptyImage}
-                      title="Nenhum carro foi encontrado"
-                      description=" Começe cadastrando agora mesmo"
-                    />
+            <div className="card">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <h4>Carros</h4>
 
-                    <div className="d-flex justify-content-center mt-4">
-                      <Link
-                        className="btn btn-primary-w"
-                        to="/admin/cars/create"
-                      >
-                        <Plus size={20} className="mr-1" /> Novo carro
-                      </Link>
+                  <ActionButtons
+                    onRefreshClick={refreshList}
+                    permission={["cars.create"]}
+                    to="/admin/cars/create"
+                  />
+                </div>
+
+                <div className="mt-3">
+                  {cars?.length > 0 ? (
+                    <>
+                      {carItems.map((group, index) => (
+                        <div
+                          className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
+                          key={index}
+                        >
+                          {group.map((car) => (
+                            <div
+                              key={car.car_id}
+                              className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0"
+                            >
+                              <CarCard
+                                data={car}
+                                loading={loading}
+                                handleDeleteClick={handleDeleteClick}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <div className="col-md-12">
+                      <Empty
+                        title="Nenhum carro foi encontrado"
+                        description='Cadastre agora mesmo clicando no botão "+"'
+                      />
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

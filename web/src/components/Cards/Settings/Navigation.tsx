@@ -17,7 +17,7 @@ export function Navigation() {
             to="/admin/settings/info"
             className={({ isActive }) => (isActive ? "link active" : "link")}
           >
-            <User size={20} className="mr-1" /> Informações da Conta
+            <User size={20} /> Informações da Conta
           </NavLink>
         </div>
 
@@ -27,7 +27,7 @@ export function Navigation() {
               to="/admin/settings/name"
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
-              <IdentificationBadge size={20} className="mr-1" /> Alterar nome
+              <IdentificationBadge size={20} /> Alterar nome
             </NavLink>
           </div>
         </Permission>
@@ -38,7 +38,7 @@ export function Navigation() {
               to="/admin/settings/email"
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
-              <Envelope size={20} className="mr-1" /> Alterar e-mail
+              <Envelope size={20} /> Alterar e-mail
             </NavLink>
           </div>
         </Permission>
@@ -49,7 +49,7 @@ export function Navigation() {
               to="/admin/settings/password"
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
-              <Lock size={20} className="mr-1" /> Alterar senha
+              <Lock size={20} /> Alterar senha
             </NavLink>
           </div>
         </Permission>

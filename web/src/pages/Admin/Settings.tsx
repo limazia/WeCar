@@ -13,6 +13,7 @@ export function Settings() {
   return (
     <>
       <Head title="Configuração de conta" />
+
       <div className="container pb-5">
         <div className="row">
           <div className="col-sm-12 col-md-4">

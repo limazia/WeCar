@@ -88,7 +88,7 @@ export function Store() {
                 {carItems.map((group, index) => (
                   <div className="row mt-5" key={index}>
                     {group.map((car) => (
-                      <div key={car.car_id} className="col-md-4">
+                      <div key={car.car_id} className="col-sm-12 col-md-4">
                         {shimmer ? (
                           <CarShimmer key={`shimmer-${index}`} />
                         ) : (

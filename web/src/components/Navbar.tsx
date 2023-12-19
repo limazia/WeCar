@@ -148,10 +148,10 @@ export function NavbarAdmin() {
               <div className="user-info">
                 {hasPermission ? (
                   <Link to="/admin/settings/info">
-                    <span className="username">{user?.name}</span>
+                    <span className="name">{user?.name}</span>
                   </Link>
                 ) : (
-                  <span className="username">{user?.name}</span>
+                  <span className="name">{user?.name}</span>
                 )}
                 <small className="text-muted">{user?.email}</small>
               </div>

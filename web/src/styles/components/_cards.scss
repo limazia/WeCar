@@ -147,7 +147,10 @@
       align-items: center;
 
       .link {
+        display: flex;
+        gap: 8px;
         font-weight: bold;
+        font-size: 15px;
         color: #939ba2;
         transition: 0.5s ease;
 

@@ -1,26 +1,15 @@
-import { ElementType } from "react";
+import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
 interface EmptyProps {
-  imageElement?: ElementType;
-  image?: string;
   title: string;
-  description: string;
+  description?: string;
 }
 
-export function Empty({
-  imageElement: Image,
-  image,
-  title,
-  description,
-}: EmptyProps) {
+export function Empty({ title, description }: EmptyProps) {
   return (
     <div className="empty-box">
       <div className="empty-image">
-        {Image ? (
-          <Image className="img-fluid" />
-        ) : (
-          <img src={image} alt="" className="img-fluid" />
-        )}
+        <EmptyImage className="img-fluid" />
       </div>
 
       <div className="empty">

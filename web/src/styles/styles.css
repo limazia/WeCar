@@ -15,7 +15,7 @@ html {
   -moz-scroll-behavior: smooth;
   -ms-scroll-behavior: smooth;
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 html,
@@ -147,11 +147,10 @@ button:active:focus:not(:disabled):not(.disabled) {
   align-items: center;
   justify-content: center;
 }
-.empty-box .empty-image img,
 .empty-box .empty-image svg {
   max-width: 100%;
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 }
 .empty-box .empty {
   display: flex;
@@ -341,7 +340,7 @@ button:active:focus:not(:disabled):not(.disabled) {
   flex-direction: column;
 }
 .navbar-admin .info .user .user-info .name {
-  font-weight: 600;
+  font-weight: bold;
   font-size: 0.9rem;
   color: #000;
   text-decoration: none;
@@ -591,7 +590,10 @@ button:active:focus:not(:disabled):not(.disabled) {
   align-items: center;
 }
 .card-settings .card-body .menu .link {
+  display: flex;
+  gap: 8px;
   font-weight: bold;
+  font-size: 15px;
   color: #939ba2;
   transition: 0.5s ease;
 }

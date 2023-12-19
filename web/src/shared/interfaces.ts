@@ -10,7 +10,7 @@ export interface Config {
 }
 
 export interface Car {
-  car_id?: string;
+  car_id: string;
   car_fuel: string;
   car_exchange: string;
   car_year: string;

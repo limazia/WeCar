@@ -1,5 +1,5 @@
-import { Trash } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { Pencil, Trash } from "@phosphor-icons/react";
 
 import { useAuth } from "@shared/hooks/useAuth";
 import { User } from "@shared/interfaces";
@@ -36,27 +36,33 @@ export function UserCard({ item, loading, handleDeleteClick }: UserCardProps) {
           {item.is_deleteable && (
             <Permission required={["users.update", "users.delete"]}>
               <div className="card-footer">
-                <Permission required={["users.update"]}>
-                  <Link
-                    className="btn btn-edit btn-block"
-                    to={`/admin/users/update/${item.id}`}
-                  >
-                    Editar
-                  </Link>
-                </Permission>
-
-                {item.id !== user?.id && (
-                  <Permission required={["users.delete"]}>
-                    <Button
-                      className="btn btn-delete btn-block"
-                      loading={loading}
-                      disabled={loading}
-                      onClick={() => handleDeleteClick(item)}
-                    >
-                      <Trash size={20} />
-                    </Button>
+                <div className="row">
+                  <Permission required={["users.update"]}>
+                    <div className="col">
+                      <Link
+                        className="btn btn-edit btn-block"
+                        to={`/admin/users/update/${item.id}`}
+                      >
+                        <Pencil size={20} />
+                      </Link>
+                    </div>
                   </Permission>
-                )}
+
+                  {item.id !== user?.id && (
+                    <Permission required={["users.delete"]}>
+                      <div className="col">
+                        <Button
+                          className="btn btn-delete btn-block"
+                          loading={loading}
+                          disabled={loading}
+                          onClick={() => handleDeleteClick(item)}
+                        >
+                          <Trash size={20} />
+                        </Button>
+                      </div>
+                    </Permission>
+                  )}
+                </div>
               </div>
             </Permission>
           )}

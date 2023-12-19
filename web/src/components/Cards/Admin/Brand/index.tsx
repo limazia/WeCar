@@ -1,5 +1,5 @@
-import { Trash } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { Pencil, Trash } from "@phosphor-icons/react";
 
 import { Brand } from "@shared/interfaces";
 
@@ -33,25 +33,31 @@ export function BrandCard({
 
       <Permission required={["brands.update", "brands.delete"]}>
         <div className="card-footer">
-          <Permission required={["brands.update"]}>
-            <Link
-              className="btn btn-edit btn-block"
-              to={`/admin/brands/update/${item.brand_id}`}
-            >
-              Editar
-            </Link>
-          </Permission>
+          <div className="row">
+            <Permission required={["brands.update"]}>
+              <div className="col">
+                <Link
+                  className="btn btn-edit btn-block"
+                  to={`/admin/brands/update/${item.brand_id}`}
+                >
+                  <Pencil size={20} />
+                </Link>
+              </div>
+            </Permission>
 
-          <Permission required={["brands.delete"]}>
-            <Button
-              className="btn btn-delete btn-block"
-              loading={loading}
-              disabled={loading}
-              onClick={() => handleDeleteClick(item)}
-            >
-              <Trash size={20} />
-            </Button>
-          </Permission>
+            <Permission required={["brands.delete"]}>
+              <div className="col">
+                <Button
+                  className="btn btn-delete btn-block"
+                  loading={loading}
+                  disabled={loading}
+                  onClick={() => handleDeleteClick(item)}
+                >
+                  <Trash size={20} />
+                </Button>
+              </div>
+            </Permission>
+          </div>
         </div>
       </Permission>
     </div>

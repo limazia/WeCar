@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Plus } from "@phosphor-icons/react";
 import debounce from "lodash/debounce";
 
 import { User } from "@shared/interfaces";
@@ -15,8 +13,6 @@ import { UserCard } from "@components/Cards/Admin";
 import { RedirectPermission } from "@components/Permission";
 import { ActionButtons } from "@components/ActionButtons";
 import { Loading } from "@components/Loading";
-
-import { ReactComponent as EmptyImage } from "@assets/empty.svg";
 
 export function Users() {
   const { user } = useAuth();
@@ -95,63 +91,56 @@ export function Users() {
     <>
       <Head title="Usuários" />
       <RedirectPermission required={["users.list"]} />
+
       <div className="container pb-5">
         <div className="row">
-          <div className="col-md-12">
-            <div className="d-flex align-items-center justify-content-end">
-              <ActionButtons
-                onRefreshClick={refreshList}
-                permission={["users.create"]}
-                to="/admin/users/create"
-                label="Novo usuário"
-              />
-            </div>
-          </div>
           <div className="col-md-12 mt-4">
-            {users?.length > 0 ? (
-              <>
-                {userItems.map((group, index) => (
-                  <div
-                    className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
-                    key={index}
-                  >
-                    {group.map((user) => (
-                      <div
-                        key={user.id}
-                        className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0"
-                      >
-                        <UserCard
-                          item={user}
-                          loading={loading}
-                          handleDeleteClick={handleDeleteClick}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </>
-            ) : (
-              <div className="card">
-                <div className="card-body">
-                  <div className="col-md-12">
-                    <Empty
-                      imageElement={EmptyImage}
-                      title="Nenhum usuário foi encontrado"
-                      description=" Começe cadastrando agora mesmo"
-                    />
+            <div className="card">
+              <div className="card-body">
+                <div className="d-flex align-items-center justify-content-between">
+                  <h4>Usuários</h4>
 
-                    <div className="d-flex justify-content-center mt-4">
-                      <Link
-                        className="btn btn-primary-w"
-                        to="/admin/users/create"
-                      >
-                        <Plus size={20} className="mr-1" /> Novo usuário
-                      </Link>
+                  <ActionButtons
+                    onRefreshClick={refreshList}
+                    permission={["users.create"]}
+                    to="/admin/users/create"
+                  />
+                </div>
+
+                <div className="mt-3">
+                  {users?.length > 0 ? (
+                    <>
+                      {userItems.map((group, index) => (
+                        <div
+                          className={`row ${index !== 0 ? "mt-4" : "mt-0"}`}
+                          key={index}
+                        >
+                          {group.map((user) => (
+                            <div
+                              key={user.id}
+                              className="col-sm-12 col-md-6 col-lg-4 mb-sm-5 mb-lg-0"
+                            >
+                              <UserCard
+                                item={user}
+                                loading={loading}
+                                handleDeleteClick={handleDeleteClick}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <div className="col-md-12">
+                      <Empty
+                        title="Nenhum usuário foi encontrado"
+                        description='Cadastre agora mesmo clicando no botão "+"'
+                      />
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>

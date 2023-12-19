@@ -1,5 +1,5 @@
-import { Trash } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { Pencil, Trash } from "@phosphor-icons/react";
 
 import { Group } from "@shared/interfaces";
 
@@ -38,25 +38,31 @@ export function GroupCard({
           {item.is_deleteable && (
             <Permission required={["update_group", "delete_group"]}>
               <div className="card-footer">
-                <Permission required={["update_brand"]}>
-                  <Link
-                    className="btn btn-edit btn-block"
-                    to={`/admin/groups/update/${item.group_id}`}
-                  >
-                    Editar
-                  </Link>
-                </Permission>
+                <div className="row">
+                  <Permission required={["update_brand"]}>
+                    <div className="col">
+                      <Link
+                        className="btn btn-edit btn-block"
+                        to={`/admin/groups/update/${item.group_id}`}
+                      >
+                        <Pencil size={20} />
+                      </Link>
+                    </div>
+                  </Permission>
 
-                <Permission required={["delete_group"]}>
-                  <Button
-                    className="btn btn-delete btn-block"
-                    loading={loading}
-                    disabled={loading}
-                    onClick={() => handleDeleteClick(item)}
-                  >
-                    <Trash size={20} />
-                  </Button>
-                </Permission>
+                  <Permission required={["delete_group"]}>
+                    <div className="col">
+                      <Button
+                        className="btn btn-delete btn-block"
+                        loading={loading}
+                        disabled={loading}
+                        onClick={() => handleDeleteClick(item)}
+                      >
+                        <Trash size={20} />
+                      </Button>
+                    </div>
+                  </Permission>
+                </div>
               </div>
             </Permission>
           )}

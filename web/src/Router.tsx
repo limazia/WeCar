@@ -1,7 +1,7 @@
 import { Navigate, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-import { CustomRoutes } from "./components/CustomRoutes";
+import { CustomRoutes } from "@components/CustomRoutes";
 import { Authenticated } from "@components/Authenticated";
 import { DefaultLayout, AdminLayout } from "@components/Layouts";
 
