@@ -9,6 +9,7 @@ import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function UpdateBrand() {
   const { brand_id } = useParams() as { brand_id: string };
@@ -23,7 +24,7 @@ export function UpdateBrand() {
   }, []);
 
   async function loadBrandById(brand_id: string) {
-    const response = await BrandService.findById({ brand_id });
+    const response = await BrandService.findById(brand_id);
 
     if (response === undefined) {
       navigate("/admin/brands");
@@ -39,11 +40,11 @@ export function UpdateBrand() {
     setLoading(true);
 
     try {
-      const { error, message } = await BrandService.update({
+      const { error, message } = await BrandService.update(
         brand_id,
-        brand_name: name,
-        brand_slug: slug,
-      });
+        name,
+        slug
+      );
 
       if (message) {
         toast.success(message);
@@ -120,9 +121,14 @@ export function UpdateBrand() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Atualizar marca
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

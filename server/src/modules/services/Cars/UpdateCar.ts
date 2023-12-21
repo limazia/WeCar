@@ -29,28 +29,18 @@ class UpdateCar {
   }: IRequest): Promise<void> {
     const car = await connection('cars').where({ car_id }).first()
 
-    if(!car) {
+    if (!car) {
       throw new AppError(messages.error.NO_ITEM_FOUND_WITH_THIS_ID)
     }
-
-    console.log(    car_id,
-      car_km,
-      car_price,
-      car_image,
-      car_fuel,
-      car_exchange,
-      car_year,
-      car_observation,
-      id_model)
 
     car.car_id = car_id
     car.car_km = car_km
     car.car_price = car_price
-    car.car_image = car_image
+    car.car_image = car_image ? '' : car_image
     car.car_fuel = car_fuel
     car.car_exchange = car_exchange
     car.car_year = car_year
-    car.car_observation = car_observation
+    car.car_observation = car_observation ? '' : car_observation
     car.id_model = id_model
 
     await connection('cars').update(car).where({ car_id })

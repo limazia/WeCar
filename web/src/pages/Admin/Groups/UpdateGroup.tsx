@@ -11,6 +11,7 @@ import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 interface PermissionProps {
   label: string;
@@ -30,7 +31,7 @@ export function UpdateGroup() {
   }, []);
 
   async function loadGroupById(group_id: string) {
-    const response = await GroupService.findById({ group_id });
+    const response = await GroupService.findById(group_id);
 
     if (response === undefined) {
       navigate("/admin/groups");
@@ -59,11 +60,11 @@ export function UpdateGroup() {
     setLoading(true);
 
     try {
-      const { error, message } = await GroupService.update({
+      const { error, message } = await GroupService.update(
         group_id,
-        group_name: name,
-        group_permissions: permissions.map((item) => item.label).toString(),
-      });
+        name,
+        permissions.map((item) => item.label).toString()
+      );
 
       if (message) {
         toast.success(message);
@@ -196,9 +197,14 @@ export function UpdateGroup() {
                         type="submit"
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Atualizar grupo
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

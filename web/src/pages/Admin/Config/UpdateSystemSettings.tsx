@@ -11,6 +11,7 @@ import { ActionButtons } from "@components/ActionButtons";
 import { RedirectPermission } from "@components/Permission";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
+import { Spinner } from "@components/Spinner";
 
 export function UpdateSystemSettings() {
   const navigate = useNavigate();
@@ -68,17 +69,17 @@ export function UpdateSystemSettings() {
 
     const { whatsApp, facebook, instagram, address, telephone, email } = config;
 
+    const payload = {
+      whatsApp,
+      facebook,
+      instagram,
+      address,
+      telephone,
+      email,
+    };
+
     try {
-      const { error, message } = await ConfigService.update({
-        payload: {
-          whatsApp,
-          facebook,
-          instagram,
-          address,
-          telephone,
-          email,
-        },
-      });
+      const { error, message } = await ConfigService.update(payload);
 
       if (message) {
         toast.success(message);
@@ -260,9 +261,14 @@ export function UpdateSystemSettings() {
                         type="submit"
                         className="btn btn-primary-w btn-block"
                         disabled={isValid()}
-                        loading={loading}
                       >
-                        Atualizar configurações
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

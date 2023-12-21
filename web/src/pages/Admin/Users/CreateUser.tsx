@@ -11,6 +11,7 @@ import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function CreateUser() {
   const navigate = useNavigate();
@@ -196,9 +197,14 @@ export function CreateUser() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={isValid()}
-                        loading={loading}
                       >
-                        Finalizar
+                        {loading ? (
+                          <>
+                            <Spinner /> Finalizando...
+                          </>
+                        ) : (
+                          "Finalizar"
+                        )}
                       </Button>
                     </div>
                   </div>

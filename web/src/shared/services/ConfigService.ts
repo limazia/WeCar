@@ -1,9 +1,6 @@
-import { api } from "../axios/apiClient";
+import { api } from "@shared/axios/apiClient";
+import { handleRequestError } from "@shared/helpers/handleRequestError";
 import { Config } from "@shared/interfaces";
-
-interface ConfigProps {
-  payload?: Config;
-}
 
 export const ConfigService = {
   list: async function () {
@@ -12,17 +9,17 @@ export const ConfigService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /config] > it was not possible to make the request");
+      handleRequestError("GET /config");
     }
   },
 
-  update: async function ({ payload }: ConfigProps) {
+  update: async function (payload: Config) {
     try {
       const { data } = await api.put("/api/config", payload);
 
       return data;
     } catch (ex) {
-      console.error("[PUT /config/] > it was not possible to make the request");
+      handleRequestError("PUT /config");
     }
   },
 };

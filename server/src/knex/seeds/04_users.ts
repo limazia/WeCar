@@ -1,5 +1,5 @@
 import { Knex } from 'knex'
-import { genSaltSync, hashSync } from 'bcrypt'
+import { genSaltSync, hashSync } from 'bcryptjs'
 
 import { master, admin } from '../../config/user'
 

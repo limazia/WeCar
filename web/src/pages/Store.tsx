@@ -10,8 +10,6 @@ import { Empty } from "@components/Empty";
 import { Loading } from "@components/Loading";
 import { CarCard, CarShimmer } from "@components/Cards/Car";
 
-import { ReactComponent as CarEmpty } from "@assets/car-empty.svg";
-
 type IParams = {
   brand_slug: string;
   model_slug: string;
@@ -52,10 +50,10 @@ export function Store() {
       let response: IResponse;
 
       if (model_slug) {
-        response = await CarService.findByBrandAndModelSlug({
+        response = await CarService.findByBrandAndModelSlug(
           brand_slug,
-          model_slug,
-        });
+          model_slug
+        );
       } else if (brand_slug) {
         response = await CarService.findByBrandSlug(brand_slug);
       } else {
@@ -102,7 +100,6 @@ export function Store() {
             ) : (
               <div className="col-md-12 mt-4">
                 <Empty
-                  imageElement={CarEmpty}
                   title="Nenhum veículo encontrado"
                   description="Infelizmente não encontramos nenhum carro"
                 />

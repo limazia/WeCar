@@ -1,15 +1,17 @@
-import { ReactComponent as EmptyImage } from "@assets/empty.svg";
+import { ReactComponent as ObjectEmpty } from "@assets/empty.svg";
+import { ReactComponent as CarEmpty } from "@assets/car-empty.svg";
 
 interface EmptyProps {
+  type?: "object" | "car";
   title: string;
   description?: string;
 }
 
-export function Empty({ title, description }: EmptyProps) {
+export function Empty({ type = "object", title, description }: EmptyProps) {
   return (
     <div className="empty-box">
       <div className="empty-image">
-        <EmptyImage className="img-fluid" />
+        {type === "object" ? <ObjectEmpty /> : <CarEmpty />}
       </div>
 
       <div className="empty">

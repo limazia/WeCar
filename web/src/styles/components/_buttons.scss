@@ -26,8 +26,9 @@
 .btn-primary-w:active,
 .btn-primary-w:active:focus:not(:disabled):not(.disabled) {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
   color: #fff;
   background-color: #1111cb;
   border-color: #1111cb;
@@ -217,11 +218,16 @@
 .btn-update:focus,
 .btn-update:active,
 .btn-update:active:focus:not(:disabled):not(.disabled) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   color: #fff;
   background: #1111cb;
   border-color: #1111cb;
   padding: 10px 30px;
   border-radius: 10px;
+  font-weight: bold;
   transition: 0.5s ease;
 
   &.add-customer {
@@ -303,6 +309,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   height: 50px;
   color: #fff;
   background-color: #e12d3a;

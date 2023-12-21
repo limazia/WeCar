@@ -11,6 +11,7 @@ import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 interface PermissionProps {
   label: string;
@@ -30,10 +31,10 @@ export function CreateGroup() {
     setLoading(true);
 
     try {
-      const { error, message } = await GroupService.create({
-        group_name: name,
-        group_permissions: permissions.map((item) => item.label).toString(),
-      });
+      const { error, message } = await GroupService.create(
+        name,
+        permissions.map((item) => item.label).toString(),
+      );
 
       if (message) {
         toast.success(message);
@@ -166,9 +167,14 @@ export function CreateGroup() {
                         type="submit"
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Finalizar
+                        {loading ? (
+                          <>
+                            <Spinner /> Finalizando...
+                          </>
+                        ) : (
+                          "Finalizar"
+                        )}
                       </Button>
                     </div>
                   </div>

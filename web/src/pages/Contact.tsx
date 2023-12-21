@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { MapPin, Phone, Envelope } from "@phosphor-icons/react";
 
 import { EmailService } from "@shared/services/EmailService";
-import { maskPhone } from "@shared/helpers/mask";
 import { Contact as IContact } from "@shared/interfaces";
 
 import { useConfig } from "@shared/hooks/useConfig";
@@ -13,6 +12,7 @@ import { SectionTitle } from "@components/SectionTitle";
 import { Button } from "@components/Forms/Button";
 import { Input } from "@components/Forms/Input";
 import { Textarea } from "@components/Forms/Textarea";
+import { Spinner } from "@components/Spinner";
 
 export function Contact() {
   const { config } = useConfig();
@@ -30,15 +30,10 @@ export function Contact() {
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    let maskedValue = value;
-
-    if (name === "phone") {
-      maskedValue = maskPhone(value);
-    }
 
     setFormValues({
       ...formValues,
-      [name]: maskedValue,
+      [name]: value,
     });
   };
 
@@ -181,9 +176,14 @@ export function Contact() {
                         type="submit"
                         className="btn btn-primary-w btn-block"
                         disabled={isValid()}
-                        loading={loading}
                       >
-                        Enviar contato
+                        {loading ? (
+                          <>
+                            <Spinner /> Enviando...
+                          </>
+                        ) : (
+                          "Enviar contato"
+                        )}
                       </Button>
                     </div>
                   </div>

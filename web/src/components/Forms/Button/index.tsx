@@ -1,22 +1,18 @@
-import { ReactNode, ButtonHTMLAttributes } from "react";
+import { ReactNode, ComponentProps } from "react";
 
-import { Spinner } from "@components/Spinner";
-
-type ButtonProps = {
+interface ButtonProps extends ComponentProps<"button"> {
   children: ReactNode;
-  loading?: boolean;
   className?: string;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+}
 
 export function Button({
   children,
-  loading,
   className = "",
   ...rest
 }: ButtonProps) {
   return (
     <button className={className} {...rest}>
-      {loading ? <Spinner type="grow" size="1.2rem" /> : children}
+      {children}
     </button>
   );
 }

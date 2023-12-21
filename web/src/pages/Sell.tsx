@@ -6,6 +6,7 @@ import { SectionTitle } from "@components/SectionTitle";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { Textarea } from "@components/Forms/Textarea";
+import { Spinner } from "@components/Spinner";
 
 export function Sell() {
   const [loading, setLoading] = useState(false);
@@ -145,9 +146,14 @@ export function Sell() {
                       <Button
                         type="submit"
                         className="btn btn-primary-w btn-block"
-                        loading={loading}
                       >
-                        Enviar
+                        {loading ? (
+                          <>
+                            <Spinner /> Enviando...
+                          </>
+                        ) : (
+                          "Enviar"
+                        )}
                       </Button>
                     </div>
                   </div>

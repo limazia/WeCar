@@ -9,6 +9,7 @@ import { Head } from "@components/Head";
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function CreateBrand() {
   const navigate = useNavigate();
@@ -23,10 +24,7 @@ export function CreateBrand() {
     setLoading(true);
 
     try {
-      const { error, message } = await BrandService.create({
-        brand_name: name,
-        brand_slug: slug,
-      });
+      const { error, message } = await BrandService.create(name, slug);
 
       if (message) {
         toast.success(message);
@@ -105,9 +103,14 @@ export function CreateBrand() {
                         type="submit"
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Finalizar
+                        {loading ? (
+                          <>
+                            <Spinner /> Finalizando...
+                          </>
+                        ) : (
+                          "Finalizar"
+                        )}
                       </Button>
                     </div>
                   </div>

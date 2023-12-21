@@ -7,6 +7,7 @@ import { UserService } from "@shared/services/UserService";
 
 import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
+import { Spinner } from "@components/Spinner";
 import { RedirectPermission } from "@components/Permission";
 
 export function Email() {
@@ -93,9 +94,8 @@ export function Email() {
                   type="submit"
                   className="btn btn-update"
                   disabled={validate()}
-                  loading={loading}
                 >
-                  Alterar
+                  {loading ? <><Spinner /> Alterando...</> : "Alterar"}
                 </Button>
               </div>
             </div>

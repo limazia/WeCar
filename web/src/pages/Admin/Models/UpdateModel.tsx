@@ -11,6 +11,7 @@ import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function UpdateModel() {
   const { model_id } = useParams() as { model_id: string };
@@ -54,12 +55,12 @@ export function UpdateModel() {
     setLoading(true);
 
     try {
-      const { error, message } = await ModelService.update({
+      const { error, message } = await ModelService.update(
         model_id,
-        model_name: name,
-        model_slug: slug,
-        id_brand: brand,
-      });
+        name,
+        slug,
+        brand
+      );
 
       if (message) {
         toast.success(message);
@@ -155,9 +156,14 @@ export function UpdateModel() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Atualizar modelo
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

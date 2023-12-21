@@ -6,6 +6,7 @@ import { Model } from "@shared/interfaces";
 import { BrandLogo } from "@components/BrandLogo";
 import { Button } from "@components/Forms/Button";
 import { Permission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 interface ModelCardProps {
   item: Model;
@@ -49,11 +50,10 @@ export function ModelCard({
               <div className="col">
                 <Button
                   className="btn btn-delete btn-block"
-                  loading={loading}
                   disabled={loading}
                   onClick={() => handleDeleteClick(item)}
                 >
-                  <Trash size={20} />
+                  {loading ? <Spinner /> : <Trash size={20} />}
                 </Button>
               </div>
             </Permission>

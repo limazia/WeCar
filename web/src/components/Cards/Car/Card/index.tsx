@@ -50,7 +50,9 @@ export function CarCard({ data }: CarCardProps) {
       <div className="card-body h-100">
         <div className="row">
           <div className="col-md-12">
-            <h5 className="font-weight-bold text-uppercase pb-2">{model_name}</h5>
+            <h5 className="font-weight-bold text-uppercase pb-2">
+              {model_name}
+            </h5>
           </div>
         </div>
         <div className="row">
@@ -59,8 +61,7 @@ export function CarCard({ data }: CarCardProps) {
             <b>{formatKM(car_km)}</b>
           </div>
           <div className="col-md-6">
-            <span className="text-muted d-block">Ano</span>{" "}
-            <b>{car_year}</b>
+            <span className="text-muted d-block">Ano</span> <b>{car_year}</b>
           </div>
         </div>
         <div className="row mt-2">
@@ -75,7 +76,10 @@ export function CarCard({ data }: CarCardProps) {
         </div>
         <div className="row mt-4 d-flex align-items-center">
           <div className="col-md-6">
-            <span className="font-weight-bold mb-0 pb-0">
+            <span
+              className="font-weight-bold mb-0 pb-0 d-inline-block text-truncate"
+              style={{ maxWidth: "130px" }}
+            >
               {formatCurrency(car_price)}
             </span>
           </div>

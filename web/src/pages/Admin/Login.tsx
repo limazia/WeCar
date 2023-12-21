@@ -6,6 +6,7 @@ import { useAuth } from "@shared/hooks/useAuth";
 import { Head } from "@components/Head";
 import { Button } from "@components/Forms/Button";
 import { Input } from "@components/Forms/Input";
+import { Spinner } from "@components/Spinner";
 
 import { ReactComponent as Logo } from "@assets/logo.svg";
 
@@ -88,9 +89,8 @@ export function Login() {
                         type="submit"
                         className="btn btn-login btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Entrar
+                        {loading ? <Spinner /> : "Entrar"}
                       </Button>
                     </div>
 

@@ -11,6 +11,7 @@ import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function UpdateUser() {
   const { id } = useParams() as { id: string };
@@ -202,9 +203,14 @@ export function UpdateUser() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={isValid()}
-                        loading={loading}
                       >
-                        Atualizar usuário
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

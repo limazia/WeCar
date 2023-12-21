@@ -1,4 +1,4 @@
-import { compare, genSaltSync, hashSync } from 'bcrypt'
+import { compare, genSaltSync, hashSync } from 'bcryptjs'
 
 import { connection } from '@knex/index'
 

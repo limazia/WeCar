@@ -1,12 +1,8 @@
+import { api } from "@shared/axios/apiClient";
+import { handleRequestError } from "@shared/helpers/handleRequestError";
 import { Car } from "@shared/interfaces";
-import { api } from "../axios/apiClient";
 
-interface CarProps {
-  car_id?: string;
-  brand_slug?: string;
-  model_slug?: string;
-  payload?: Car;
-}
+type CarProps = Omit<Car, "car_id">;
 
 export const CarService = {
   list: async function () {
@@ -15,27 +11,27 @@ export const CarService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /cars] > it was not possible to make the request");
+      handleRequestError("GET /cars");
     }
   },
 
-  create: async function ({ payload }: CarProps) {
+  create: async function (payload: CarProps) {
     try {
       const { data } = await api.post("/api/cars", payload);
 
       return data;
     } catch (ex) {
-      console.error("[POST /cars] > it was not possible to make the request");
+      handleRequestError("POST /cars");
     }
   },
 
-  findByBrandAndModelSlug: async function ({ brand_slug, model_slug }: CarProps) {
+  findByBrandAndModelSlug: async function (brand_slug: string, model_slug: string) {
     try {
       const { data } = await api.get(`/api/cars/b/${brand_slug}/${model_slug}`);
 
       return data;
     } catch (ex) {
-      console.error("[GET /cars/b/:brand_slug/:model_slug] > it was not possible to make the request");
+      handleRequestError("GET /cars/b/:brand_slug/:model_slug");
     }
   },
 
@@ -45,27 +41,27 @@ export const CarService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /cars/b/:brand_slug] > it was not possible to make the request");
+      handleRequestError("GET /cars/b/:brand_slug");
     }
   },
 
-  findById: async function ({ car_id }: CarProps) {
+  findById: async function (car_id: string) {
     try {
       const { data } = await api.get(`/api/cars/${car_id}`);
 
       return data;
     } catch (ex) {
-      console.error("[GET /cars/:car_id] > it was not possible to make the request");
+      handleRequestError("GET /cars/:car_id");
     }
   },
 
-  update: async function ({ car_id, payload }: CarProps) {
+  update: async function (car_id: string, payload: CarProps) {
     try {
       const { data } = await api.put(`/api/cars/${car_id}`, payload);
 
       return data;
     } catch (ex) {
-      console.error("[PUT /cars/:car_id] > it was not possible to make the request");
+      handleRequestError("PUT /cars/:car_id");
     }
   },
 
@@ -75,7 +71,7 @@ export const CarService = {
 
       return data;
     } catch (ex) {
-      console.error("[DELETE /cars/:car_id] > it was not possible to make the request");
+      handleRequestError("DELETE /cars/:car_id");
     }
   }
 };

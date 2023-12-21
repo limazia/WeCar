@@ -6,6 +6,7 @@ import { exchangeOptions, fuelOptions } from "@shared/helpers/options";
 import { formatCurrency, formatKM } from "@shared/helpers/format";
 
 import { Carousel, SingleImage } from "@components/Images";
+import { Spinner } from "@components/Spinner";
 import { Button } from "@components/Forms/Button";
 import { Permission } from "@components/Permission";
 
@@ -66,11 +67,10 @@ export function CarCard({ data, loading, handleDeleteClick }: CarCardProps) {
               <div className="col">
                 <Button
                   className="btn btn-delete btn-block"
-                  loading={loading}
                   disabled={loading}
                   onClick={() => handleDeleteClick(data)}
                 >
-                  <Trash size={20} />
+                  {loading ? <Spinner /> : <Trash size={20} />}
                 </Button>
               </div>
             </Permission>

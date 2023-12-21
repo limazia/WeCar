@@ -14,15 +14,12 @@ import { WhatsApp } from "@components/WhatsApp";
 import { BrandLogo } from "@components/BrandLogo";
 import { Carousel, SingleImage } from "@components/Images";
 
-type IParams = {
-  car_id: string;
-};
-
 export function Buy() {
-  const { car_id } = useParams() as IParams;
+  const { car_id } = useParams() as { car_id: string };
   const navigate = useNavigate();
 
   const [car, setCar] = useState<Car>({
+    car_id: "",
     car_fuel: "",
     car_exchange: "",
     car_year: "",
@@ -41,7 +38,7 @@ export function Buy() {
   }, [loading]);
 
   async function fetchData() {
-    const response = await CarService.findById({ car_id });
+    const response = await CarService.findById(car_id);
 
     if (response === undefined) {
       navigate("/admin/cars");

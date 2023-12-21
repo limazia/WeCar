@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 
@@ -11,9 +11,9 @@ import { Input } from "@components/Forms/Input";
 import { Button } from "@components/Forms/Button";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
 
 export function CreateModel() {
-  const { model_id } = useParams() as { model_id: string };
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -41,12 +41,7 @@ export function CreateModel() {
     setLoading(true);
 
     try {
-      const { error, message } = await ModelService.create({
-        model_id,
-        model_name: name,
-        model_slug: slug,
-        id_brand: brand,
-      });
+      const { error, message } = await ModelService.create(name, slug, brand);
 
       if (message) {
         toast.success(message);
@@ -147,9 +142,14 @@ export function CreateModel() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Finalizar
+                        {loading ? (
+                          <>
+                            <Spinner /> Finalizando...
+                          </>
+                        ) : (
+                          "Finalizar"
+                        )}
                       </Button>
                     </div>
                   </div>

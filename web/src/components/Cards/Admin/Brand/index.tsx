@@ -4,6 +4,7 @@ import { Pencil, Trash } from "@phosphor-icons/react";
 import { Brand } from "@shared/interfaces";
 
 import { Button } from "@components/Forms/Button";
+import { Spinner } from "@components/Spinner";
 import { Permission } from "@components/Permission";
 import { BrandLogo } from "@components/BrandLogo";
 
@@ -49,11 +50,10 @@ export function BrandCard({
               <div className="col">
                 <Button
                   className="btn btn-delete btn-block"
-                  loading={loading}
                   disabled={loading}
                   onClick={() => handleDeleteClick(item)}
                 >
-                  <Trash size={20} />
+                  {loading ? <Spinner /> : <Trash size={20} />}
                 </Button>
               </div>
             </Permission>

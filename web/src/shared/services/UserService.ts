@@ -1,4 +1,5 @@
 import { api } from "@shared/axios/apiClient";
+import { handleRequestError } from "@shared/helpers/handleRequestError";
 import { Account } from "@shared/interfaces";
 
 interface UserProps {
@@ -21,7 +22,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /users] > it was not possible to make the request");
+      handleRequestError("[GET /users");
     }
   },
 
@@ -31,7 +32,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[POST /users] > it was not possible to make the request");
+      handleRequestError("[POST /users");
     }
   },
 
@@ -41,7 +42,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /me/account] > it was not possible to make the request");
+      handleRequestError("[GET /me/account");
     }
   },
 
@@ -51,7 +52,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[PUT /me/:scope/:id] > it was not possible to make the request");
+      handleRequestError("[PUT /me/:scope/:id");
     }
   },
 
@@ -61,7 +62,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /users/:id] > it was not possible to make the request");
+      handleRequestError("[GET /users/:id");
     }
   },
 
@@ -71,7 +72,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[PUT /users/:id] > it was not possible to make the request");
+      handleRequestError("[PUT /users/:id");
     }
   },
 
@@ -81,7 +82,7 @@ export const UserService = {
 
       return data;
     } catch (ex) {
-      console.error("[DELETE /users/:id] > it was not possible to make the request");
+      handleRequestError("[DELETE /users/:id");
     }
   },
 };

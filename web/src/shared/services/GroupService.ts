@@ -1,10 +1,5 @@
 import { api } from "@shared/axios/apiClient";
-
-interface GroupProps {
-  group_id?: string;
-  group_name?: string;
-  group_permissions?: string | string[];
-}
+import { handleRequestError } from "@shared/helpers/handleRequestError";
 
 export const GroupService = {
   list: async function () {
@@ -13,11 +8,11 @@ export const GroupService = {
 
       return data;
     } catch (ex) {
-      console.error("[GET /groups] > it was not possible to make the request");
+      handleRequestError("GET /groups");
     }
   },
 
-  create: async function ({ group_name, group_permissions }: GroupProps) {
+  create: async function (group_name: string, group_permissions: string | string[]) {
     try {
       const { data } = await api.post("/api/groups", {
         group_name,
@@ -26,21 +21,21 @@ export const GroupService = {
 
       return data;
     } catch (ex) {
-      console.error("[POST /groups] > it was not possible to make the request");
+      handleRequestError("POST /groups");
     }
   },
 
-  findById: async function ({ group_id }: GroupProps) {
+  findById: async function (group_id: string) {
     try {
       const { data } = await api.get(`/api/groups/${group_id}`);
 
       return data;
     } catch (ex) {
-      console.error("[GET /groups/:group_id] > it was not possible to make the request");
+      handleRequestError("GET /groups/:group_id");
     }
   },
 
-  update: async function ({ group_id, group_name, group_permissions }: GroupProps) {
+  update: async function (group_id: string, group_name: string, group_permissions: string | string[]) {
     try {
       const { data } = await api.put(`/api/groups/${group_id}`, {
         group_name,
@@ -49,7 +44,7 @@ export const GroupService = {
 
       return data;
     } catch (ex) {
-      console.error("[PUT /groups/:group_id] > it was not possible to make the request");
+      handleRequestError("PUT /groups/:group_id");
     }
   },
 
@@ -60,7 +55,7 @@ export const GroupService = {
 
       return data;
     } catch (ex) {
-      console.error("[DELETE /groups/:group_id] > it was not possible to make the request");
+      handleRequestError("DELETE /groups/:group_id");
     }
   },
 };

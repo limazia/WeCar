@@ -6,7 +6,6 @@ import { ArrowLeft } from "@phosphor-icons/react";
 import { ModelService } from "@shared/services/ModelService";
 import { CarService } from "@shared/services/CarService";
 import { Car } from "@shared/interfaces";
-import { maskMoney } from "@shared/helpers/mask";
 
 import { Head } from "@components/Head";
 import { Button } from "@components/Forms/Button";
@@ -14,12 +13,15 @@ import { Textarea } from "@components/Forms/Textarea";
 import { Input } from "@components/Forms/Input";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
+
+type CarProps = Omit<Car, "car_id">;
 
 export function UpdateCar() {
   const { car_id } = useParams() as { car_id: string };
   const navigate = useNavigate();
 
-  const [car, setCar] = useState<Car>({
+  const [car, setCar] = useState<CarProps>({
     car_fuel: "",
     car_exchange: "",
     car_year: "",
@@ -47,7 +49,7 @@ export function UpdateCar() {
   }
 
   async function loadCarById(car_id: string) {
-    const response = await CarService.findById({ car_id });
+    const response = await CarService.findById(car_id);
 
     if (response === undefined) {
       navigate("/admin/cars");
@@ -73,11 +75,9 @@ export function UpdateCar() {
   ): void => {
     const { name, value } = event.target;
 
-    const newValue = name === "car_price" ? maskMoney(value) : value;
-
     setCar((prevState) => ({
       ...prevState,
-      [name]: newValue,
+      [name]: value,
     }));
   };
 
@@ -98,23 +98,18 @@ export function UpdateCar() {
     } = car;
 
     try {
-      const formattedCarPrice = car_price
-        ? car_price.toString().replace(/\D/g, "")
-        : car_price;
+      const payload = {
+        car_km: Number(car_km),
+        car_price: Number(car_price),
+        car_image,
+        car_fuel,
+        car_exchange,
+        car_year,
+        car_observation,
+        id_model,
+      };
 
-      const { error, message } = await CarService.update({
-        car_id,
-        payload: {
-          car_km: Number(car_km),
-          car_price: Number(formattedCarPrice),
-          car_image,
-          car_fuel,
-          car_exchange,
-          car_year,
-          car_observation,
-          id_model,
-        },
-      });
+      const { error, message } = await CarService.update(car_id, payload);
 
       if (message) {
         toast.success(message);
@@ -296,9 +291,14 @@ export function UpdateCar() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Atualizar carro
+                        {loading ? (
+                          <>
+                            <Spinner /> Atualizando...
+                          </>
+                        ) : (
+                          "Atualizar"
+                        )}
                       </Button>
                     </div>
                   </div>

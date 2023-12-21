@@ -6,7 +6,6 @@ import { ArrowLeft } from "@phosphor-icons/react";
 import { ModelService } from "@shared/services/ModelService";
 import { CarService } from "@shared/services/CarService";
 import { Car } from "@shared/interfaces";
-import { maskMoney } from "@shared/helpers/mask";
 
 import { Head } from "@components/Head";
 import { Button } from "@components/Forms/Button";
@@ -14,11 +13,14 @@ import { Textarea } from "@components/Forms/Textarea";
 import { Input } from "@components/Forms/Input";
 import { Select } from "@components/Forms/Select";
 import { RedirectPermission } from "@components/Permission";
+import { Spinner } from "@components/Spinner";
+
+type CarProps = Omit<Car, "car_id">;
 
 export function CreateCar() {
   const navigate = useNavigate();
 
-  const [car, setCar] = useState<Car>({
+  const [car, setCar] = useState<CarProps>({
     car_fuel: "",
     car_exchange: "",
     car_year: "",
@@ -51,15 +53,9 @@ export function CreateCar() {
   ): void => {
     const { name, value } = event.target;
 
-    let newValue = value;
-
-    if (name === "car_price") {
-      newValue = maskMoney(value);
-    }
-
     setCar((prevState) => ({
       ...prevState,
-      [name]: newValue,
+      [name]: value,
     }));
   };
 
@@ -84,18 +80,18 @@ export function CreateCar() {
         ? car_price.toString().replace(/\D/g, "")
         : car_price;
 
-      const { error, message } = await CarService.create({
-        payload: {
-          car_km: Number(car_km),
-          car_price: Number(formattedCarPrice),
-          car_image,
-          car_fuel,
-          car_exchange,
-          car_year,
-          car_observation,
-          id_model,
-        },
-      });
+      const payload = {
+        car_km: Number(car_km),
+        car_price: Number(formattedCarPrice),
+        car_image,
+        car_fuel,
+        car_exchange,
+        car_year,
+        car_observation,
+        id_model,
+      };
+
+      const { error, message } = await CarService.create(payload);
 
       if (message) {
         toast.success(message);
@@ -289,9 +285,14 @@ export function CreateCar() {
                       <Button
                         className="btn btn-primary-w btn-block"
                         disabled={validate}
-                        loading={loading}
                       >
-                        Finalizar
+                        {loading ? (
+                          <>
+                            <Spinner /> Finalizando...
+                          </>
+                        ) : (
+                          "Finalizar"
+                        )}
                       </Button>
                     </div>
                   </div>
