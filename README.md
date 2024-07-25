@@ -3,6 +3,10 @@ O sistema WeCar é uma plataforma web para venda de veículos, equipada com um p
  
 **Nota:** O código do sistema contém contribuições de desenvolvedores em estágio inicial de aprendizado. Na época em que o projeto foi criado, estávamos no início da faculdade e do nosso aprendizado. Pedimos desculpas por qualquer imperfeição no código e agradecemos por sua compreensão enquanto continuamos a melhorar e aprimorar o sistema.
 
+**Utilizando o app**
+
+https://github.com/user-attachments/assets/b27dcc1e-8649-462c-8eda-de36d59bd984
+
 ## ✨ Instalação
 _Para executar o projeto, precisa seguir os passos a seguir._
 
